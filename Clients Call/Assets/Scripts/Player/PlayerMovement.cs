@@ -13,18 +13,25 @@ public class PlayerMovement : MonoBehaviour {
 
     private Dictionary<KeyCode,Action> ButtonActions = new Dictionary<KeyCode, Action>();
 
-    void OnCollisionEnter(Collision c)
-    {
-        // force is how forcefully we will push the player away from the enemy.
-
-        // If the object we hit is the enemy
-        if (c.gameObject.tag == "Player")
-        {
-            Handler.CollidedWithPlayer(gameObject);
-        }
-    }
+    //void OnCollisionEnter(Collision c)
+    //{
+    //    if (c.gameObject.tag == "Player")
+    //    {
+    //        float speed1 = c.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+    //        float speed2 = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+    //        /**
+    //        if(c.gameObject.GetComponent<CollidedScript>()==null && gameObject.GetComponent<CollidedScript>() == null)
+    //        {
+    //            gameObject.AddComponent<CollidedScript>();
+    //            gameObject.GetComponent<CollidedScript>().obj1 = c.gameObject;
+    //            gameObject.GetComponent<CollidedScript>().obj2 = gameObject;
+    //        }
+    //        /**/
+    //    }
+    //}
 
         // Use this for initialization
+
     void Start ()
     {
         FillButtons();
