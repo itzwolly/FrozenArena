@@ -32,7 +32,8 @@ public class LevelScript : MonoBehaviour {
         if(_counter>=_timeToDrop)
         {
             Debug.Log("Dropped Block");
-            DropRandomBlock();
+            //DropRandomBlock();
+            MoveRandomBlock();
             _timeToDrop *= _step;
             _counter = 0;
         }
@@ -44,5 +45,23 @@ public class LevelScript : MonoBehaviour {
         GameObject obj = _ground[nr];
         _ground.RemoveAt(nr);
         Destroy(obj);
+    }
+
+
+    private void MoveRandomBlock()
+    {
+        int which = rnd.Next(0, 2);
+        int nr = rnd.Next(0, _ground.Count);
+        GameObject obj = _ground[nr];
+        _ground.RemoveAt(nr);
+        if(which==0)
+        {
+            //obj.transform.Translate(0,-1,0);
+            Destroy(obj);
+        }
+        else
+        {
+            obj.transform.Translate(0, 1, 0);
+        }
     }
 }
