@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135230565786253826}
   - component: {fileID: 23656895139442938}
   - component: {fileID: 54935713975595968}
-  - component: {fileID: 114442497435142060}
+  - component: {fileID: 114915619900659372}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -37,9 +37,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852376512112492}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.56, y: 0.54, z: 1.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.96, y: 0, z: -0.65}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114442497435142060
+--- !u!114 &114915619900659372
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,15 +113,15 @@ MonoBehaviour:
   Back: 115
   Left: 97
   Right: 100
-  Ability1: 113
-  Ability2: 101
+  Ability1: 0
+  Ability2: 0
 --- !u!135 &135230565786253826
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852376512112492}
-  m_Material: {fileID: 13400000, guid: 3bf9800b0c68744449c5a29755d8873c, type: 2}
+  m_Material: {fileID: 13400000, guid: 497914fa3432bd849a047e7d92d12321, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
