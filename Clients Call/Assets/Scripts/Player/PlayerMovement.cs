@@ -4,48 +4,59 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    public KeyCode Forward;
-    public KeyCode Back;
-    public KeyCode Left;
-    public KeyCode Right;
-    public KeyCode Ability1;
-    public KeyCode Ability2;
-
+    [SerializeField] private KeyCode _forward;
+    [SerializeField] private KeyCode _back;
+    [SerializeField] private KeyCode _left;
+    [SerializeField] private KeyCode _right;
+    [SerializeField] private KeyCode _ability1;
+    [SerializeField] private KeyCode _ability2;
     [SerializeField] private float _speed;
 
-    private Dictionary<KeyCode,Action> ButtonActions = new Dictionary<KeyCode, Action>();
+    private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
+    private float _currentSpeed;
 
-    
-    void Start ()
-    {
+    public float Speed {
+        get { return _speed; }
+    }
+
+    public float CurrentSpeed {
+        get { return _currentSpeed; }
+        set { _currentSpeed = value; }
+    }
+
+    private void Awake() {
+        _currentSpeed = _speed;
+    }
+
+    private void Start() {
         FillButtons();
     }
 
     private void FillButtons()
     {
-        ButtonActions.Add(Forward, ForwardAction);
-        ButtonActions.Add(Back, BackAction);
-        ButtonActions.Add(Left, LeftAction);
-        ButtonActions.Add(Right, RightAction);
-        ButtonActions.Add(Ability1, Ability1Action);
-        ButtonActions.Add(Ability2, Ability2Action);
+        ButtonActions.Add(_forward, ForwardAction);
+        ButtonActions.Add(_back, BackAction);
+        ButtonActions.Add(_left, LeftAction);
+        ButtonActions.Add(_right, RightAction);
+        ButtonActions.Add(_ability1, Ability1Action);
+        ButtonActions.Add(_ability2, Ability2Action);
     }
 
     private void ForwardAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _speed);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _currentSpeed);
     }
     private void BackAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * _speed);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * _currentSpeed);
     }
     private void LeftAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * _speed);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * _currentSpeed);
     }
     private void RightAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * _speed);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * _currentSpeed);
     }
 
     private void Ability1Action()
