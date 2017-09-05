@@ -2492,7 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72473339749852c41b3e2819dfee0fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 150
+  _time: 100
   _step: 0.8
 --- !u!1001 &886411666
 Prefab:

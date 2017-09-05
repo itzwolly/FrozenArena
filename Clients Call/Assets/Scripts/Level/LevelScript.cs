@@ -53,21 +53,32 @@ public class LevelScript : MonoBehaviour {
         int which = rnd.Next(0, 2);
         int nr = rnd.Next(0, _ground.Count);
         GameObject obj = _ground[nr];
-        _ground.RemoveAt(nr);
+        //_ground.RemoveAt(nr);//uncomment if you dont want blocks to keep moving
         if(which==0)
         {
             //obj.transform.Translate(0,-1,0);
-            Destroy(obj);
+            StartCoroutine(MoveTransformByVector(obj.transform, new Vector3(0, -1, 0), 1));
+            //Destroy(obj);
         }
         else
         {
-            obj.transform.Translate(0, 1, 0);
+            StartCoroutine(MoveTransformByVector(obj.transform, new Vector3(0, 1, 0), 1));
         }
     }
 
 
-    public IEnumerator MoveTransformToPosition()
+    public IEnumerator MoveTransformByVector(Transform pTransform, Vector3 distance, float time)
     {
-        yield return null;
+        Vector3 currentPos = pTransform.position;
+
+        Vector3 newPos = currentPos+distance;
+        float t = 0f;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / time;
+            pTransform.position = Vector3.Lerp(currentPos, newPos, t);
+            yield return null;
+        }
     }
 }
