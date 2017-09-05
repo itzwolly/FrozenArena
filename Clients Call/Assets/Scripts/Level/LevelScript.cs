@@ -66,5 +66,8 @@ public class LevelScript : MonoBehaviour {
     }
 
 
-    public 
+    public IEnumerator MoveTransformToPosition()
+    {
+        yield return null;
+    }
 }
