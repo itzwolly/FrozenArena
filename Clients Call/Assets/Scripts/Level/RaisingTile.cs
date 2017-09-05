@@ -30,7 +30,7 @@ public class RaisingTile : MonoBehaviour
 
     private void Up()
     {
-        Debug.Log("Up");
+        //Debug.Log("Up");
         if (Info.MovableCubes.Count == 0)
         {
             Debug.Log("game is done");
@@ -50,14 +50,26 @@ public class RaisingTile : MonoBehaviour
         obj.GetComponent<State>().Up = true;
         float height = 1;
         if (_waitAfterDown >= 0)
-            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenDown,obj, new Vector3(0, +height, 0), _speedOfFall));
+            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0, +height, 0), _speedOfFall));
 
         if (Info.MovableCubes.Count > 0) StartCoroutine(Coroutines.CallVoidAfterSeconds(Up, _timeToNextFall));
     }
 
-    private void WhenDown(GameObject obj)
+    private void WhenUp(GameObject obj)
     {
-        StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, obj, _waitAfterDown));
+        StartCoroutine(Coroutines.CallVoidAfterSeconds(Refall, obj, _waitAfterDown));
+        //StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, obj, _waitAfterDown));
+    }
+
+    private void Refall(GameObject obj)
+    {
+        StartCoroutine(Coroutines.MoveTransformByVector(obj.transform,ReAddToList,obj, new Vector3(0,-1,0),_speedOfFall));
+    }
+
+    private void ReAddToList(GameObject obj)
+    {
+        Info.MovableCubes.Add(obj);
+        obj.GetComponent<State>().Up = false;
     }
 
     // Update is called once per frame
