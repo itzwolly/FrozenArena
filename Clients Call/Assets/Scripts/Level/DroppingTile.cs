@@ -57,13 +57,9 @@ public class DroppingTile : MonoBehaviour
 
     private void WhenUp(GameObject obj)
     {
-        StartCoroutine(Coroutines.CallVoidAfterSeconds(DestroyMe,obj, _waitAfterDown));
+        StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy,obj, _waitAfterDown));
     }
     
-    private void DestroyMe(GameObject obj)
-    {
-        Destroy(obj);
-    }
 
 	// Update is called once per frame
 	void Update () {

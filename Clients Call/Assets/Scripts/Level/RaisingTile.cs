@@ -56,12 +56,7 @@ public class RaisingTile : MonoBehaviour
 
     private void WhenDown(GameObject obj)
     {
-        StartCoroutine(Coroutines.CallVoidAfterSeconds(DestroyMe, obj, _waitAfterDown));
-    }
-
-    private void DestroyMe(GameObject obj)
-    {
-        Destroy(obj);
+        StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, obj, _waitAfterDown));
     }
 
     // Update is called once per frame
