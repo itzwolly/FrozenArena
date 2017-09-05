@@ -1,0 +1,62 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OneWayBoost : MonoBehaviour {
+    [SerializeField] private Direction _direction;
+    [SerializeField] private float _speedBoost;
+
+    private enum Direction {
+        Right,
+        Down,
+        Left,
+        Up
+    }
+
+    private void OnValidate() {
+        switch (_direction) {
+            case Direction.Right:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case Direction.Down:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case Direction.Left:
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                break;
+            case Direction.Up:
+                transform.rotation = Quaternion.Euler(0, 270, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Boosting player: " + collision.transform.name);
+        if (collision.transform.tag == "Player") {
+            Debug.Log("Tag equals player");
+            switch (_direction) {
+                case Direction.Right:
+                    ActivateBoost(collision.gameObject, Vector3.right * _speedBoost);
+                    break;
+                case Direction.Down:
+                    Debug.Log("Going down.");
+                    ActivateBoost(collision.gameObject, Vector3.back * _speedBoost);
+                    break;
+                case Direction.Left:
+                    ActivateBoost(collision.gameObject, Vector3.left * _speedBoost);
+                    break;
+                case Direction.Up:
+                    ActivateBoost(collision.gameObject, Vector3.forward * _speedBoost);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
+        pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
+    }
+}

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour {
     public KeyCode Ability1;
     public KeyCode Ability2;
 
+    [SerializeField] private float _speed;
+
     private Dictionary<KeyCode,Action> ButtonActions = new Dictionary<KeyCode, Action>();
 
     
@@ -31,20 +33,21 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ForwardAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*10);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _speed);
     }
     private void BackAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * 10);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * _speed);
     }
     private void LeftAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * 10);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * _speed);
     }
     private void RightAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * 10);
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * _speed);
     }
+
     private void Ability1Action()
     {
 

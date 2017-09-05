@@ -90,7 +90,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852376512112492}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -115,6 +115,7 @@ MonoBehaviour:
   Right: 100
   Ability1: 113
   Ability2: 101
+  _speed: 50
 --- !u!135 &135230565786253826
 SphereCollider:
   m_ObjectHideFlags: 1
