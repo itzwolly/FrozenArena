@@ -31,7 +31,6 @@ public class DroppingTile : MonoBehaviour
 
     private void Down()
     {
-        Debug.Log("Down");
         if (Info.MovableCubes.Count == 0)
         {
             Debug.Log("game is done");

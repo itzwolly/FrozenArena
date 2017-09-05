@@ -30,7 +30,7 @@ public class RaisingTile : MonoBehaviour
 
     private void Up()
     {
-        Debug.Log("Up");
+        //Debug.Log("Up");
         if (Info.MovableCubes.Count == 0)
         {
             Debug.Log("game is done");
