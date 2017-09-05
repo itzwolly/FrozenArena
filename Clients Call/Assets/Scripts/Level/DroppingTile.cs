@@ -50,7 +50,8 @@ public class DroppingTile : MonoBehaviour
         Info.MovableCubes.Remove(obj);
         obj.GetComponent<State>().Down = true;
         float height = 1;
-        StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0,-height,0), _speedOfFall));
+        if (_waitAfterDown >= 0)
+            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0,-height,0), _speedOfFall));
 
         if (Info.MovableCubes.Count > 0) StartCoroutine(Coroutines.CallVoidAfterSeconds(Down, _timeToNextFall));
     }
