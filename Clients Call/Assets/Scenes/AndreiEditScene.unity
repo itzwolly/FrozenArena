@@ -2486,11 +2486,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Info: {fileID: 882524753}
-  _delayTime: 11
-  _time: 2
+  _delayTime: 2
+  _time: 1
   _changes: 1
   _speedOfFall: 0.5
-  _waitAfterDown: 5
+  _waitAfterDown: 2
 --- !u!114 &882524752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2503,8 +2503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Info: {fileID: 882524753}
-  _delayTime: 10
-  _time: 2
+  _delayTime: 1
+  _time: 1
   _changes: 1
   _speedOfFall: 0.5
   _waitAfterDown: 5

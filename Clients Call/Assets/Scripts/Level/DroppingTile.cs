@@ -38,15 +38,12 @@ public class DroppingTile : MonoBehaviour
             return;
         }
         GameObject obj = Utility.RandomSelectFromList(Info.MovableCubes);
-        //int count = 0;
-        //while (obj.GetComponent<State>().Down || obj.GetComponent<State>().Up)
-        //{
-        //    _tiles.Remove(obj);
-        //    if (_tiles.Count == 0)
-        //        return;
-        //    obj = Utility.RandomSelectFromList(_tiles);
-        //    count++;
-        //}
+        int count = 0;
+        while (obj.GetComponent<State>().Down || obj.GetComponent<State>().Up)
+        {
+            obj = Utility.RandomSelectFromList(Info.MovableCubes);
+            count++;
+        }
         Info.MovableCubes.Remove(obj);
         obj.GetComponent<State>().Down = true;
         float height = 1;
