@@ -38,17 +38,17 @@ public class OneWayBoost : MonoBehaviour {
             Debug.Log("Tag equals player");
             switch (_direction) {
                 case Direction.Right:
-                    ActivateBoost(collision.gameObject, Vector3.right * _speedBoost);
+                    ActivateBoost(collision.gameObject, new Vector3(0.5f, 0, 0) * _speedBoost); // 1, 0, 0
                     break;
                 case Direction.Down:
                     Debug.Log("Going down.");
-                    ActivateBoost(collision.gameObject, Vector3.back * _speedBoost);
+                    ActivateBoost(collision.gameObject, new Vector3(0, 0, -0.5f) * _speedBoost); // 0, 0, -1
                     break;
                 case Direction.Left:
-                    ActivateBoost(collision.gameObject, Vector3.left * _speedBoost);
+                    ActivateBoost(collision.gameObject, new Vector3(-0.5f, 0, 0) * _speedBoost); // -1, 0 ,0
                     break;
                 case Direction.Up:
-                    ActivateBoost(collision.gameObject, Vector3.forward * _speedBoost);
+                    ActivateBoost(collision.gameObject, new Vector3(0, 0, 0.5f) * _speedBoost); // 0, 0, 1
                     break;
                 default:
                     break;
