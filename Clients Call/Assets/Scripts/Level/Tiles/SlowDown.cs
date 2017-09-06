@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlowDown : MonoBehaviour {
     [SerializeField] private float _slowDownMultiplier;
     [SerializeField] private float _slowedDownSpeed;
+    [SerializeField] private AudioClip SlowingPlayer;
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
@@ -22,6 +23,7 @@ public class SlowDown : MonoBehaviour {
 
     private void SlowDownObject(GameObject pObject, float pAmount) {
         pObject.GetComponent<Rigidbody>().velocity *= pAmount;
+        GetComponent<AudioSource>().PlayOneShot(SlowingPlayer);
     }
 
     private void SetObjectSpeed(GameObject pObject, float pAmount) {
