@@ -11,9 +11,23 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private KeyCode _ability1;
     [SerializeField] private KeyCode _ability2;
     [SerializeField] private float _speed;
+    [SerializeField] private AudioClip HitBreakable;
+    [SerializeField] private AudioClip HitOtherPlayer;
 
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag=="Player")
+        {
+            GetComponent<AudioSource>().PlayOneShot(HitOtherPlayer);
+        }
+        else if(collision.transform.tag == "BreakableTile")
+        {
+            GetComponent<AudioSource>().PlayOneShot(HitBreakable);
+        }
+    }
 
     public float Speed {
         get { return _speed; }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class OneWayBoost : MonoBehaviour {
     [SerializeField] private Direction _direction;
     [SerializeField] private float _speedBoost;
+    [SerializeField] private AudioClip SpeedingPlayer;
 
     private enum Direction {
         Right,
@@ -57,6 +58,7 @@ public class OneWayBoost : MonoBehaviour {
     }
 
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
+        GetComponent<AudioSource>().PlayOneShot(SpeedingPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
     }
 }
