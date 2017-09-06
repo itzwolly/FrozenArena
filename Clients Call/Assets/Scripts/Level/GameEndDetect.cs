@@ -7,17 +7,19 @@ using UnityEngine.SceneManagement;
 public class GameEndDetect : MonoBehaviour {
     [SerializeField]
     private float _timeToEnd;
+    [SerializeField]
+    private float _timeToDestroy;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if(collision.transform.tag=="Player")
+        if (collision.transform.tag == "Player")
         {
-            StartCoroutine(Coroutines.CallVoidAfterSeconds(Utility.RestartLevel,_timeToEnd));
+            StartCoroutine(Coroutines.CallVoidAfterSeconds(Utility.RestartLevel, _timeToEnd));
         }
-        else if(collision.transform.tag == "BreakableTile")
+        else if (collision.transform.tag == "BreakableTile")
         {
-            Destroy(collision.gameObject);
+            StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, collision.gameObject, _timeToDestroy));
         }
     }
-
+    
 }
