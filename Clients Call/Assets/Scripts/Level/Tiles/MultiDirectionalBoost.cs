@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MultiDirectionalBoost : MonoBehaviour {
     [SerializeField] private float _speedBoost;
+    [SerializeField] private AudioClip SpeedingUpPlayer;
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
@@ -13,6 +14,7 @@ public class MultiDirectionalBoost : MonoBehaviour {
     }
 
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
+        GetComponent<AudioSource>().PlayOneShot(SpeedingUpPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
     }
 }

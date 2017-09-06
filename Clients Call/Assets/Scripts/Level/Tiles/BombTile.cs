@@ -15,6 +15,8 @@ public class BombTile : MonoBehaviour {
     private float _explodeTimer;
     [SerializeField]
     private float _resetTime;
+    [SerializeField]
+    private AudioClip Exploding;
 
     Material _mat;
     Color _initialColor;
@@ -39,14 +41,15 @@ public class BombTile : MonoBehaviour {
 
     private void Explode()
     {
-        foreach(GameObject obj in _players)
+        GetComponent<AudioSource>().PlayOneShot(Exploding);
+        foreach (GameObject obj in _players)
         {
             Vector3 direction = obj.transform.position - gameObject.transform.position;
             if (direction.magnitude > _maxDistance)
                 continue;
             float power = (_maxDistance/direction.magnitude)*_powerMultiplier;
             direction.Normalize();
-            Debug.Log(power);
+            //Debug.Log(power);
             obj.GetComponent<Rigidbody>().AddForce(direction*power,ForceMode.Impulse);
         }
         //boom

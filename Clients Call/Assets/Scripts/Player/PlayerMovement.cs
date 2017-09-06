@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private KeyCode _ability1;
     [SerializeField] private KeyCode _ability2;
     [SerializeField] private float _speed;
+    [SerializeField] private AudioClip HitBreakable;
 
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
