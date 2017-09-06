@@ -198,6 +198,7 @@ MonoBehaviour:
   _ability2: 0
   _speed: 350
   HitBreakable: {fileID: 8300000, guid: a3e22b012cfb12142930c8a073cb801d, type: 3}
+  HitOtherPlayer: {fileID: 8300000, guid: 2837d0bc497d1f54287be90bb91ba0a0, type: 3}
 --- !u!135 &135095735613896770
 SphereCollider:
   m_ObjectHideFlags: 1
