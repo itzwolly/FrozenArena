@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - BreakableTile
+  - StartTile
   layers:
   - Default
   - TransparentFX
