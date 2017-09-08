@@ -34,9 +34,7 @@ public class OneWayBoost : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Boosting player: " + collision.transform.name);
         if (collision.transform.tag == "Player") {
-            Debug.Log("Tag equals player");
             switch (_direction) {
                 case Direction.Right:
                     ActivateBoost(collision.gameObject, (Quaternion.Euler(0, -45, 0) * Vector3.right) * _speedBoost); // (Quaternion.Euler(0, -45, 0) * Vector3.right)
@@ -60,5 +58,8 @@ public class OneWayBoost : MonoBehaviour {
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
         GetComponent<AudioSource>().PlayOneShot(SpeedingPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
+
+        // increment amount boosted
+        // TODO: Increase total and one-way times boosted
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerStats : MonoBehaviour {
+public struct PlayerStats {
     // score
     private int _score;
     // boost
@@ -8,12 +8,12 @@ public class PlayerStats : MonoBehaviour {
     private int _amountOfTimesBoostedByOneWay;
     private int _amountOfTimesBoostedByMulti;
     // air time 
-    private int _airTimeInSeconds;
+    private  float _airTimeInSeconds;
     // hitting opponent
-    private int _amountOfTimeHitYourOpponent;
+    private  int _amountOfTimeHitYourOpponent;
     // single round time
-    private int _shortestRoundInSec;
-    private int _longestRoundInSec;
+    //private int _shortestRoundInSec;
+    //private int _longestRoundInSec;
 
     // score
     public int Score {
@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour {
         set { _amountOfTimesBoostedByMulti = value; }
     }
     // air time
-    public int AirTimeInSeconds {
+    public float AirTimeInSeconds {
         get { return _airTimeInSeconds; }
         set { _airTimeInSeconds = value; }
     }
@@ -43,13 +43,14 @@ public class PlayerStats : MonoBehaviour {
         get { return _amountOfTimeHitYourOpponent; }
         set { _amountOfTimeHitYourOpponent = value; }
     }
+
     // single round time
-    public int ShortestRoundInSec {
-        get { return _shortestRoundInSec; }
-        set { _shortestRoundInSec = value; }
-    }
-    public int LongestRoundInSec {
-        get { return _longestRoundInSec; }
-        set { _longestRoundInSec = value; }
-    }
+    //public int ShortestRoundInSec {
+    //    get { return _shortestRoundInSec; }
+    //    set { _shortestRoundInSec = value; }
+    //}
+    //public int LongestRoundInSec {
+    //    get { return _longestRoundInSec; }
+    //    set { _longestRoundInSec = value; }
+    //}
 }

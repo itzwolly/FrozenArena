@@ -16,5 +16,8 @@ public class MultiDirectionalBoost : MonoBehaviour {
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
         GetComponent<AudioSource>().PlayOneShot(SpeedingUpPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
+
+        // increment amount boosted
+        // TODO: Increase total and multi times boosted
     }
 }
