@@ -20,6 +20,7 @@ public class BombTile : MonoBehaviour {
 
     Material _mat;
     Color _initialColor;
+    bool _exploding;
 
     private void Start()
     {
@@ -32,8 +33,9 @@ public class BombTile : MonoBehaviour {
         Color col = _initialColor;
         col.a /= 2;
         gameObject.GetComponent<Renderer>().material.color = col;
-        if (collision.transform.tag=="Player")
+        if (collision.transform.tag=="Player" && !_exploding)
         {
+            _exploding = true;
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Explode,_explodeTimer));
         }
     }
@@ -59,6 +61,7 @@ public class BombTile : MonoBehaviour {
     private void Reset()
     {
         gameObject.GetComponent<Renderer>().material.color = _initialColor;
+        _exploding = false;
 
     }
 }

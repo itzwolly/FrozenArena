@@ -14,6 +14,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] Slider BouncePower;
     [SerializeField] Slider IcynessValue;
     [SerializeField] Toggle HaveMouse;
+
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
     [SerializeField] GameObject StartPosition;
@@ -64,47 +65,49 @@ public class CreateSceneButton : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (_editing)
         {
-            MoveTile(_movingBlock, new Vector3(-1, 0, 0));
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MoveTile(_movingBlock, new Vector3(-1, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MoveTile(_movingBlock, new Vector3(1, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                MoveTile(_movingBlock, new Vector3(0, 0, 1));
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                MoveTile(_movingBlock, new Vector3(0, 0, -1));
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _level.Add(_movingBlock);
+                Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                _movingBlock = Instantiate(_selectedTile);
+                _movingBlock.name += _level.Count.ToString();
+                _movingBlock.transform.position = pos;
+            }
+            /**
+            if (Input.GetMouseButtonUp(0))
+            {
+                CreateBlockUnderMouse();
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                DeleteBlockUnderMouse();
+            }
+            /**/
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveTile(_movingBlock, new Vector3(1, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveTile(_movingBlock, new Vector3(0, 0, 1));
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveTile(_movingBlock, new Vector3(0, 0, -1));
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _level.Add(_movingBlock);
-            Vector3 pos = _movingBlock.transform.position+new Vector3(0,1,0);
-            _movingBlock = Instantiate(_selectedTile);
-            _movingBlock.name += _level.Count.ToString();
-            _movingBlock.transform.position = pos;
-        }
-        /**
-        if (Input.GetMouseButtonUp(0))
-        {
-            CreateBlockUnderMouse();
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            DeleteBlockUnderMouse();
-        }
-        /**/
     }
 
     private void MoveTile(GameObject tile, Vector3 direction)
     {
         RaycastHit raycasthit;
         Vector3 newPos = tile.transform.position + direction;
-        Ray ray = _camera.ScreenPointToRay(newPos);
         if (Physics.Raycast(newPos, new Vector3(0, -1, 0), out raycasthit))
         {
             if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "StartTile")
