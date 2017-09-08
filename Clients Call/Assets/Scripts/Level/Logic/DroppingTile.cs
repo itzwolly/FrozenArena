@@ -47,12 +47,12 @@ public class DroppingTile : MonoBehaviour
         obj.GetComponent<State>().Down = true;
         float height = 1;
         if (_waitAfterDown >= 0)
-            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0,-height,0), _speedOfFall));
+            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenDown,obj, new Vector3(0,-height,0), _speedOfFall));
 
         if (Info.MovableCubes.Count > 0) StartCoroutine(Coroutines.CallVoidAfterSeconds(Down, _timeToNextFall));
     }
 
-    private void WhenUp(GameObject obj)
+    private void WhenDown(GameObject obj)
     {
         StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy,obj, _waitAfterDown));
     }
