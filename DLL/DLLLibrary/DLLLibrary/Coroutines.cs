@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace DLLLibrary
 {
-    public class Coroutines
+    public static class Coroutines
     {
-
         public static IEnumerator MoveTransformByVector(Transform pTransform, Action<GameObject> action,GameObject obj, Vector3 distance, float time)
         {
             Vector3 currentPos = pTransform.position;
@@ -23,6 +22,7 @@ namespace DLLLibrary
             }
             action(obj);
         }
+
         public static IEnumerator MoveTransformByVector(Transform pTransform, Action action, Vector3 distance, float time)
         {
             Vector3 currentPos = pTransform.position;
@@ -48,6 +48,7 @@ namespace DLLLibrary
             yield return new WaitForSeconds(time);
             action(obj);
         }
+
     }
 
 }

@@ -1,47 +1,64 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 public class LevelConfig : MonoBehaviour {
     [SerializeField] private LevelMode _mode;
     [SerializeField] private LevelDifficulty _difficulty;
 
     [Space(10)]
+    [SerializeField] private VersusProperties _versusProperties;
     [SerializeField] private SurvivalProperties _survivalProperties;
-
-    public LevelDifficulty Difficulty {
-        get { return _difficulty; }
-        set { _difficulty = value; }
-    }
-    public LevelMode Mode {
-        get { return _mode; }
-        set { _mode = value; }
-    }
-
-    /* Survival */
-    public int s_TileDropDuration {
-        get {
-            switch (_difficulty) {
-                case LevelDifficulty.Slow:
-                    return _survivalProperties.Slow;
-                case LevelDifficulty.Normal:
-                    return _survivalProperties.Normal;
-                case LevelDifficulty.Fast:
-                    return _survivalProperties.Fast;
-                default:
-                    return -1;
-            }
-        }
-    }
-
+    [SerializeField] private AToBProperties _aToBProperties;
+    [SerializeField] private WoodToHoleProperties _woodToHoleProperties;
 
     public enum LevelDifficulty {
-        Slow,
+        Easy,
         Normal,
-        Fast
+        Hard
     }
     public enum LevelMode {
         Versus,
         Survival,
-        Race,
-        DropAWood
+        AToB,
+        WoodToHole
+    }
+
+    private void OnValidate() {
+        switch (_mode) {
+            case LevelMode.Versus:
+                GetComponentInChildren<RaisingTile>().enabled = _versusProperties.EnableRaisingTiles;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = false;
+                break;
+            case LevelMode.Survival:
+                GetComponentInChildren<RaisingTile>().enabled = false;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = false;
+                break;
+            case LevelMode.AToB:
+                GetComponentInChildren<RaisingTile>().enabled = false;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = true;
+                break;
+            case LevelMode.WoodToHole:
+            default:
+                break;
+        }
+    }
+
+    private Properties GetGameModeProperties() {
+        switch (_mode) {
+            case LevelMode.Survival:
+                return _survivalProperties;
+            case LevelMode.AToB:
+                return _aToBProperties;
+            case LevelMode.WoodToHole:
+                return _woodToHoleProperties;
+            case LevelMode.Versus: // returns null for now..
+            default:
+                return null;
+        }
+    }
+
+    public int GetDifficultyValue() {
+        return GetGameModeProperties().GetValue(_difficulty);
     }
 }

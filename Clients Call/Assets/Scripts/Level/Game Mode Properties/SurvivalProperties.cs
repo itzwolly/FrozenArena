@@ -2,19 +2,21 @@
 using System;
 
 [Serializable]
-public class SurvivalProperties : System.Object {
-    [Header("Tile Wait Time Before Dropping")]
-    [SerializeField] private int _slow;
+public class SurvivalProperties : Properties {
+    [Space(-8)]
+    [Header("Amount of seconds it shows before dropping a tile")]
+    [Space(5)]
+    [SerializeField] private int _easy;
     [SerializeField] private int _normal;
-    [SerializeField] private int _fast;
+    [SerializeField] private int _hard;
 
-    public int Slow {
-        get { return _slow; }
+    public int Easy {
+        get { return _easy; }
     }
     public int Normal {
         get { return _normal; }
     }
-    public int Fast {
-        get { return _fast; }
+    public int Hard {
+        get { return _hard; }
     }
 }
