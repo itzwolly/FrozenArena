@@ -17,8 +17,9 @@ public class CreateSceneButton : MonoBehaviour
 
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
-    [SerializeField] GameObject StartPosition;
+    [SerializeField] GameObject PopOutButtons;
 
+    [SerializeField] GameObject StartPosition;
 
     [SerializeField] GameObject NormalBlockLongBrush;
     [SerializeField] GameObject BombTileBrush;
@@ -27,6 +28,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject OneWayBoostBrush;
     [SerializeField] GameObject SlowDownBlockBrush;
     [SerializeField] GameObject NormalBlockBrush;
+    [SerializeField] GameObject DeleteBlockBrush;
     [SerializeField] PhysicMaterial BouncyOriginal;
     [SerializeField] PhysicMaterial IceOriginal;
 
@@ -34,6 +36,8 @@ public class CreateSceneButton : MonoBehaviour
     private GameObject _movingBlock;
     private List<GameObject> _level = new List<GameObject>();
     private bool _editing;
+    private bool _popOut;
+    private int _popOutCounter;
 
     private string _sceneName;
     private float _playerMass;
@@ -41,10 +45,13 @@ public class CreateSceneButton : MonoBehaviour
     private float _bouncePower;
     private float _icynessValue;
     private bool _haveMouse;
+    private bool _changedBlock;
+    private Vector3 _lastPosition;
     // Use this for initialization
     void Start () {
         _level.Add(StartPosition);
         _editing = false;
+        _popOut = false;
         _selectedTile = (NormalBlockBrush);
         _movingBlock = Instantiate(_selectedTile);
         _movingBlock.transform.position = StartPosition.transform.position;
@@ -65,6 +72,12 @@ public class CreateSceneButton : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(_changedBlock)
+        {
+            _movingBlock = Instantiate(_selectedTile);
+            _movingBlock.transform.position = _lastPosition;
+            _changedBlock = false;
+        }
         if (_editing)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -83,13 +96,17 @@ public class CreateSceneButton : MonoBehaviour
             {
                 MoveTile(_movingBlock, new Vector3(0, 0, -1));
             }
-            if (Input.GetKeyUp(KeyCode.Space))
+            if(Input.GetKey(KeyCode.Space))
             {
-                _level.Add(_movingBlock);
-                Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                _movingBlock = Instantiate(_selectedTile);
-                _movingBlock.name += _level.Count.ToString();
-                _movingBlock.transform.position = pos;
+                _popOutCounter++;
+                if(_popOutCounter>60)
+                {
+                    StartButtons.SetActive(false);
+                    EditButtons.SetActive(false);
+                    PopOutButtons.SetActive(true);
+                    _popOut = true;
+                    _editing = false;
+                }
             }
             /**
             if (Input.GetMouseButtonUp(0))
@@ -102,6 +119,53 @@ public class CreateSceneButton : MonoBehaviour
             }
             /**/
         }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
+            if (!_popOut&&_editing)
+            {
+                if (_selectedTile == DeleteBlockBrush)
+                {
+                    RaycastHit raycasthit;
+                    if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
+                    {
+                        if (raycasthit.transform.tag == "Ground" )
+                        {
+                            _level.Remove(raycasthit.transform.gameObject);
+                            Destroy(raycasthit.transform.gameObject);
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    _level.Add(_movingBlock);
+                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                    _movingBlock = Instantiate(_selectedTile);
+                    _movingBlock.name += _level.Count.ToString();
+                    _movingBlock.transform.position = pos;
+                }
+            }
+            else
+            {
+                EditButtons.SetActive(true);
+                PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
+                try
+                {
+                    Debug.Log("Doing the action");
+                    PopOutButtons.GetComponent<PopOutMenuScript>().ToDo();
+                }
+                catch
+                {
+                    //Debug.Log("Nothing to do");
+                }
+                PopOutButtons.SetActive(false);
+                _popOut = false;
+                _editing = true;
+            }
+            _popOutCounter = 0;
+        }
     }
 
     private void MoveTile(GameObject tile, Vector3 direction)
@@ -112,13 +176,13 @@ public class CreateSceneButton : MonoBehaviour
         {
             if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "StartTile")
             {
-                Debug.Log("Was Above:"+raycasthit.transform.name);
+                //Debug.Log("Was Above:"+raycasthit.transform.name);
                 tile.transform.position = raycasthit.transform.position + new Vector3(0, 1, 0) - direction;
             }
         }
         else
         {
-            Debug.Log("Nothing Underneath");
+            //Debug.Log("Nothing Underneath");
             Vector3 pos = tile.transform.position;
             pos.y = StartPosition.transform.position.y;
             tile.transform.position = pos;
@@ -127,7 +191,7 @@ public class CreateSceneButton : MonoBehaviour
         {
             if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "StartTile")
             {
-                Debug.Log("Have to Climb");
+                //Debug.Log("Have to Climb");
                 tile.transform.Translate(0, 1, 0);
             }
         }
@@ -136,38 +200,58 @@ public class CreateSceneButton : MonoBehaviour
 
     public void SelectNormalLong()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(NormalBlockLongBrush);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (NormalBlockLongBrush);
     }
     public void SelectBomb()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(BombTileBrush);
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (BombTileBrush);
     }
     public void SelectBreakable()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(BreakableTileBrush);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (BreakableTileBrush);
     }
     public void SelectMultiDirectionalBoost()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(MultiDirectionalBoostBrush);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (MultiDirectionalBoostBrush);
     }
     public void SelectOneWayBoost()
     {
-        Destroy(_selectedTile);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
         _selectedTile = Instantiate(OneWayBoostBrush);
     }
     public void SelectSlowDown()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(SlowDownBlockBrush);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (SlowDownBlockBrush);
     }
     public void SelectNormalBlock()
     {
-        Destroy(_selectedTile);
-        _selectedTile = Instantiate(NormalBlockBrush);
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (NormalBlockBrush);
+    }
+    public void SelectDeleteBlock()
+    {
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (DeleteBlockBrush);
     }
 
     public void StartSceneCreation()
