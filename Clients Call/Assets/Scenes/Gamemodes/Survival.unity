@@ -6194,7 +6194,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 510142817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.59, z: 0}
+  m_LocalPosition: {x: 0, y: -12, z: 0}
   m_LocalScale: {x: 7, y: 1, z: 7}
   m_Children: []
   m_Father: {fileID: 882524750}
@@ -10704,12 +10704,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 1
-  _difficulty: 1
+  _difficulty: 0
   _versusProperties:
     _enableRaisingTiles: 0
   _survivalProperties:
-    _easy: 5
-    _normal: 3
+    _easy: 3
+    _normal: 2
     _hard: 1
   _aToBProperties:
     _easy: 3
@@ -16982,10 +16982,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Info: {fileID: 1327499519}
-  _delayTime: 5
-  _time: 2
+  _delayBetweenTiles: 0.5
   _changes: 0
-  _speedOfFall: 5
+  _speedOfFall: 1
   _waitAfterDown: 0
 --- !u!114 &1327499521
 MonoBehaviour:

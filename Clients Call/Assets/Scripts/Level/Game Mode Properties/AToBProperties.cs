@@ -6,17 +6,17 @@ public class AToBProperties : Properties {
     [Space(-8)]
     [Header("Amount of seconds before all but one tiles drop.")]
     [Space(5)]
-    [SerializeField] private int _easy;
-    [SerializeField] private int _normal;
-    [SerializeField] private int _hard;
+    [SerializeField] private float _easy;
+    [SerializeField] private float _normal;
+    [SerializeField] private float _hard;
 
-    public int Easy {
+    public float Easy {
         get { return _easy; }
     }
-    public int Normal {
+    public float Normal {
         get { return _normal; }
     }
-    public int Hard {
+    public float Hard {
         get { return _hard; }
     }
 }

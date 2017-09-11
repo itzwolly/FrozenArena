@@ -32,11 +32,17 @@ public class LevelConfig : MonoBehaviour {
                 break;
             case LevelMode.Survival:
                 GetComponentInChildren<RaisingTile>().enabled = false;
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = false;
+                GameObject survCam = GameObject.FindGameObjectWithTag("MainCamera");
+                if (survCam.GetComponent<FollowTarget>() != null) {
+                    survCam.GetComponent<FollowTarget>().enabled = false;
+                }
                 break;
             case LevelMode.AToB:
                 GetComponentInChildren<RaisingTile>().enabled = false;
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = true;
+                GameObject aToBCam = GameObject.FindGameObjectWithTag("MainCamera");
+                if (aToBCam.GetComponent<FollowTarget>() != null) {
+                    aToBCam.GetComponent<FollowTarget>().enabled = false;
+                }
                 break;
             case LevelMode.WoodToHole:
             default:
@@ -58,7 +64,7 @@ public class LevelConfig : MonoBehaviour {
         }
     }
 
-    public int GetDifficultyValue() {
+    public float GetDifficultyValue() {
         return GetGameModeProperties().GetValue(_difficulty);
     }
 }

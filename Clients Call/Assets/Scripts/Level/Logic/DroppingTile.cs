@@ -5,77 +5,76 @@ using DLLLibrary;
 
 public class DroppingTile : MonoBehaviour {
     [SerializeField] private StoredInfo Info;
-    [SerializeField] private float _delayTime;
-    [SerializeField] private float _time;
+    //[SerializeField] private float _startDelay;
+    [SerializeField] private float _delayBetweenTiles;
     [SerializeField] private int _changes;
     [SerializeField] private float _speedOfFall;
     [SerializeField] private float _waitAfterDown;
 
     private float _timeToNextFall;
-    private bool _countingDown = false;
 
-    private int _difficultyValue;
+    private float _difficultyValue;
+    private GameObject _chosenTile;
+    private Timer _timer;
+
+    private float _timePassed;
 
     // Use this for initialization
     private void Start() {
         _difficultyValue = GameObject.FindGameObjectWithTag("Level").GetComponent<LevelConfig>().GetDifficultyValue();
+        _timeToNextFall = _delayBetweenTiles;
 
-        _timeToNextFall = _time;
-        _delayTime -= _difficultyValue;
+        _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
+        _timer = Timer.Register(0.1f, () => StartDropTimer(_chosenTile), isLooped: true);
+    }
 
-        StartCoroutine(Coroutines.CallVoidAfterSeconds(DropTile, _delayTime));
+    private void StartDropTimer(GameObject pTile) {
+        TextMesh txtMesh = pTile.GetComponent<TextMesh>();
+
+        float timeLeft = _delayBetweenTiles - _timePassed;
+        Debug.Log(timeLeft);
+        txtMesh.text = ((int) (timeLeft)).ToString();
+
+        _timePassed += 0.1f;
+
+        if (timeLeft <= 1) {
+            _timer.Pause();
+            _timePassed = 0;
+
+            if (Info.MovableCubes.Count > 0) {
+                DropTile();
+            }
+        }
     }
 
     private void DropTile() {
+        _timer.Pause();
+
         if (Info.MovableCubes.Count == 0) {
             return;
         }
 
-        GameObject obj = Utility.RandomSelectFromList(Info.MovableCubes);
-        StartCoroutine(WaitAndCountDown(obj, _difficultyValue));
-        StartCoroutine(WaitAndExecute(obj));
-    }
-
-    private void DestroyTile(GameObject obj) {
-        StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy,obj, _waitAfterDown));
-    }
-
-    private IEnumerator WaitAndCountDown(GameObject pTile, float pWaitTime) {
-        _countingDown = true;
-        TextMesh txtMesh = pTile.GetComponent<TextMesh>();
-        for (int i = 0; i <= pWaitTime; i++) {
-            yield return new WaitForSeconds(1); // need to wait 1 second because we are counting down
-            if (txtMesh != null) {
-                txtMesh.text = (pWaitTime - i).ToString();
-            }
-        }
-        txtMesh.text = "";
-        _countingDown = false;
-    }
-
-    private IEnumerator WaitAndExecute(GameObject pObj) {
-        // this stalls the tile from falling down before the count is at 0.
-        while (_countingDown) {
-            yield return new WaitForSeconds(0.1f);
+        while (_chosenTile.GetComponent<State>().Down || _chosenTile.GetComponent<State>().Up) {
+            _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
         }
 
-        GameObject obj = pObj;
-        int count = 0;
-
-        while (obj.GetComponent<State>().Down || obj.GetComponent<State>().Up) {
-            obj = Utility.RandomSelectFromList(Info.MovableCubes);
-            count++;
-        }
-
-        Info.MovableCubes.Remove(obj);
-        obj.GetComponent<State>().Down = true;
+        Info.MovableCubes.Remove(_chosenTile);
+        _chosenTile.GetComponent<State>().Down = true;
 
         float height = 1;
         if (_waitAfterDown >= 0) {
-            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, DestroyTile, obj, new Vector3(0, -height, 0), _speedOfFall));
+            StartCoroutine(Coroutines.MoveTransformByVector(_chosenTile.transform, DestroyTile, _chosenTile, new Vector3(0, -height, 0), _speedOfFall));
         }
-        if (Info.MovableCubes.Count > 0) {
-            StartCoroutine(Coroutines.CallVoidAfterSeconds(DropTile, _timeToNextFall));
-        }
+
+        _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
+        _timer.Resume();
+
+        //if (Info.MovableCubes.Count > 0) {
+        //    StartCoroutine(Coroutines.CallVoidAfterSeconds(DropTile, _timeToNextFall));
+        //}
+    }
+
+    private void DestroyTile(GameObject obj) {
+        StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, obj, _waitAfterDown));
     }
 }
