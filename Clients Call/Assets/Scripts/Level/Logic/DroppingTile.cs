@@ -2,43 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DLLLibrary;
+using System;
 
 public class DroppingTile : MonoBehaviour {
     [SerializeField] private StoredInfo Info;
-    //[SerializeField] private float _startDelay;
-    [SerializeField] private float _delayBetweenTiles;
-    [SerializeField] private int _changes;
+
+    [SerializeField] private float _startDelay;
+    //[SerializeField] private float _delayBetweenTiles;
+    [SerializeField] [Range(0.01f, 0.5f)] private float _tickSpeed;
+    //[SerializeField] private int _changes;
     [SerializeField] private float _speedOfFall;
     [SerializeField] private float _waitAfterDown;
-
-    private float _timeToNextFall;
-
-    private float _difficultyValue;
+    
     private GameObject _chosenTile;
     private Timer _timer;
 
     private float _timePassed;
+    private float _difficultyValue;
 
     // Use this for initialization
     private void Start() {
         _difficultyValue = GameObject.FindGameObjectWithTag("Level").GetComponent<LevelConfig>().GetDifficultyValue();
-        _timeToNextFall = _delayBetweenTiles;
 
         _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
-        _timer = Timer.Register(0.1f, () => StartDropTimer(_chosenTile), isLooped: true);
+        _timer = Timer.Register(_startDelay, () => CreateDropTimer());
+    }
+
+    private void CreateDropTimer() {
+        _timer.Cancel();
+        _timer = Timer.Register(_tickSpeed, () => StartDropTimer(_chosenTile), isLooped: true);
     }
 
     private void StartDropTimer(GameObject pTile) {
         TextMesh txtMesh = pTile.GetComponent<TextMesh>();
 
-        float timeLeft = _delayBetweenTiles - _timePassed;
-        Debug.Log(timeLeft);
-        txtMesh.text = ((int) (timeLeft)).ToString();
-
+        float timeLeft = _difficultyValue - _timePassed;
+        txtMesh.text = (timeLeft).ToString("n2");
         _timePassed += 0.1f;
 
-        if (timeLeft <= 1) {
-            _timer.Pause();
+        if (timeLeft <= 0) {
             _timePassed = 0;
 
             if (Info.MovableCubes.Count > 0) {
@@ -54,6 +56,7 @@ public class DroppingTile : MonoBehaviour {
             return;
         }
 
+        _chosenTile.GetComponent<TextMesh>().text = "";
         while (_chosenTile.GetComponent<State>().Down || _chosenTile.GetComponent<State>().Up) {
             _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
         }
