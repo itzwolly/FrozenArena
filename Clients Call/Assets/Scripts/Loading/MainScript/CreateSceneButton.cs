@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class CreateSceneButton : MonoBehaviour
 {
     [SerializeField] Camera _camera;
+    [SerializeField] GameObject Player1;
+    private bool _createdPlayer1;
+    [SerializeField] GameObject Player2;
+    private bool _createdPlayer2;
 
     [SerializeField] InputField SceneName;
     [SerializeField] InputField PlayerMass;
@@ -18,6 +22,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
     [SerializeField] GameObject PopOutButtons;
+    [SerializeField] GameObject LastBlockEditor;
 
     [SerializeField] GameObject StartPosition;
 
@@ -29,12 +34,17 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject SlowDownBlockBrush;
     [SerializeField] GameObject NormalBlockBrush;
     [SerializeField] GameObject DeleteBlockBrush;
+    [SerializeField] GameObject SelectBlockBrush;
     [SerializeField] PhysicMaterial BouncyOriginal;
     [SerializeField] PhysicMaterial IceOriginal;
 
     private GameObject _selectedTile;
     private GameObject _movingBlock;
+    private GameObject _previousTile;
+    private List<GameObject> _bombs = new List<GameObject>();
     private List<GameObject> _level = new List<GameObject>();
+    private GameObject _player1;
+    private GameObject _player2;
     private bool _editing;
     private bool _popOut;
     private int _popOutCounter;
@@ -52,6 +62,8 @@ public class CreateSceneButton : MonoBehaviour
         _level.Add(StartPosition);
         _editing = false;
         _popOut = false;
+        _createdPlayer1 = false;
+        _createdPlayer2 = false;
         _selectedTile = (NormalBlockBrush);
         _movingBlock = Instantiate(_selectedTile);
         _movingBlock.transform.position = StartPosition.transform.position;
@@ -129,18 +141,67 @@ public class CreateSceneButton : MonoBehaviour
                     RaycastHit raycasthit;
                     if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
                     {
-                        if (raycasthit.transform.tag == "Ground" )
+                        if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
                         {
                             _level.Remove(raycasthit.transform.gameObject);
+                            if (_level.Count > 1)
+                                _previousTile = _level[_level.Count - 2];
+                            else
+                                _previousTile = null;
                             Destroy(raycasthit.transform.gameObject);
                         }
                     }
 
                 }
+                else if (_selectedTile==BombTileBrush)
+                {
+                    _bombs.Add(_movingBlock);
+                    _level.Add(_movingBlock);
+                    _previousTile = _movingBlock;
+                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                    _movingBlock = Instantiate(_selectedTile);
+                    _movingBlock.name += _level.Count.ToString();
+                    _movingBlock.transform.position = pos;
+                }
+                else if (_selectedTile == Player1)
+                {
+                    if (_player1 != null)
+                    {
+                        _player1.transform.position = _movingBlock.transform.position;
+                    }
+                    else
+                    {
+                        _level.Add(_movingBlock);
+                        _player1 = _movingBlock;
+                        _previousTile = _movingBlock;
+                        Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                        _movingBlock = Instantiate(_selectedTile);
+                        _movingBlock.name += _level.Count.ToString();
+                        _movingBlock.transform.position = pos;
+                    }
+                }
+                else if (_selectedTile == Player2)
+                {
+                    if (_player2 != null)
+                    {
+                        _player2.transform.position = _movingBlock.transform.position;
+                    }
+                    else
+                    {
+                        _level.Add(_movingBlock);
+                        _player2 = _movingBlock;
+                        _previousTile = _movingBlock;
+                        Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                        _movingBlock = Instantiate(_selectedTile);
+                        _movingBlock.name += _level.Count.ToString();
+                        _movingBlock.transform.position = pos;
+                    }
+                }
                 else
                 {
 
                     _level.Add(_movingBlock);
+                    _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                     _movingBlock = Instantiate(_selectedTile);
                     _movingBlock.name += _level.Count.ToString();
@@ -151,6 +212,9 @@ public class CreateSceneButton : MonoBehaviour
             {
                 EditButtons.SetActive(true);
                 PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
+                PopOutButtons.SetActive(false);
+                _popOut = false;
+                _editing = true;
                 try
                 {
                     Debug.Log("Doing the action");
@@ -160,9 +224,6 @@ public class CreateSceneButton : MonoBehaviour
                 {
                     //Debug.Log("Nothing to do");
                 }
-                PopOutButtons.SetActive(false);
-                _popOut = false;
-                _editing = true;
             }
             _popOutCounter = 0;
         }
@@ -174,7 +235,7 @@ public class CreateSceneButton : MonoBehaviour
         Vector3 newPos = tile.transform.position + direction;
         if (Physics.Raycast(newPos, new Vector3(0, -1, 0), out raycasthit))
         {
-            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "StartTile")
+            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile" || raycasthit.transform.tag == "StartTile")
             {
                 //Debug.Log("Was Above:"+raycasthit.transform.name);
                 tile.transform.position = raycasthit.transform.position + new Vector3(0, 1, 0) - direction;
@@ -189,13 +250,28 @@ public class CreateSceneButton : MonoBehaviour
         }
         while (Physics.Raycast(tile.transform.position, direction, out raycasthit, 0.5f))
         {
-            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "StartTile")
+            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile" || raycasthit.transform.tag == "StartTile")
             {
                 //Debug.Log("Have to Climb");
                 tile.transform.Translate(0, 1, 0);
             }
         }
         tile.transform.Translate(direction);
+    }
+
+    public void EditLastTile()
+    {
+        _editing = false;
+        LastBlockEditor.SetActive(true);
+        LastBlockEditor.GetComponent<EditPrevTileScript>().EditObject(_previousTile);
+        //_previousTile;
+    }
+    public void StopEditLastTile()
+    {
+        _editing = true;
+        LastBlockEditor.SetActive(false);
+
+        //_previousTile;
     }
 
     public void SelectNormalLong()
@@ -230,7 +306,37 @@ public class CreateSceneButton : MonoBehaviour
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = Instantiate(OneWayBoostBrush);
+        _selectedTile = (OneWayBoostBrush);
+    }
+    public void SelectPlayer1()
+    {
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        if (!_createdPlayer1)
+        {
+            _changedBlock = true;
+            _selectedTile = (Player1);
+            _createdPlayer1 = true;
+        }
+        else
+        {
+            _selectedTile = (NormalBlockBrush);
+        }
+    }
+    public void SelectPlayer2()
+    {
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        if (!_createdPlayer1)
+        {
+            _changedBlock = true;
+            _selectedTile = (Player2);
+            _createdPlayer2 = true;
+        }
+        else
+        {
+            _selectedTile = (NormalBlockBrush);
+        }
     }
     public void SelectSlowDown()
     {
