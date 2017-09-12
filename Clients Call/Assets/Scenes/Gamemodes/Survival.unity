@@ -1386,15 +1386,6 @@ Prefab:
       propertyPath: m_Name
       value: Long Slippery Tile (28)
       objectReference: {fileID: 0}
-    - target: {fileID: 1837946752669806, guid: 0d2b5a1f09169254191e691f1df77273, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23224381982496500, guid: 0d2b5a1f09169254191e691f1df77273,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d2b5a1f09169254191e691f1df77273, type: 2}
   m_IsPrefabParent: 0
@@ -4679,6 +4670,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a359b74c2670b5f4f9994b882e1f1e7e, type: 2}
+    - target: {fileID: 33594345798325998, guid: f8586a8d645f237428fa5ec310e3ef94,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: eab224461ec5406428baae2b7747914c, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -10036,31 +10032,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4101388415890168, guid: f8586a8d645f237428fa5ec310e3ef94,
     type: 2}
   m_PrefabInternal: {fileID: 838542412}
---- !u!1 &847801735 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1058102883109394, guid: f8586a8d645f237428fa5ec310e3ef94,
-    type: 2}
-  m_PrefabInternal: {fileID: 1354517532}
---- !u!23 &847801738 stripped
-MeshRenderer:
-  m_PrefabParentObject: {fileID: 23753523014511030, guid: f8586a8d645f237428fa5ec310e3ef94,
-    type: 2}
-  m_PrefabInternal: {fileID: 1354517532}
---- !u!114 &847801740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 847801735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c875f36d9e619443b1fda512aeb5e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material1: {fileID: 2100000, guid: a359b74c2670b5f4f9994b882e1f1e7e, type: 2}
-  material2: {fileID: 2100000, guid: 24810e8fe89a1d54a958d9b3843f63ec, type: 2}
-  duration: 2
-  rend: {fileID: 847801738}
 --- !u!1001 &849296451
 Prefab:
   m_ObjectHideFlags: 0
@@ -10734,13 +10705,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 1
-  _difficulty: 2
+  _difficulty: 1
   _versusProperties:
     _enableRaisingTiles: 0
   _survivalProperties:
-    _easy: 0.9
-    _normal: 0.7
-    _hard: 0.5
+    _easy: 0.4
+    _normal: 0.2
+    _hard: 0.05
   _aToBProperties:
     _easy: 3
     _normal: 4
@@ -17012,7 +16983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Info: {fileID: 1327499519}
-  _startDelay: 5
+  _startDelay: 2
   _tickSpeed: 0.1
   _speedOfFall: 1
   _waitAfterDown: 0

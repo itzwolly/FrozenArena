@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelConfig : MonoBehaviour {
     [SerializeField] private LevelMode _mode;
+    [Space(-8)]
+    [Header("When versus mode is selected, the difficulty does not matter.")]
+    [Space(2)]
     [SerializeField] private LevelDifficulty _difficulty;
 
     [Space(10)]
@@ -65,6 +68,10 @@ public class LevelConfig : MonoBehaviour {
     }
 
     public float GetDifficultyValue() {
-        return GetGameModeProperties().GetValue(_difficulty);
+        if (GetGameModeProperties() != null) {
+            return GetGameModeProperties().GetValue(_difficulty);
+        } else {
+            return _versusProperties.DropAndRaiseSpeed;
+        }
     }
 }

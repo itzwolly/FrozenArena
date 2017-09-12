@@ -92,7 +92,7 @@
 			if (snowColor.r >= _FreshSnow) {
 				col = c.rgb;
 			} else {
-				col = fixed3(0,0,0);//snow
+				col = fixed3(1,1,1);//snow
 			}
 
 			if (col.r < _MeltedSnow) col = c.rgb;

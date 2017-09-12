@@ -1,24 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DLLLibrary;
-using System;
 
 public class DroppingTile : MonoBehaviour {
     [SerializeField] private StoredInfo Info;
-
     [SerializeField] private float _startDelay;
-    //[SerializeField] private float _delayBetweenTiles;
     [SerializeField] [Range(0.01f, 0.5f)] private float _tickSpeed;
-    //[SerializeField] private int _changes;
     [SerializeField] private float _speedOfFall;
     [SerializeField] private float _waitAfterDown;
-    
+
     private GameObject _chosenTile;
     private Timer _timer;
 
     private float _timePassed;
     private float _difficultyValue;
+    private float _currentLerpTime;
+    private float _lerpPercentage;
 
     // Use this for initialization
     private void Start() {
@@ -32,17 +28,19 @@ public class DroppingTile : MonoBehaviour {
         _timer.Cancel();
         _timer = Timer.Register(_tickSpeed, () => StartDropTimer(_chosenTile), isLooped: true);
     }
-
+    
     private void StartDropTimer(GameObject pTile) {
-        TextMesh txtMesh = pTile.GetComponent<TextMesh>();
+        GameObject child = pTile.transform.GetChild(0).gameObject;
 
-        float timeLeft = _difficultyValue - _timePassed;
-        txtMesh.text = (timeLeft).ToString("n2");
-        _timePassed += 0.1f;
+        _currentLerpTime += Time.deltaTime;
+        if (_currentLerpTime > _difficultyValue) {
+            _currentLerpTime = _difficultyValue;
+        }
 
-        if (timeLeft <= 0) {
-            _timePassed = 0;
+        _lerpPercentage = _currentLerpTime / _difficultyValue;
+        child.GetComponent<Renderer>().material.SetFloat("_FreshSnow", Mathf.Lerp(0, 0.8f, _lerpPercentage));
 
+        if (_lerpPercentage > 0.9f) {
             if (Info.MovableCubes.Count > 0) {
                 DropTile();
             }
@@ -55,8 +53,7 @@ public class DroppingTile : MonoBehaviour {
         if (Info.MovableCubes.Count == 0) {
             return;
         }
-
-        _chosenTile.GetComponent<TextMesh>().text = "";
+        
         while (_chosenTile.GetComponent<State>().Down || _chosenTile.GetComponent<State>().Up) {
             _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
         }
@@ -70,6 +67,8 @@ public class DroppingTile : MonoBehaviour {
         }
 
         _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
+        _lerpPercentage = 0;
+        _currentLerpTime = 0;
         _timer.Resume();
 
         //if (Info.MovableCubes.Count > 0) {

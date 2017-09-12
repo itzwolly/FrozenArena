@@ -12,4 +12,12 @@
                 return -1;
         }
     }
+
+    public float GetTileSpeed(bool pDropSpeed) {
+        if (pDropSpeed) {
+            return (float) this.GetType().GetProperty("DropTileSpeed").GetValue(this, null);
+        } else {
+            return (float) this.GetType().GetProperty("RaiseTileSpeed").GetValue(this, null);
+        }
+    }
 }
