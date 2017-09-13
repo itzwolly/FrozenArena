@@ -31,6 +31,7 @@ public class EditPrevTileScript : MonoBehaviour {
     public void EditObject(GameObject obj)
     {
         _editing = true;
+        obj.GetComponent<State>().Changed = true;
         //compare components and set active if true
         if (obj.GetComponent<BombTile>() != null)
         {

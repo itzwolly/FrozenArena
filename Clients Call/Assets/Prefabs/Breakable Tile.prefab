@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 65054778171852802}
   - component: {fileID: 54353901637544652}
   - component: {fileID: 65637921672486402}
+  - component: {fileID: 114802615812967242}
   m_Layer: 0
   m_Name: Breakable Tile
   m_TagString: BreakableTile
@@ -135,3 +136,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114802615812967242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645329247561342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c361044603124cbf55cabd2a515b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0

@@ -54,10 +54,31 @@ public class CreateSceneButton : MonoBehaviour
     private PhysicMaterial _iceChanged;
 
     private string _sceneName;
+    public string GetSceneName
+    {
+        get { return _sceneName; }
+    }
     private float _playerMass;
+    public float GetPlayerMass
+    {
+        get { return _playerMass; }
+    }
     private float _breakableMass;
+    public float GetBreakableMass
+    {
+        get { return _breakableMass; }
+    }
     private float _bouncePower;
+    public float GetBouncepower
+    {
+        get { return _bouncePower; }
+    }
     private float _icynessValue;
+    public float GetIcynessValue
+    {
+        get { return _icynessValue; }
+    }
+
     private bool _haveMouse;
     private bool _changedBlock;
     private Vector3 _lastPosition;
@@ -334,6 +355,7 @@ public class CreateSceneButton : MonoBehaviour
         Destroy(_movingBlock);
         _changedBlock = true;
         _selectedTile = (OneWayBoostBrush);
+        _selectedTile.GetComponent<OneWayBoost>().enabled = false;
     }
     public void SelectPlayer1()
     {
@@ -344,6 +366,7 @@ public class CreateSceneButton : MonoBehaviour
             _changedBlock = true;
             _selectedTile = (Player1);
             _selectedTile.GetComponent<PlayerMovement>().enabled = false;
+            _selectedTile.GetComponent<Rigidbody>().useGravity = false;
             _createdPlayer1 = true;
         }
         else
@@ -355,11 +378,12 @@ public class CreateSceneButton : MonoBehaviour
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
-        if (!_createdPlayer1)
+        if (!_createdPlayer2)
         {
             _changedBlock = true;
             _selectedTile = (Player2);
             _selectedTile.GetComponent<PlayerMovement>().enabled = false;
+            _selectedTile.GetComponent<Rigidbody>().useGravity = false;
             _createdPlayer2 = true;
         }
         else
@@ -507,6 +531,5 @@ public class CreateSceneButton : MonoBehaviour
         newCube.transform.position = pPosition;
         //newCube.transform.Translate(0,0.5f,0); 
     }
-
-
+    
 }

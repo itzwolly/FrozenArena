@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23703424446131446}
   - component: {fileID: 114403594669609038}
   - component: {fileID: 82983189392737936}
+  - component: {fileID: 114567199939514430}
   m_Layer: 0
   m_Name: Multidirectional Boost Tile
   m_TagString: Ground
@@ -188,3 +189,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedBoost: 25
   SpeedingUpPlayer: {fileID: 8300000, guid: 2e3a15e13c7d10a4f914a617c6006137, type: 3}
+--- !u!114 &114567199939514430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758580952844698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c361044603124cbf55cabd2a515b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0
