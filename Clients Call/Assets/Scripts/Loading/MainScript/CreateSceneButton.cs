@@ -11,6 +11,7 @@ public class CreateSceneButton : MonoBehaviour
     private bool _createdPlayer1;
     [SerializeField] GameObject Player2;
     private bool _createdPlayer2;
+    [SerializeField] GameObject LevelSave;
 
     [SerializeField] InputField SceneName;
     [SerializeField] InputField PlayerMass;
@@ -48,6 +49,9 @@ public class CreateSceneButton : MonoBehaviour
     private bool _editing;
     private bool _popOut;
     private int _popOutCounter;
+
+    private PhysicMaterial _bounceChanged;
+    private PhysicMaterial _iceChanged;
 
     private string _sceneName;
     private float _playerMass;
@@ -120,20 +124,10 @@ public class CreateSceneButton : MonoBehaviour
                     _editing = false;
                 }
             }
-            /**
-            if (Input.GetMouseButtonUp(0))
-            {
-                CreateBlockUnderMouse();
-            }
-            if (Input.GetMouseButtonUp(1))
-            {
-                DeleteBlockUnderMouse();
-            }
-            /**/
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
+            //Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
             if (!_popOut&&_editing)
             {
                 if (_selectedTile == DeleteBlockBrush)
@@ -145,7 +139,7 @@ public class CreateSceneButton : MonoBehaviour
                         {
                             _level.Remove(raycasthit.transform.gameObject);
                             if (_level.Count > 1)
-                                _previousTile = _level[_level.Count - 2];
+                                _previousTile = _level[_level.Count - 1];
                             else
                                 _previousTile = null;
                             Destroy(raycasthit.transform.gameObject);
@@ -155,10 +149,11 @@ public class CreateSceneButton : MonoBehaviour
                 }
                 else if (_selectedTile==BombTileBrush)
                 {
-                    _bombs.Add(_movingBlock);
                     _level.Add(_movingBlock);
+                    _movingBlock.transform.SetParent(LevelSave.transform);
                     _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                    _bombs.Add(_movingBlock);
                     _movingBlock = Instantiate(_selectedTile);
                     _movingBlock.name += _level.Count.ToString();
                     _movingBlock.transform.position = pos;
@@ -172,12 +167,19 @@ public class CreateSceneButton : MonoBehaviour
                     else
                     {
                         _level.Add(_movingBlock);
-                        _player1 = _movingBlock;
+                        _movingBlock.transform.SetParent(LevelSave.transform);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                        _player1 = _movingBlock;
+                        _player1.GetComponent<Rigidbody>().mass = _playerMass;
+                        _player1.GetComponent<Collider>().material = _bounceChanged;
+                        _selectedTile = NormalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
-                        _movingBlock.name += _level.Count.ToString();
                         _movingBlock.transform.position = pos;
+                        foreach(GameObject obj in _bombs)
+                        {
+                            obj.GetComponent<BombTile>().Players[0] = _player1;
+                        }
                     }
                 }
                 else if (_selectedTile == Player2)
@@ -189,18 +191,41 @@ public class CreateSceneButton : MonoBehaviour
                     else
                     {
                         _level.Add(_movingBlock);
-                        _player2 = _movingBlock;
+                        _movingBlock.transform.SetParent(LevelSave.transform);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                        _player2 = _movingBlock;
+                        _player2.GetComponent<Rigidbody>().mass = _playerMass;
+                        _player2.GetComponent<Collider>().material = _bounceChanged;
+                        _selectedTile = NormalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
-                        _movingBlock.name += _level.Count.ToString();
                         _movingBlock.transform.position = pos;
+                        foreach (GameObject obj in _bombs)
+                        {
+                            obj.GetComponent<BombTile>().Players[1] = _player2;
+                        }
                     }
+                }
+                else if(_selectedTile==SelectBlockBrush)
+                {
+
+                }
+                else if(_selectedTile==NormalBlockBrush)
+                {
+                    _level.Add(_movingBlock);
+                    _movingBlock.transform.SetParent(LevelSave.transform);
+                    _previousTile = _movingBlock;
+                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                    _movingBlock.GetComponent<Collider>().material = _iceChanged;
+                    _movingBlock = Instantiate(_selectedTile);
+                    _movingBlock.name += _level.Count.ToString();
+                    _movingBlock.transform.position = pos;
                 }
                 else
                 {
 
                     _level.Add(_movingBlock);
+                    _movingBlock.transform.SetParent(LevelSave.transform);
                     _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                     _movingBlock = Instantiate(_selectedTile);
@@ -217,7 +242,7 @@ public class CreateSceneButton : MonoBehaviour
                 _editing = true;
                 try
                 {
-                    Debug.Log("Doing the action");
+                    //Debug.Log("Doing the action");
                     PopOutButtons.GetComponent<PopOutMenuScript>().ToDo();
                 }
                 catch
@@ -293,6 +318,8 @@ public class CreateSceneButton : MonoBehaviour
         Destroy(_movingBlock);
         _changedBlock = true;
         _selectedTile = (BreakableTileBrush);
+        _selectedTile.GetComponent<Rigidbody>().useGravity = false;
+        _selectedTile.GetComponent<Rigidbody>().mass = _breakableMass;
     }
     public void SelectMultiDirectionalBoost()
     {
@@ -316,6 +343,7 @@ public class CreateSceneButton : MonoBehaviour
         {
             _changedBlock = true;
             _selectedTile = (Player1);
+            _selectedTile.GetComponent<PlayerMovement>().enabled = false;
             _createdPlayer1 = true;
         }
         else
@@ -331,6 +359,7 @@ public class CreateSceneButton : MonoBehaviour
         {
             _changedBlock = true;
             _selectedTile = (Player2);
+            _selectedTile.GetComponent<PlayerMovement>().enabled = false;
             _createdPlayer2 = true;
         }
         else
@@ -404,6 +433,10 @@ public class CreateSceneButton : MonoBehaviour
         {
             _icynessValue = 0.1f;
         }
+        _bounceChanged = Instantiate(BouncyOriginal);
+        _bounceChanged.bounciness = _bouncePower;
+        _iceChanged = Instantiate(IceOriginal);
+        _iceChanged.dynamicFriction = _icynessValue;
         _haveMouse = HaveMouse.isOn;
 
         StartButtons.SetActive(false);

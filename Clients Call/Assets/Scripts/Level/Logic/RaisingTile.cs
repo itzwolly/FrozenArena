@@ -14,7 +14,7 @@ public class RaisingTile : MonoBehaviour
     [SerializeField]
     private int _changes;
     [SerializeField]
-    private float _speedOfFall;
+    private float _speedOfRaise;
     [SerializeField]
     private float _waitAfterDown;
 
@@ -50,7 +50,7 @@ public class RaisingTile : MonoBehaviour
         obj.GetComponent<State>().Up = true;
         float height = 1;
         if (_waitAfterDown >= 0)
-            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0, +height, 0), _speedOfFall));
+            StartCoroutine(Coroutines.MoveTransformByVector(obj.transform, WhenUp,obj, new Vector3(0, +height, 0), _speedOfRaise));
 
         if (Info.MovableCubes.Count > 0) StartCoroutine(Coroutines.CallVoidAfterSeconds(Up, _timeToNextFall));
     }
@@ -63,7 +63,7 @@ public class RaisingTile : MonoBehaviour
 
     private void Refall(GameObject obj)
     {
-        StartCoroutine(Coroutines.MoveTransformByVector(obj.transform,ReAddToList,obj, new Vector3(0,-1,0),_speedOfFall));
+        StartCoroutine(Coroutines.MoveTransformByVector(obj.transform,ReAddToList,obj, new Vector3(0,-1,0),_speedOfRaise));
     }
 
     private void ReAddToList(GameObject obj)

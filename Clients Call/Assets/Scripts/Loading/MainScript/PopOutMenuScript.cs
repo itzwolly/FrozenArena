@@ -16,6 +16,7 @@ public class PopOutMenuScript : MonoBehaviour
 
     private CreateSceneButton _controllerScript;
     private GameObject _selected;
+    private GameObject _selectedOption;
 
     private int _selection;
     private bool _verticalSelect;
@@ -37,10 +38,11 @@ public class PopOutMenuScript : MonoBehaviour
             _selection = 0;
         col = _shownOptions[_selection].GetComponent<Image>().color;
         col.a = 1;
+        _selected = _shownOptions[_selection];
         _shownOptions[_selection].GetComponent<Image>().color = col;
         ToDo = _shownOptions[_selection].GetComponent<Button>().onClick.Invoke;
 
-        Debug.Log("Next selection");
+        //Debug.Log("Next selection");
     }
 
     private void PreviouseSelection()
@@ -55,7 +57,7 @@ public class PopOutMenuScript : MonoBehaviour
         col.a = 1;
         _shownOptions[_selection].GetComponent<Image>().color = col;
         ToDo = _shownOptions[_selection].GetComponent<Button>().onClick.Invoke;
-        Debug.Log("Previous selection");
+        //Debug.Log("Previous selection");
     }
 
 	// Update is called once per frame
@@ -75,6 +77,7 @@ public class PopOutMenuScript : MonoBehaviour
             else
             {
                 ShowOptions(UpOption);
+                _selectedOption = UpOption;
                 _verticalSelect = true;
             }
 
@@ -94,6 +97,7 @@ public class PopOutMenuScript : MonoBehaviour
             else
             {
                 ShowOptions(DownOption);
+                _selectedOption = DownOption;
                 ToDo = _controllerScript.SelectDeleteBlock;
                 _verticalSelect = true;
             }
@@ -112,6 +116,7 @@ public class PopOutMenuScript : MonoBehaviour
             else
             {
                 ShowOptions(LeftOption);
+                _selectedOption = LeftOption;
                 _horizontalSelect = true;
             }
         }
@@ -129,6 +134,7 @@ public class PopOutMenuScript : MonoBehaviour
             else
             {
                 ShowOptions(RightOption);
+                _selectedOption = RightOption;
                 _horizontalSelect = true;
             }
         }
@@ -179,7 +185,11 @@ public class PopOutMenuScript : MonoBehaviour
             Color col = _selected.GetComponent<Image>().color;
             col.a = 0.5f;
             _selected.GetComponent<Image>().color = col;
-            HideOptions(_selected);
+
+            col = _selectedOption.GetComponent<Image>().color;
+            col.a = 0.5f;
+            _selectedOption.GetComponent<Image>().color = col;
+            HideOptions(_selectedOption);
         }
         else
         {
