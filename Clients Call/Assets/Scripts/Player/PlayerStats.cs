@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public struct PlayerStats {
+public class PlayerStats {
     // score
     private int _score;
     // boost
@@ -11,14 +11,15 @@ public struct PlayerStats {
     private  float _airTimeInSeconds;
     // hitting opponent
     private  int _amountOfTimeHitYourOpponent;
-    // single round time
-    //private int _shortestRoundInSec;
-    //private int _longestRoundInSec;
 
     // score
     public int Score {
         get { return _score; }
-        set { _score = value; }
+        set {
+            if (_score < 9) {
+                _score = value;
+            }
+        }
     }
     //boost
     public int TotalAmountBoosted {
@@ -43,14 +44,4 @@ public struct PlayerStats {
         get { return _amountOfTimeHitYourOpponent; }
         set { _amountOfTimeHitYourOpponent = value; }
     }
-
-    // single round time
-    //public int ShortestRoundInSec {
-    //    get { return _shortestRoundInSec; }
-    //    set { _shortestRoundInSec = value; }
-    //}
-    //public int LongestRoundInSec {
-    //    get { return _longestRoundInSec; }
-    //    set { _longestRoundInSec = value; }
-    //}
 }
