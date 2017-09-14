@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Menus/Settings.unity
+=======
+- path: Assets/Scenes/Menus/Skin Selection.unity
+>>>>>>> 86cbdb7206f76191175363ae8097b6e4a3d99e5e
   isLoaded: 1
   isActive: 1
