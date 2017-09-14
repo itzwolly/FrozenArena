@@ -229,7 +229,17 @@ public class CreateSceneButton : MonoBehaviour
                 }
                 else if(_selectedTile==SelectBlockBrush)
                 {
-
+                    RaycastHit raycasthit;
+                    if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
+                    {
+                        if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
+                        {
+                            _previousTile = raycasthit.transform.gameObject;
+                            Destroy(_movingBlock);
+                            _changedBlock = true;
+                            _selectedTile = Instantiate(raycasthit.transform.gameObject);
+                        }
+                    }
                 }
                 else if(_selectedTile==NormalBlockBrush)
                 {
@@ -329,6 +339,7 @@ public class CreateSceneButton : MonoBehaviour
     }
     public void SelectBomb()
     {
+        _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
         _selectedTile = (BombTileBrush);
@@ -411,6 +422,13 @@ public class CreateSceneButton : MonoBehaviour
         Destroy(_movingBlock);
         _changedBlock = true;
         _selectedTile = (DeleteBlockBrush);
+    }
+    public void SelectSelectBlock()
+    {
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (SelectBlockBrush);
     }
 
     public void StartSceneCreation()

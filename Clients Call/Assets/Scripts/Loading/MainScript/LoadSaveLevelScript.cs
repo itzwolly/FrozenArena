@@ -24,16 +24,26 @@ public class LoadSaveLevelScript : MonoBehaviour {
         Utils.WriteToFile(path, "BouncePower " + _LevelInfo.GetBouncepower.ToString() + "|");
         Utils.WriteToFile(path, "FrictionValue " + _LevelInfo.GetIcynessValue.ToString() + "|");
         string info;
+        bool changed;
         foreach (Transform t in transform)
         {
+            changed = false;
             info = "";
             if(t.gameObject.GetComponent<State>().Changed)
             {
                 info += "?|";
+                changed = true;
             }
             if (t.gameObject.GetComponent<BombTile>() != null)
             {
                 info += "Bomb" + "|"+VectorToString(t.position);
+                if(changed)
+                {
+                    info += "|"+ t.gameObject.GetComponent<BombTile>().PowerMultiplier.ToString();
+                    info += "|"+ t.gameObject.GetComponent<BombTile>().MaxDistance.ToString();
+                    info += "|"+ t.gameObject.GetComponent<BombTile>().ExplodeTimer.ToString();
+                    info += "|"+ t.gameObject.GetComponent<BombTile>().ResetTime.ToString();
+                }
                 Utils.WriteToFile(path, info);
             }
             else if (t.tag == "Player")
@@ -44,21 +54,39 @@ public class LoadSaveLevelScript : MonoBehaviour {
             else if (t.gameObject.GetComponent<Rigidbody>() != null)
             {
                 info += "Breakable" + "|" + VectorToString(t.position);
+                if(changed)
+                {
+                    info += "|"+t.gameObject.GetComponent<Rigidbody>().mass.ToString();
+                }
                 Utils.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<MultiDirectionalBoost>() != null)
             {
                 info += "MultiDirectionalBoost" + "|" + VectorToString(t.position);
+                if(changed)
+                {
+                    info += "|"+t.gameObject.GetComponent<MultiDirectionalBoost>().SpeedBoost.ToString();
+                }
                 Utils.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<OneWayBoost>() != null)
             {
                 info += "OneWayBoost" + "|" + VectorToString(t.position);
+                if (changed)
+                {
+                    info += "|"+t.gameObject.GetComponent<OneWayBoost>().SpeedBoost.ToString()+"|";
+                    info += ((int)(t.gameObject.GetComponent<OneWayBoost>().Direction)).ToString();
+                }
                 Utils.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<SlowDown>() != null)
             {
                 info += "SlowBlock" + "|" + VectorToString(t.position);
+                if(changed)
+                {
+                    info += "|"+t.gameObject.GetComponent<SlowDown>().SlowDownMultiplier.ToString()+ "|";
+                    info += t.gameObject.GetComponent<SlowDown>().SlowedDownSpeed.ToString();
+                }
                 Utils.WriteToFile(path, info);
             }
             else

@@ -85,15 +85,15 @@ public class BombEdit : TileEditScript {
         {
             _tile = tile;
         }
-        tile.GetComponent<BombTile>().PowerMultiplier = Convert.ToInt32(_fields[0].text);
-        tile.GetComponent<BombTile>().MaxDistance = Convert.ToInt32(_fields[1].text);
-        tile.GetComponent<BombTile>().ExplodeTimer = Convert.ToInt32(_fields[2].text);
-        tile.GetComponent<BombTile>().ResetTime = Convert.ToInt32(_fields[3].text);
+        tile.GetComponent<BombTile>().PowerMultiplier = Convert.ToSingle(_fields[0].text);
+        tile.GetComponent<BombTile>().MaxDistance = Convert.ToSingle(_fields[1].text);
+        tile.GetComponent<BombTile>().ExplodeTimer = Convert.ToSingle(_fields[2].text);
+        tile.GetComponent<BombTile>().ResetTime = Convert.ToSingle(_fields[3].text);
     }
 
     public override void UpdateSelected(int i)
     {
-        int nr = Convert.ToInt32(_fields[Selection].text);
+        float nr = Convert.ToSingle(_fields[Selection].text);
         nr += i;
         if (nr < 0)
             nr = 0;

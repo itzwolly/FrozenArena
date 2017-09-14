@@ -87,7 +87,7 @@ public class MultiBoostEdit : TileEditScript {
     }
     public override void UpdateSelected(int i)
     {
-        int nr = Convert.ToInt32(_fields[Selection].text);
+        float nr = Convert.ToSingle(_fields[Selection].text);
         nr += i;
         if (nr < 0)
             nr = 0;

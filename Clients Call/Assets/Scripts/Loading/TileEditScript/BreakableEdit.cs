@@ -83,11 +83,11 @@ public class BreakableEdit : TileEditScript {
         {
             _tile = tile;
         }
-        tile.GetComponent<Rigidbody>().mass = Convert.ToInt32(_fields[0].text);
+        tile.GetComponent<Rigidbody>().mass = Convert.ToSingle(_fields[0].text);
     }
     public override void UpdateSelected(int i)
     {
-        int nr = Convert.ToInt32(_fields[Selection].text);
+        float nr = Convert.ToSingle(_fields[Selection].text);
         nr += i;
         if (nr < 0)
             nr = 0;
