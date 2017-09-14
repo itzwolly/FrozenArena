@@ -22,10 +22,10 @@ public class LoadSaveLevelScript : MonoBehaviour
             File.Create(path);
         }
         File.WriteAllText(path, String.Empty);
-        Utility.WriteToFile(path, "PlayerMass " + _LevelInfo.GetPlayerMass.ToString()+"|");
-        Utility.WriteToFile(path, "BreakableMass " + _LevelInfo.GetBreakableMass.ToString() + "|");
-        Utility.WriteToFile(path, "BouncePower " + _LevelInfo.GetBouncepower.ToString() + "|");
-        Utility.WriteToFile(path, "FrictionValue " + _LevelInfo.GetIcynessValue.ToString() + "|");
+        Utility.WriteToFile(path, "PlayerMass " + "|" + _LevelInfo.GetPlayerMass.ToString());
+        Utility.WriteToFile(path, "BreakableMass " + "|" + _LevelInfo.GetBreakableMass.ToString());
+        Utility.WriteToFile(path, "BouncePower " + "|" + _LevelInfo.GetBouncepower.ToString());
+        Utility.WriteToFile(path, "FrictionValue " + "|" + _LevelInfo.GetIcynessValue.ToString());
         string info;
         bool changed;
         foreach (Transform t in transform)
@@ -99,13 +99,114 @@ public class LoadSaveLevelScript : MonoBehaviour
             }
         }
     }
-    public void LoadLevel(out string sceneName, out float playerMass,out float breakableMass
+    public void LoadLevel(out string sceneName, out float playerMass,out float breakableMass,
                             out float bouncePower,out float icynessValue)
     {
-        sceneName = "";
-        playerMass = 0;
-        breakableMass = 0;
-        bouncePower = 0;
-        icynessValue = 0;
+        string path = "Assets\\Saves\\New Level.txt";
+        string[] all = Utility.ReadFromFile(path).Split('\n');
+        Debug.Log("Loading level");
+        bool changed;
+        GameObject currentTile;
+        foreach (string s in all)
+        {
+            changed = false;
+            string[] split = s.Split('|');
+            int where = 0;
+            if(split[0]=="?")
+            {
+                changed = true;
+                where++;
+            }
+
+            if (split[where] == "Bomb")
+            {
+                currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if(changed)
+                {
+
+                }
+            }
+            else if (split[where] == "Player")
+            {
+                ///separate into selection of the 2 players
+                currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else if (split[where] == "Breakable")
+            {
+                currentTile = Instantiate(_LevelInfo.GetBreakableTileBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else if (split[where] == "MultiDirectionalBoost")
+            {
+                currentTile = Instantiate(_LevelInfo.GetMultiDirBoostBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else if (split[where] == "OneWayBoost")
+            {
+                currentTile = Instantiate(_LevelInfo.GetOneWayBoostBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else if (split[where] == "SlowBlock")
+            {
+                currentTile = Instantiate(_LevelInfo.GetSlowDownBlockBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else if (split[where] == "NormalBlock")
+            {
+                currentTile = Instantiate(_LevelInfo.GetNormalBlockBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+            }
+            else
+            {
+                throw new Exception("dont know this block type");
+            }
+
+        }
+        sceneName = "New Level";
+        playerMass = 50;
+        breakableMass = 25;
+        bouncePower = 0.8f;
+        icynessValue = 0.1f;
+
     }
 }

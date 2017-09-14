@@ -9,7 +9,15 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] GameObject Player1;
     private bool _createdPlayer1;
+    public GameObject GetPlayer1
+    {
+        get { return Player1;}
+    }
     [SerializeField] GameObject Player2;
+    public GameObject GetPlayer2
+    {
+        get { return Player2; }
+    }
     private bool _createdPlayer2;
     [SerializeField] GameObject LevelSave;
 
@@ -27,17 +35,53 @@ public class CreateSceneButton : MonoBehaviour
 
     [SerializeField] GameObject StartPosition;
 
-    [SerializeField] GameObject NormalBlockLongBrush;
-    [SerializeField] GameObject BombTileBrush;
-    [SerializeField] GameObject BreakableTileBrush;
-    [SerializeField] GameObject MultiDirectionalBoostBrush;
-    [SerializeField] GameObject OneWayBoostBrush;
-    [SerializeField] GameObject SlowDownBlockBrush;
-    [SerializeField] GameObject NormalBlockBrush;
-    [SerializeField] GameObject DeleteBlockBrush;
-    [SerializeField] GameObject SelectBlockBrush;
-    [SerializeField] PhysicMaterial BouncyOriginal;
-    [SerializeField] PhysicMaterial IceOriginal;
+    [SerializeField] GameObject _normalBlockLongBrush;
+    public GameObject GetNormalLongBrush
+    {
+        get {return _normalBlockLongBrush; }
+    }
+    [SerializeField] GameObject _bombTileBrush;
+    public GameObject GetBombTileBrush
+    {
+        get { return _bombTileBrush; }
+    }
+    [SerializeField] GameObject _breakableTileBrush;
+    public GameObject GetBreakableTileBrush
+    {
+        get { return _breakableTileBrush; }
+    }
+    [SerializeField] GameObject _multiDirectionalBoostBrush;
+    public GameObject GetMultiDirBoostBrush
+    {
+        get { return _multiDirectionalBoostBrush; }
+    }
+    [SerializeField] GameObject _oneWayBoostBrush;
+    public GameObject GetOneWayBoostBrush
+    {
+        get { return _oneWayBoostBrush; }
+    }
+    [SerializeField] GameObject _slowDownBlockBrush;
+    public GameObject GetSlowDownBlockBrush
+    {
+        get { return _slowDownBlockBrush;}
+    }
+    [SerializeField] GameObject _normalBlockBrush;
+    public GameObject GetNormalBlockBrush
+    {
+        get { return _normalBlockBrush; }
+    }
+    [SerializeField] GameObject _deleteBlockBrush;
+    [SerializeField] GameObject _selectBlockBrush;
+    [SerializeField] PhysicMaterial _bouncyOriginal;
+    public PhysicMaterial GetBouncyMaterial
+    {
+        get { return _bouncyOriginal; }
+    }
+    [SerializeField] PhysicMaterial _iceOriginal;
+    public PhysicMaterial GetIceMaterial
+    {
+        get { return _iceOriginal; }
+    }
 
     private GameObject _selectedTile;
     private GameObject _movingBlock;
@@ -89,17 +133,17 @@ public class CreateSceneButton : MonoBehaviour
         _popOut = false;
         _createdPlayer1 = false;
         _createdPlayer2 = false;
-        _selectedTile = (NormalBlockBrush);
+        _selectedTile = (_normalBlockBrush);
         _movingBlock = Instantiate(_selectedTile);
         _movingBlock.transform.position = StartPosition.transform.position;
         _movingBlock.name += _level.Count.ToString();
-        NormalBlockBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        BombTileBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        BreakableTileBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        MultiDirectionalBoostBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        OneWayBoostBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        SlowDownBlockBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
-        NormalBlockLongBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _normalBlockBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _bombTileBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _breakableTileBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _multiDirectionalBoostBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _oneWayBoostBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _slowDownBlockBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _normalBlockLongBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
         //Material mat = _selectedTile.GetComponent<Renderer>().material;
         //Color col = mat.color;
         //col.a /= 2;
@@ -151,7 +195,7 @@ public class CreateSceneButton : MonoBehaviour
             //Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
             if (!_popOut&&_editing)
             {
-                if (_selectedTile == DeleteBlockBrush)
+                if (_selectedTile == _deleteBlockBrush)
                 {
                     RaycastHit raycasthit;
                     if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
@@ -168,7 +212,7 @@ public class CreateSceneButton : MonoBehaviour
                     }
 
                 }
-                else if (_selectedTile==BombTileBrush)
+                else if (_selectedTile==_bombTileBrush)
                 {
                     _level.Add(_movingBlock);
                     _movingBlock.transform.SetParent(LevelSave.transform);
@@ -194,7 +238,7 @@ public class CreateSceneButton : MonoBehaviour
                         _player1 = _movingBlock;
                         _player1.GetComponent<Rigidbody>().mass = _playerMass;
                         _player1.GetComponent<Collider>().material = _bounceChanged;
-                        _selectedTile = NormalBlockBrush;
+                        _selectedTile = _normalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
                         _movingBlock.transform.position = pos;
                         foreach(GameObject obj in _bombs)
@@ -218,7 +262,7 @@ public class CreateSceneButton : MonoBehaviour
                         _player2 = _movingBlock;
                         _player2.GetComponent<Rigidbody>().mass = _playerMass;
                         _player2.GetComponent<Collider>().material = _bounceChanged;
-                        _selectedTile = NormalBlockBrush;
+                        _selectedTile = _normalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
                         _movingBlock.transform.position = pos;
                         foreach (GameObject obj in _bombs)
@@ -227,7 +271,7 @@ public class CreateSceneButton : MonoBehaviour
                         }
                     }
                 }
-                else if(_selectedTile==SelectBlockBrush)
+                else if(_selectedTile==_selectBlockBrush)
                 {
                     RaycastHit raycasthit;
                     if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
@@ -241,7 +285,7 @@ public class CreateSceneButton : MonoBehaviour
                         }
                     }
                 }
-                else if(_selectedTile==NormalBlockBrush)
+                else if(_selectedTile==_normalBlockBrush)
                 {
                     _level.Add(_movingBlock);
                     _movingBlock.transform.SetParent(LevelSave.transform);
@@ -318,7 +362,9 @@ public class CreateSceneButton : MonoBehaviour
     public void LoadLevel()
     {
         _editing = false;
-        //LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(out _sceneName);
+        LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(
+            out _sceneName,out _playerMass,out _breakableMass,
+            out _bouncePower,out _icynessValue);
         _editing = true;
     }
 
@@ -342,21 +388,21 @@ public class CreateSceneButton : MonoBehaviour
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (NormalBlockLongBrush);
+        _selectedTile = (_normalBlockLongBrush);
     }
     public void SelectBomb()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (BombTileBrush);
+        _selectedTile = (_bombTileBrush);
     }
     public void SelectBreakable()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (BreakableTileBrush);
+        _selectedTile = (_breakableTileBrush);
         _selectedTile.GetComponent<Rigidbody>().useGravity = false;
         _selectedTile.GetComponent<Rigidbody>().mass = _breakableMass;
     }
@@ -365,14 +411,14 @@ public class CreateSceneButton : MonoBehaviour
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (MultiDirectionalBoostBrush);
+        _selectedTile = (_multiDirectionalBoostBrush);
     }
     public void SelectOneWayBoost()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (OneWayBoostBrush);
+        _selectedTile = (_oneWayBoostBrush);
         _selectedTile.GetComponent<OneWayBoost>().enabled = false;
     }
     public void SelectPlayer1()
@@ -389,7 +435,7 @@ public class CreateSceneButton : MonoBehaviour
         }
         else
         {
-            _selectedTile = (NormalBlockBrush);
+            _selectedTile = (_normalBlockBrush);
         }
     }
     public void SelectPlayer2()
@@ -406,7 +452,7 @@ public class CreateSceneButton : MonoBehaviour
         }
         else
         {
-            _selectedTile = (NormalBlockBrush);
+            _selectedTile = (_normalBlockBrush);
         }
     }
     public void SelectSlowDown()
@@ -414,28 +460,28 @@ public class CreateSceneButton : MonoBehaviour
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (SlowDownBlockBrush);
+        _selectedTile = (_slowDownBlockBrush);
     }
     public void SelectNormalBlock()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (NormalBlockBrush);
+        _selectedTile = (_normalBlockBrush);
     }
     public void SelectDeleteBlock()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (DeleteBlockBrush);
+        _selectedTile = (_deleteBlockBrush);
     }
     public void SelectSelectBlock()
     {
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         _changedBlock = true;
-        _selectedTile = (SelectBlockBrush);
+        _selectedTile = (_selectBlockBrush);
     }
 
     public void StartSceneCreation()
@@ -482,9 +528,9 @@ public class CreateSceneButton : MonoBehaviour
         {
             _icynessValue = 0.1f;
         }
-        _bounceChanged = Instantiate(BouncyOriginal);
+        _bounceChanged = Instantiate(_bouncyOriginal);
         _bounceChanged.bounciness = _bouncePower;
-        _iceChanged = Instantiate(IceOriginal);
+        _iceChanged = Instantiate(_iceOriginal);
         _iceChanged.dynamicFriction = _icynessValue;
         _haveMouse = HaveMouse.isOn;
 
