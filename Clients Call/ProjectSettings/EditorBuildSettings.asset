@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Skin Selection.unity
     guid: 58488a986065c2243862889e9e8cd4d1
+  - enabled: 1
+    path: Assets/Scenes/Menus/Arena Selection.unity
+    guid: 4d8b015abdd446d49b1e8870efea013c
