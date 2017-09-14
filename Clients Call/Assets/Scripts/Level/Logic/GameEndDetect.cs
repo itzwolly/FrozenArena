@@ -9,11 +9,13 @@ public class GameEndDetect : MonoBehaviour {
     private float _timeToEnd;
     [SerializeField]
     private float _timeToDestroy;
+    [SerializeField] private AudioClip PlayerDeath;
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.tag == "Player")
         {
+            GetComponent<AudioSource>().PlayOneShot(PlayerDeath);
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Utility.RestartLevel, _timeToEnd));
         }
         else if (collision.transform.tag == "BreakableTile")

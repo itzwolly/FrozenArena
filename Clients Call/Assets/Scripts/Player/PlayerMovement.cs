@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float _speed;
     [SerializeField] private AudioClip HitBreakable;
     [SerializeField] private AudioClip HitOtherPlayer;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private ParticleSystem _psystem;
+
 
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
@@ -22,10 +25,12 @@ public class PlayerMovement : MonoBehaviour {
         if(collision.transform.tag=="Player")
         {
             GetComponent<AudioSource>().PlayOneShot(HitOtherPlayer);
+            _psystem.Play();
         }
         else if(collision.transform.tag == "BreakableTile")
         {
             GetComponent<AudioSource>().PlayOneShot(HitBreakable);
+            _psystem.Play();
         }
     }
 
@@ -40,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         _currentSpeed = _speed;
+      
     }
 
     private void Start() {
@@ -89,5 +95,6 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKey(k))
                 ButtonActions[k]();
         }
-	}
+        _audioSource.pitch = gameObject.GetComponent<Rigidbody>().velocity.magnitude-1;
+}
 }

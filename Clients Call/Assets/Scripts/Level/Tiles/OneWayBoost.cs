@@ -17,16 +17,16 @@ public class OneWayBoost : MonoBehaviour {
     private void OnValidate() {
         switch (_direction) {
             case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, -45, 0);
-                break;
-            case Direction.Down:
-                transform.rotation = Quaternion.Euler(0, 45, 0);
-                break;
-            case Direction.Left:
                 transform.rotation = Quaternion.Euler(0, 135, 0);
                 break;
-            case Direction.Up:
+            case Direction.Down:
                 transform.rotation = Quaternion.Euler(0, 225, 0);
+                break;
+            case Direction.Left:
+                transform.rotation = Quaternion.Euler(0, -45, 0);
+                break;
+            case Direction.Up:
+                transform.rotation = Quaternion.Euler(0, 45, 0);
                 break;
             default:
                 break;
