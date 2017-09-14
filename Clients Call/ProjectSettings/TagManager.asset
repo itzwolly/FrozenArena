@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - BreakableTile
+  - Level
+  - Stats
   layers:
   - Default
   - TransparentFX

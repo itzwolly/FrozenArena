@@ -5,24 +5,24 @@ using UnityEngine;
 
 namespace DLLLibrary
 {
-    public class Coroutines
+    public static class Coroutines
     {
-
-        public static IEnumerator MoveTransformByVector(Transform pTransform, Action<GameObject> action,GameObject obj, Vector3 distance, float time)
+        public static IEnumerator MoveTransformByVector(Transform pTransform, Action<GameObject> action, GameObject obj, Vector3 distance, float time)
         {
             Vector3 currentPos = pTransform.position;
-
             Vector3 newPos = currentPos + distance;
-            float t = 0f;
 
+            float t = 0f;
             while (t < 1)
             {
                 t += Time.deltaTime / time;
                 pTransform.position = Vector3.Lerp(currentPos, newPos, t);
                 yield return null;
             }
+
             action(obj);
         }
+
         public static IEnumerator MoveTransformByVector(Transform pTransform, Action action, Vector3 distance, float time)
         {
             Vector3 currentPos = pTransform.position;
@@ -38,16 +38,19 @@ namespace DLLLibrary
             }
             action();
         }
+
         public static IEnumerator CallVoidAfterSeconds(Action action, float time)
         {
             yield return new WaitForSeconds(time);
             action();
         }
+
         public static IEnumerator CallVoidAfterSeconds(Action<GameObject> action, GameObject obj, float time)
         {
             yield return new WaitForSeconds(time);
             action(obj);
         }
+
     }
 
 }
