@@ -162,5 +162,12 @@ namespace DLLLibrary
             //Debug.Log("|" + before +"|"+ after + "|");
             ReplaceLineFromFile(path, after, before);
         }
+        
+        public static string[] AllFilesInPath(string path)
+        {
+            string[] files = Directory.GetFiles(path);
+
+            return files;
+        }
     }
 }

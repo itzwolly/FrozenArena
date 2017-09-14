@@ -315,6 +315,13 @@ public class CreateSceneButton : MonoBehaviour
         tile.transform.Translate(direction);
     }
 
+    public void LoadLevel()
+    {
+        _editing = false;
+        //LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(out _sceneName);
+        _editing = true;
+    }
+
     public void EditLastTile()
     {
         _editing = false;

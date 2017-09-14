@@ -5,8 +5,10 @@ using System.IO;
 using DLLLibrary;
 using UnityEngine;
 
-public class LoadSaveLevelScript : MonoBehaviour {
+public class LoadSaveLevelScript : MonoBehaviour
+{
     [SerializeField] CreateSceneButton _LevelInfo;
+    [SerializeField] GameObject LoadScroll;
     public void SaveLevel()
     {
         string path = "Assets\\Saves\\"+_LevelInfo.GetSceneName+".txt";
@@ -97,6 +99,13 @@ public class LoadSaveLevelScript : MonoBehaviour {
             }
         }
     }
-
-
+    public void LoadLevel(out string sceneName, out float playerMass,out float breakableMass
+                            out float bouncePower,out float icynessValue)
+    {
+        sceneName = "";
+        playerMass = 0;
+        breakableMass = 0;
+        bouncePower = 0;
+        icynessValue = 0;
+    }
 }
