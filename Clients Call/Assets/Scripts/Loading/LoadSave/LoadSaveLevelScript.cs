@@ -122,17 +122,19 @@ public class LoadSaveLevelScript : MonoBehaviour
             {
                 currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
                 where++;
-                currentTile.transform.position = Utility.StringToVector(split[where]);
-                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where++]);
                 if(changed)
                 {
-
+                    currentTile.GetComponent<BombTile>().PowerMultiplier = Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<BombTile>().MaxDistance = Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<BombTile>().ExplodeTimer = Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<BombTile>().ResetTime = Convert.ToSingle(split[where++]);
                 }
             }
             else if (split[where] == "Player")
             {
                 ///separate into selection of the 2 players
-                currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
+                currentTile = Instantiate(_LevelInfo.GetPlayer1);
                 where++;
                 currentTile.transform.position = Utility.StringToVector(split[where]);
                 where++;
@@ -145,11 +147,10 @@ public class LoadSaveLevelScript : MonoBehaviour
             {
                 currentTile = Instantiate(_LevelInfo.GetBreakableTileBrush);
                 where++;
-                currentTile.transform.position = Utility.StringToVector(split[where]);
-                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where++]);
                 if (changed)
                 {
-
+                    currentTile.GetComponent<Rigidbody>().mass=Convert.ToSingle(split[where++]);
                 }
             }
             else if (split[where] == "MultiDirectionalBoost")
@@ -160,7 +161,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 where++;
                 if (changed)
                 {
-
+                    currentTile.GetComponent<MultiDirectionalBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
                 }
             }
             else if (split[where] == "OneWayBoost")
@@ -171,7 +172,8 @@ public class LoadSaveLevelScript : MonoBehaviour
                 where++;
                 if (changed)
                 {
-
+                    currentTile.GetComponent<OneWayBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<OneWayBoost>().Direction = (OneWayBoost.DirectionValue)(Convert.ToInt32(split[where++]));
                 }
             }
             else if (split[where] == "SlowBlock")
@@ -182,7 +184,8 @@ public class LoadSaveLevelScript : MonoBehaviour
                 where++;
                 if (changed)
                 {
-
+                    currentTile.GetComponent<SlowDown>().SlowDownMultiplier=Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<SlowDown>().SlowedDownSpeed = Convert.ToSingle(split[where++]);
                 }
             }
             else if (split[where] == "NormalBlock")
