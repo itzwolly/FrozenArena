@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class TeamSelectEvents : MonoBehaviour {
     [SerializeField] private KeyCode _interactionKey;
 
-
     private void Update() {
         OnInteractionKeyClick(_interactionKey);
     }

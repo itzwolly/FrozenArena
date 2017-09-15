@@ -58,19 +58,19 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ForwardAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.forward * _currentSpeed) * Time.deltaTime);
     }
     private void BackAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.back * _currentSpeed) * Time.deltaTime);
     }
     private void LeftAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.left * _currentSpeed) * Time.deltaTime);
     }
     private void RightAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.right * _currentSpeed) * Time.deltaTime);
     }
 
     private void Ability1Action()
