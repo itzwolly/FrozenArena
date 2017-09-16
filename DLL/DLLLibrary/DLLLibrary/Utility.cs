@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -163,9 +164,19 @@ namespace DLLLibrary
             ReplaceLineFromFile(path, after, before);
         }
         
-        public static string[] AllFilesInPath(string path)
+        public static string[] AllFilesInPath(string path,string filetype)
         {
-            string[] files = Directory.GetFiles(path);
+            //DirectoryInfo dinfo = new DirectoryInfo(path);
+            //FileInfo[] tfiles = dinfo.GetFiles("*.txt");
+
+            //string[] files = new string[tfiles.Length];
+
+            //for(int i=0;i<tfiles.Length;i++)
+            //{
+            //    files[i] = tfiles[i].Name;
+            //}
+
+            string[] files = Directory.GetFiles(path, filetype);//.Where(s => s.EndsWith(filetype.Substring(1)));
 
             return files;
         }

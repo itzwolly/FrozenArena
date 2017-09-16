@@ -22,10 +22,10 @@ public class LoadSaveLevelScript : MonoBehaviour
             File.Create(path);
         }
         File.WriteAllText(path, String.Empty);
-        Utility.WriteToFile(path, "PlayerMass " + "|" + _LevelInfo.GetPlayerMass.ToString());
-        Utility.WriteToFile(path, "BreakableMass " + "|" + _LevelInfo.GetBreakableMass.ToString());
-        Utility.WriteToFile(path, "BouncePower " + "|" + _LevelInfo.GetBouncepower.ToString());
-        Utility.WriteToFile(path, "FrictionValue " + "|" + _LevelInfo.GetIcynessValue.ToString());
+        Utility.WriteToFile(path, "PlayerMass" + "|" + _LevelInfo.GetPlayerMass.ToString());
+        Utility.WriteToFile(path, "BreakableMass" + "|" + _LevelInfo.GetBreakableMass.ToString());
+        Utility.WriteToFile(path, "BouncePower" + "|" + _LevelInfo.GetBouncepower.ToString());
+        Utility.WriteToFile(path, "FrictionValue" + "|" + _LevelInfo.GetIcynessValue.ToString());
         string info;
         bool changed;
         foreach (Transform t in transform)
@@ -49,10 +49,11 @@ public class LoadSaveLevelScript : MonoBehaviour
                 }
                 Utility.WriteToFile(path, info);
             }
-            else if (t.tag == "Player")
+            else if (t.gameObject.GetComponent<PlayerMovement>() != null)
             {
-                info += "Player" + "|" + Utility.VectorToString(t.position);
-                Utility.WriteToFile(path,info);
+                info += "Player"+"|"+ t.gameObject.GetComponent<PlayerMovement>().Code.ToString() 
+                    + "|" + Utility.VectorToString(t.position);
+                Utility.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<Rigidbody>() != null)
             {
@@ -99,26 +100,59 @@ public class LoadSaveLevelScript : MonoBehaviour
             }
         }
     }
-    public void LoadLevel(out string sceneName, out float playerMass,out float breakableMass,
+    public void LoadLevel(string path, out float playerMass,out float breakableMass,
                             out float bouncePower,out float icynessValue)
     {
-        string path = "Assets\\Saves\\New Level.txt";
+        //Debug.Log(sceneName);
+        foreach(Transform t in transform)
+        {
+            if(t.tag!="StartTile")
+            Destroy(t.gameObject);
+        }
+        //string path = "Assets\\Saves\\"+sceneName+".txt";
         string[] all = Utility.ReadFromFile(path).Split('\n');
-        Debug.Log("Loading level");
         bool changed;
-        GameObject currentTile;
+        GameObject currentTile = new GameObject();
+        playerMass = 50;
+        breakableMass = 25;
+        bouncePower = 0.8f;
+        icynessValue = 0.1f;
         foreach (string s in all)
         {
             changed = false;
             string[] split = s.Split('|');
             int where = 0;
-            if(split[0]=="?")
+            if (split[where] == "")
+            {
+                continue;
+            }
+            if (split[0]=="?")
             {
                 changed = true;
                 where++;
             }
 
-            if (split[where] == "Bomb")
+            if (split[where] == "PlayerMass")
+            {
+                where++;
+                playerMass = Convert.ToSingle(split[where]);
+
+            }
+            else if (split[where] == "BreakableMass")
+            {
+                where++;
+                breakableMass = Convert.ToSingle(split[where]);
+            }
+            else if (split[where] == "BouncePower")
+            {
+                where++;
+                bouncePower = Convert.ToSingle(split[where]);
+            }
+            else if (split[where] == "FrictionValue")
+            {
+                where++;
+                icynessValue = Convert.ToSingle(split[where]);
+            }else if (split[where] == "Bomb")
             {
                 currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
                 where++;
@@ -134,13 +168,18 @@ public class LoadSaveLevelScript : MonoBehaviour
             else if (split[where] == "Player")
             {
                 ///separate into selection of the 2 players
-                currentTile = Instantiate(_LevelInfo.GetPlayer1);
                 where++;
-                currentTile.transform.position = Utility.StringToVector(split[where]);
-                where++;
-                if (changed)
+                Vector3 pos = Utility.StringToVector(split[where++]);
+                int code = Convert.ToInt32(split[where++]);
+                if (code==1)
                 {
-
+                    currentTile = Instantiate(_LevelInfo.GetPlayer1);
+                    currentTile.transform.position = pos;
+                }
+                else if(code==2)
+                {
+                    currentTile = Instantiate(_LevelInfo.GetPlayer2);
+                    currentTile.transform.position = pos;
                 }
             }
             else if (split[where] == "Breakable")
@@ -201,15 +240,11 @@ public class LoadSaveLevelScript : MonoBehaviour
             }
             else
             {
-                throw new Exception("dont know this block type");
+                Debug.Log(split[where]+"----dont know this block type");
             }
+            currentTile.transform.SetParent(transform);
 
         }
-        sceneName = "New Level";
-        playerMass = 50;
-        breakableMass = 25;
-        bouncePower = 0.8f;
-        icynessValue = 0.1f;
 
     }
 }

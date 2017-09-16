@@ -32,6 +32,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject EditButtons;
     [SerializeField] GameObject PopOutButtons;
     [SerializeField] GameObject LastBlockEditor;
+    [SerializeField] GameObject SelectLevel;
 
     [SerializeField] GameObject StartPosition;
 
@@ -359,13 +360,28 @@ public class CreateSceneButton : MonoBehaviour
         tile.transform.Translate(direction);
     }
 
-    public void LoadLevel()
+    public void StartLoadLevel()
     {
+        Debug.Log("starting to load level");
         _editing = false;
+        SelectLevel.SetActive(true);
+        SelectLevel.GetComponent<SelectedLevelName>().CreateOptions();
+        //gameObject.SetActive(false);
+    }
+
+    public void EndLoadLevel()
+    {
+        //gameObject.SetActive(true);
         LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(
-            out _sceneName,out _playerMass,out _breakableMass,
-            out _bouncePower,out _icynessValue);
+            _sceneName, out _playerMass, out _breakableMass,
+            out _bouncePower, out _icynessValue);
+        SelectLevel.SetActive(false);
         _editing = true;
+    }
+
+    public void ChangeSceneName(string name)
+    {
+        _sceneName = name;
     }
 
     public void EditLastTile()

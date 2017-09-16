@@ -31,6 +31,7 @@ public class OneWayBoost : MonoBehaviour {
         if(_prevDirection!=_direction)
         {
             LevelEditorValidate();
+            _prevDirection = _direction;
         }
     }
 
