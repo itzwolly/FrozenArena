@@ -103,6 +103,7 @@ public class CreateSceneButton : MonoBehaviour
     {
         get { return _sceneName; }
     }
+
     private float _playerMass;
     public float GetPlayerMass
     {
@@ -239,6 +240,8 @@ public class CreateSceneButton : MonoBehaviour
                         _player1 = _movingBlock;
                         _player1.GetComponent<Rigidbody>().mass = _playerMass;
                         _player1.GetComponent<Collider>().material = _bounceChanged;
+                        _player1.GetComponent<PlayerMovement>().enabled = false;
+                        _player1.GetComponent<Rigidbody>().useGravity = false;
                         _selectedTile = _normalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
                         _movingBlock.transform.position = pos;
@@ -263,6 +266,8 @@ public class CreateSceneButton : MonoBehaviour
                         _player2 = _movingBlock;
                         _player2.GetComponent<Rigidbody>().mass = _playerMass;
                         _player2.GetComponent<Collider>().material = _bounceChanged;
+                        _player2.GetComponent<PlayerMovement>().enabled = false;
+                        _player2.GetComponent<Rigidbody>().useGravity = false;
                         _selectedTile = _normalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
                         _movingBlock.transform.position = pos;
@@ -371,7 +376,6 @@ public class CreateSceneButton : MonoBehaviour
 
     public void EndLoadLevel()
     {
-        //gameObject.SetActive(true);
         LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(
             _sceneName, out _playerMass, out _breakableMass,
             out _bouncePower, out _icynessValue);
@@ -445,8 +449,6 @@ public class CreateSceneButton : MonoBehaviour
         {
             _changedBlock = true;
             _selectedTile = (Player1);
-            _selectedTile.GetComponent<PlayerMovement>().enabled = false;
-            _selectedTile.GetComponent<Rigidbody>().useGravity = false;
             _createdPlayer1 = true;
         }
         else
@@ -462,8 +464,6 @@ public class CreateSceneButton : MonoBehaviour
         {
             _changedBlock = true;
             _selectedTile = (Player2);
-            _selectedTile.GetComponent<PlayerMovement>().enabled = false;
-            _selectedTile.GetComponent<Rigidbody>().useGravity = false;
             _createdPlayer2 = true;
         }
         else
@@ -506,11 +506,11 @@ public class CreateSceneButton : MonoBehaviour
 
         if (SceneName.text.Length <= 0)
         {
-            _sceneName = "New Level";
+            _sceneName =  ("Assets\\Saves\\NewLevel.txt");
         }
         else
         {
-            _sceneName = SceneName.text;
+            _sceneName = "Assets\\Saves\\"+SceneName.text+".txt";
         }
         try
         {

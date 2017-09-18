@@ -11,7 +11,7 @@ public class LoadSaveLevelScript : MonoBehaviour
     [SerializeField] GameObject LoadScroll;
     public void SaveLevel()
     {
-        string path = "Assets\\Saves\\"+_LevelInfo.GetSceneName+".txt";
+        string path = _LevelInfo.GetSceneName;
         if (File.Exists(path))
         {
             Debug.Log("Level Already Exists, Overwriting");
@@ -22,6 +22,7 @@ public class LoadSaveLevelScript : MonoBehaviour
             File.Create(path);
         }
         File.WriteAllText(path, String.Empty);
+        Debug.Log("Level Now Saving from: " + transform.name);
         Utility.WriteToFile(path, "PlayerMass" + "|" + _LevelInfo.GetPlayerMass.ToString());
         Utility.WriteToFile(path, "BreakableMass" + "|" + _LevelInfo.GetBreakableMass.ToString());
         Utility.WriteToFile(path, "BouncePower" + "|" + _LevelInfo.GetBouncepower.ToString());
@@ -30,10 +31,12 @@ public class LoadSaveLevelScript : MonoBehaviour
         bool changed;
         foreach (Transform t in transform)
         {
+            Debug.Log(t.name);
             changed = false;
             info = "";
-            if(t.gameObject.GetComponent<State>().Changed)
+            if(t.gameObject.GetComponent<State>()!=null && t.gameObject.GetComponent<State>().Changed)
             {
+                Debug.Log(t.name+" has stats changed");
                 info += "?|";
                 changed = true;
             }
@@ -47,22 +50,20 @@ public class LoadSaveLevelScript : MonoBehaviour
                     info += "|"+ t.gameObject.GetComponent<BombTile>().ExplodeTimer.ToString();
                     info += "|"+ t.gameObject.GetComponent<BombTile>().ResetTime.ToString();
                 }
-                Utility.WriteToFile(path, info);
             }
-            else if (t.gameObject.GetComponent<PlayerMovement>() != null)
+            else if (t.tag == "Player")
             {
-                info += "Player"+"|"+ t.gameObject.GetComponent<PlayerMovement>().Code.ToString() 
+                Debug.Log("player");
+                info += "Player" + "|" + t.gameObject.GetComponent<PlayerMovement>().Code.ToString()
                     + "|" + Utility.VectorToString(t.position);
-                Utility.WriteToFile(path, info);
             }
-            else if (t.gameObject.GetComponent<Rigidbody>() != null)
+            else if (t.tag=="BreakableTile")
             {
                 info += "Breakable" + "|" + Utility.VectorToString(t.position);
                 if(changed)
                 {
                     info += "|"+t.gameObject.GetComponent<Rigidbody>().mass.ToString();
                 }
-                Utility.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<MultiDirectionalBoost>() != null)
             {
@@ -71,7 +72,6 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
                     info += "|"+t.gameObject.GetComponent<MultiDirectionalBoost>().SpeedBoost.ToString();
                 }
-                Utility.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<OneWayBoost>() != null)
             {
@@ -81,7 +81,6 @@ public class LoadSaveLevelScript : MonoBehaviour
                     info += "|"+t.gameObject.GetComponent<OneWayBoost>().SpeedBoost.ToString()+"|";
                     info += ((int)(t.gameObject.GetComponent<OneWayBoost>().Direction)).ToString();
                 }
-                Utility.WriteToFile(path, info);
             }
             else if (t.gameObject.GetComponent<SlowDown>() != null)
             {
@@ -91,13 +90,13 @@ public class LoadSaveLevelScript : MonoBehaviour
                     info += "|"+t.gameObject.GetComponent<SlowDown>().SlowDownMultiplier.ToString()+ "|";
                     info += t.gameObject.GetComponent<SlowDown>().SlowedDownSpeed.ToString();
                 }
-                Utility.WriteToFile(path, info);
             }
             else
             {
+                //Debug.Log("normal block");
                 info += "NormalBlock" + "|" + Utility.VectorToString(t.position);
-                Utility.WriteToFile(path, info);
             }
+            Utility.WriteToFile(path, info);
         }
     }
     public void LoadLevel(string path, out float playerMass,out float breakableMass,
@@ -112,7 +111,7 @@ public class LoadSaveLevelScript : MonoBehaviour
         //string path = "Assets\\Saves\\"+sceneName+".txt";
         string[] all = Utility.ReadFromFile(path).Split('\n');
         bool changed;
-        GameObject currentTile = new GameObject();
+        GameObject currentTile;
         playerMass = 50;
         breakableMass = 25;
         bouncePower = 0.8f;
@@ -164,22 +163,25 @@ public class LoadSaveLevelScript : MonoBehaviour
                     currentTile.GetComponent<BombTile>().ExplodeTimer = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<BombTile>().ResetTime = Convert.ToSingle(split[where++]);
                 }
+                currentTile.transform.SetParent(transform);
             }
             else if (split[where] == "Player")
             {
                 ///separate into selection of the 2 players
                 where++;
-                Vector3 pos = Utility.StringToVector(split[where++]);
                 int code = Convert.ToInt32(split[where++]);
+                Vector3 pos = Utility.StringToVector(split[where++]);
                 if (code==1)
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer1);
                     currentTile.transform.position = pos;
+                    currentTile.transform.SetParent(transform);
                 }
                 else if(code==2)
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer2);
                     currentTile.transform.position = pos;
+                    currentTile.transform.SetParent(transform);
                 }
             }
             else if (split[where] == "Breakable")
@@ -191,6 +193,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
                     currentTile.GetComponent<Rigidbody>().mass=Convert.ToSingle(split[where++]);
                 }
+                currentTile.transform.SetParent(transform);
             }
             else if (split[where] == "MultiDirectionalBoost")
             {
@@ -202,6 +205,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
                     currentTile.GetComponent<MultiDirectionalBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
                 }
+                currentTile.transform.SetParent(transform);
             }
             else if (split[where] == "OneWayBoost")
             {
@@ -214,6 +218,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                     currentTile.GetComponent<OneWayBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<OneWayBoost>().Direction = (OneWayBoost.DirectionValue)(Convert.ToInt32(split[where++]));
                 }
+                currentTile.transform.SetParent(transform);
             }
             else if (split[where] == "SlowBlock")
             {
@@ -226,6 +231,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                     currentTile.GetComponent<SlowDown>().SlowDownMultiplier=Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<SlowDown>().SlowedDownSpeed = Convert.ToSingle(split[where++]);
                 }
+                currentTile.transform.SetParent(transform);
             }
             else if (split[where] == "NormalBlock")
             {
@@ -237,14 +243,14 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
 
                 }
+                currentTile.transform.SetParent(transform);
             }
             else
             {
                 Debug.Log(split[where]+"----dont know this block type");
             }
-            currentTile.transform.SetParent(transform);
 
         }
-
+        Debug.Log("finished loading level of: "+all.Length);
     }
 }

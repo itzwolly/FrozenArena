@@ -1,6 +1,0 @@
-PlayerMass|50
-BreakableMass|25
-BouncePower|0.8
-FrictionValue|0.1
-NormalBlock|-0.4385522,6.882116,-3.040939
-?|OneWayBoost|-0.4385522,6.882116,-6.040939|150|2

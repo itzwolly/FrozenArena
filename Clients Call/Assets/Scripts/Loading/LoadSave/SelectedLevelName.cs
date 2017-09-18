@@ -21,25 +21,28 @@ public class SelectedLevelName : MonoBehaviour {
     public void CreateOptions()
     {
         //Debug.Log("creating options");
-        if (_buttons.Count>0)
-        {
-            while (_buttons.Count>0)
-            {
-                Destroy(_buttons[_buttons.Count-1]);
-                _buttons.RemoveAt(_buttons.Count - 1);
-            }
-        }
-        _buttons = new List<Button>();
+        //if (_buttons.Count>0)
+        //{
+        //    while (_buttons.Count>0)
+        //    {
+        //        Destroy(_buttons[_buttons.Count-1]);
+        //        _buttons.RemoveAt(_buttons.Count - 1);
+        //    }
+        //}
         _selection = 0;
         string[] fileNames = Utility.AllFilesInPath("Assets\\Saves","*.txt");
-        foreach (string s in fileNames)
+        if (_buttons.Count < fileNames.Length)
         {
-            Debug.Log(s);
-            Button obj = Instantiate(_buttonBrush);
-            obj.GetComponent<TextFromButton>().TextField.text = s;
-            obj.transform.SetParent(_options.transform);
-            _buttons.Add(obj);
+            for (int i = _buttons.Count; i < fileNames.Length; i++)
+            {
+                Debug.Log(fileNames[i]);
+                Button obj = Instantiate(_buttonBrush);
+                obj.GetComponent<TextFromButton>().TextField.text = fileNames[i];
+                obj.transform.SetParent(_options.transform);
+                _buttons.Add(obj);
+            }
         }
+        Select(_buttons[_selection].GetComponent<Image>());
     }
 
     // Update is called once per frame
@@ -47,14 +50,15 @@ public class SelectedLevelName : MonoBehaviour {
     {   
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            ChangeSelection(-1);
+            ChangeSelection(1);
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            ChangeSelection(1);
+            ChangeSelection(-1);
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            Deselect(_buttons[_selection].GetComponent<Image>());
             _LevelControl.GetComponent<CreateSceneButton>().EndLoadLevel();
         }
     }
