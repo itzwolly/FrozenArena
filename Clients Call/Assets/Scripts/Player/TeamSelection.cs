@@ -60,6 +60,8 @@ public class TeamSelection : MonoBehaviour {
     private void Update() {
         MovePlayer(_leftKey, _rightKey, _otherPlayer);
         ConfirmReady(_interactionKey);
+
+        Debug.Log(_state);
     }
 
     private void ConfirmReady(KeyCode pInteractionKey) {
@@ -80,7 +82,7 @@ public class TeamSelection : MonoBehaviour {
     }
 
     private void MovePlayer(KeyCode pKeyLeft, KeyCode pKeyRight, GameObject pOtherPlayer) {
-        if (Input.GetKeyUp(pKeyLeft)) {
+        if (Input.GetKeyUp(pKeyLeft) && !_ready) {
             TeamState otherPlayerState = pOtherPlayer.GetComponent<TeamSelection>().State;
             if (_state == TeamState.NoTeam) {
                 if (otherPlayerState == TeamState.Purple) {
@@ -92,7 +94,7 @@ public class TeamSelection : MonoBehaviour {
             }
 
             SetImagePosition();
-        } else if (Input.GetKeyUp(pKeyRight)) {
+        } else if (Input.GetKeyUp(pKeyRight) && !_ready) {
             TeamState otherPlayerState = pOtherPlayer.GetComponent<TeamSelection>().State;
             if (_state == TeamState.NoTeam) {
                 if (otherPlayerState == TeamState.Yellow) {

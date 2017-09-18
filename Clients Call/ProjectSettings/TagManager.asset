@@ -9,6 +9,8 @@ TagManager:
   - Level
   - Stats
   - Pickup
+  - HeaderSP
+  - HeaderMP
   layers:
   - Default
   - TransparentFX
