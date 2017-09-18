@@ -219,4 +219,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToEnd: 2
   _timeToDestroy: 0
+  _audioSource: {fileID: 82283218167034722}
   PlayerDeath: {fileID: 8300000, guid: 1738ac0e4d3214742a4c71628e6e29aa, type: 3}

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private AudioClip HitOtherPlayer;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private ParticleSystem _psystem;
+    [SerializeField] private ParticleSystem _psystemBoost;
 
 
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             GetComponent<AudioSource>().PlayOneShot(HitBreakable);
             _psystem.Play();
+        }
+        else if (collision.transform.tag == "Booster")
+        {
+            _psystemBoost.Play();
         }
     }
 

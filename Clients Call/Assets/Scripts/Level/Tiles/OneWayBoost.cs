@@ -6,6 +6,7 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private Direction _direction;
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingPlayer;
+    [SerializeField] private ParticleSystem _psystem;
 
     private enum Direction {
         Right,
@@ -35,6 +36,7 @@ public class OneWayBoost : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("Boosting player: " + collision.transform.name);
+        _psystem.Play();
         if (collision.transform.tag == "Player") {
             Debug.Log("Tag equals player");
             switch (_direction) {

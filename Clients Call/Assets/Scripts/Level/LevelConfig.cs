@@ -27,6 +27,10 @@ public class LevelConfig : MonoBehaviour {
         WoodToHole
     }
 
+    public LevelMode Mode {
+        get { return _mode; }
+    }
+
     private void OnValidate() {
         switch (_mode) {
             case LevelMode.Versus:
