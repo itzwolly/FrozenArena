@@ -19,7 +19,7 @@ public class TeamSelectEnd : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (/*(p1Selection.Ready && p2Selection.State == TeamSelection.TeamState.NoTeam) ||*/ (p1Selection.Ready && p2Selection.Ready)) {
+        if ((p1Selection.Ready && p2Selection.State == TeamSelection.TeamState.NoTeam) || (p1Selection.Ready && p2Selection.Ready)) {
             // load next scene
             Timer.Register(_timeToWaitAfterReady, LoadNextScene);
         }

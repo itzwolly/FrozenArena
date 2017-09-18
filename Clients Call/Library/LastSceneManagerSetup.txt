@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Gamemodes/AToB.unity
-=======
-<<<<<<< HEAD
-- path: Assets/Scenes/Menus/Settings.unity
-=======
 - path: Assets/Scenes/Menus/Skin Selection.unity
->>>>>>> 86cbdb7206f76191175363ae8097b6e4a3d99e5e
->>>>>>> 3c3aae006cce37dcfb31bce233c9ac2f99f91ced
   isLoaded: 1
   isActive: 1

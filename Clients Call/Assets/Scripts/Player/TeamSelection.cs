@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class TeamSelection : MonoBehaviour {
     [SerializeField] private Image _image;
@@ -14,6 +15,8 @@ public class TeamSelection : MonoBehaviour {
     [SerializeField] private KeyCode _rightKey;
     [SerializeField] private KeyCode _interactionKey;
 
+    private GameObject _otherPlayer;
+
     public enum PlayerNumber {
         Player_One,
         Player_Two
@@ -24,13 +27,16 @@ public class TeamSelection : MonoBehaviour {
         Yellow
     }
 
+    public PlayerNumber GetPlayerNumber {
+        get { return _playerNumber; }
+    }
     public bool Ready {
         get { return _ready; }
     }
     public TeamState State {
         get { return _state; }
     }
-
+    
     private Vector3 _currentPos;
     private Vector3 _purplePos;
     private Vector3 _yellowPos;
@@ -44,12 +50,15 @@ public class TeamSelection : MonoBehaviour {
         _state = TeamState.NoTeam;
         _currentPos = _transform.anchoredPosition;
         _currentSprite = GetComponent<Image>().sprite;
+
+        _otherPlayer = GameObject.FindGameObjectsWithTag("Player").First(o => o.GetComponent<TeamSelection>().GetPlayerNumber != _playerNumber);
+
         _purplePos = new Vector3(-408.2f, (_playerNumber == PlayerNumber.Player_One) ? -134 : -403, 0);
         _yellowPos = new Vector3(419, (_playerNumber == PlayerNumber.Player_One) ? -134 : -403, 0);
     }
     
     private void Update() {
-        MovePlayer(_leftKey, _rightKey);
+        MovePlayer(_leftKey, _rightKey, _otherPlayer);
         ConfirmReady(_interactionKey);
     }
 
@@ -70,9 +79,13 @@ public class TeamSelection : MonoBehaviour {
         }
     }
 
-    private void MovePlayer(KeyCode pKeyLeft, KeyCode pKeyRight) {
+    private void MovePlayer(KeyCode pKeyLeft, KeyCode pKeyRight, GameObject pOtherPlayer) {
         if (Input.GetKeyUp(pKeyLeft)) {
+            TeamState otherPlayerState = pOtherPlayer.GetComponent<TeamSelection>().State;
             if (_state == TeamState.NoTeam) {
+                if (otherPlayerState == TeamState.Purple) {
+                    return;
+                }
                 _state = TeamState.Purple;
             } else if (_state == TeamState.Yellow) {
                 _state = TeamState.NoTeam;
@@ -80,7 +93,11 @@ public class TeamSelection : MonoBehaviour {
 
             SetImagePosition();
         } else if (Input.GetKeyUp(pKeyRight)) {
+            TeamState otherPlayerState = pOtherPlayer.GetComponent<TeamSelection>().State;
             if (_state == TeamState.NoTeam) {
+                if (otherPlayerState == TeamState.Yellow) {
+                    return;
+                }
                 _state = TeamState.Yellow;
             } else if (_state == TeamState.Purple) {
                 _state = TeamState.NoTeam;
