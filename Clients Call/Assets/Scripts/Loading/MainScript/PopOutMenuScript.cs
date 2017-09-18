@@ -148,6 +148,10 @@ public class PopOutMenuScript : MonoBehaviour
         Select(selection);
         foreach (Transform t in selection.transform)
         {
+            if (t.name == "Player2" && _controllerScript.SinglePlayer)
+            {
+                continue;
+            }
             t.gameObject.SetActive(true);
             _shownOptions.Add(t.gameObject);
         }

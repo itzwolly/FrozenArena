@@ -126,6 +126,10 @@ public class CreateSceneButton : MonoBehaviour
     }
 
     private bool _isSinglePlayer;
+    public bool SinglePlayer
+    {
+        get { return _isSinglePlayer; }
+    }
     private bool _changedBlock;
     private Vector3 _lastPosition;
     // Use this for initialization
@@ -337,6 +341,13 @@ public class CreateSceneButton : MonoBehaviour
 
     private void MoveTile(GameObject tile, Vector3 direction)
     {
+        if (_isSinglePlayer)
+        {
+            Vector3 where = new Vector3();
+            where.y = direction.z;
+            where.x = direction.x;
+            _camera.transform.Translate(where);
+        }
         RaycastHit raycasthit;
         Vector3 newPos = tile.transform.position + direction;
         if (Physics.Raycast(newPos, new Vector3(0, -1, 0), out raycasthit))
@@ -361,10 +372,6 @@ public class CreateSceneButton : MonoBehaviour
                 //Debug.Log("Have to Climb");
                 tile.transform.Translate(0, 1, 0);
             }
-        }
-        if(_isSinglePlayer)
-        {
-            _camera.transform.Translate(direction);
         }
         tile.transform.Translate(direction);
     }
