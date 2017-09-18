@@ -29,9 +29,6 @@ public class LevelConfig : MonoBehaviour {
         get { return _mode; }
     }
 
-    public LevelMode Mode {
-        get { return _mode; }
-    }
 
     private void OnValidate() {
         switch (_mode) {

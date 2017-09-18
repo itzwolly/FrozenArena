@@ -3588,7 +3588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &293565347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10697,15 +10697,7 @@ MonoBehaviour:
   _versusProperties:
     _enableRaisingTiles: 1
     _dropAndRaiseSpeed: 1
-  _survivalProperties:
-    _easy: 0.4
-    _normal: 0.2
-    _hard: 0.05
   _aToBProperties:
-    _easy: 1
-    _normal: 1
-    _hard: 1
-  _woodToHoleProperties:
     _easy: 1
     _normal: 1
     _hard: 1
