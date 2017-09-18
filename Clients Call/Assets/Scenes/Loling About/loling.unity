@@ -1883,7 +1883,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &420335449 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114532135965403540, guid: d60b4fc676e46be44a3049ff5b711e05,
@@ -3117,7 +3117,7 @@ MonoBehaviour:
   BreakableMass: {fileID: 1474760254}
   BouncePower: {fileID: 880159435}
   IcynessValue: {fileID: 1094963097}
-  HaveMouse: {fileID: 418773886}
+  IsSinglePlayer: {fileID: 418773886}
   StartButtons: {fileID: 1198181827}
   EditButtons: {fileID: 470488865}
   PopOutButtons: {fileID: 401525391}
@@ -5638,7 +5638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1198181828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8474,7 +8474,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HaveMouse?
+  m_Text: SinglePlayer?
 --- !u!222 &1988409732
 CanvasRenderer:
   m_ObjectHideFlags: 0

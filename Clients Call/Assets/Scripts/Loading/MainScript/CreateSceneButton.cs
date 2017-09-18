@@ -26,7 +26,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] InputField BreakableMass;
     [SerializeField] Slider BouncePower;
     [SerializeField] Slider IcynessValue;
-    [SerializeField] Toggle HaveMouse;
+    [SerializeField] Toggle IsSinglePlayer;
 
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
@@ -125,7 +125,7 @@ public class CreateSceneButton : MonoBehaviour
         get { return _icynessValue; }
     }
 
-    private bool _haveMouse;
+    private bool _isSinglePlayer;
     private bool _changedBlock;
     private Vector3 _lastPosition;
     // Use this for initialization
@@ -362,6 +362,10 @@ public class CreateSceneButton : MonoBehaviour
                 tile.transform.Translate(0, 1, 0);
             }
         }
+        if(_isSinglePlayer)
+        {
+            _camera.transform.Translate(direction);
+        }
         tile.transform.Translate(direction);
     }
 
@@ -458,6 +462,11 @@ public class CreateSceneButton : MonoBehaviour
     }
     public void SelectPlayer2()
     {
+        if(_isSinglePlayer)
+        {
+            SelectPlayer1();
+            return;
+        }
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         if (!_createdPlayer2)
@@ -548,7 +557,7 @@ public class CreateSceneButton : MonoBehaviour
         _bounceChanged.bounciness = _bouncePower;
         _iceChanged = Instantiate(_iceOriginal);
         _iceChanged.dynamicFriction = _icynessValue;
-        _haveMouse = HaveMouse.isOn;
+        _isSinglePlayer = IsSinglePlayer.isOn;
 
         StartButtons.SetActive(false);
         _editing = true;
