@@ -26,7 +26,7 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] InputField BreakableMass;
     [SerializeField] Slider BouncePower;
     [SerializeField] Slider IcynessValue;
-    [SerializeField] Toggle IsSinglePlayer;
+    [SerializeField] LeftRightSelect IsSinglePlayer;
 
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
@@ -564,7 +564,10 @@ public class CreateSceneButton : MonoBehaviour
         _bounceChanged.bounciness = _bouncePower;
         _iceChanged = Instantiate(_iceOriginal);
         _iceChanged.dynamicFriction = _icynessValue;
-        _isSinglePlayer = IsSinglePlayer.isOn;
+        if (IsSinglePlayer.On)
+            _isSinglePlayer = true;
+        else
+            _isSinglePlayer = false;
 
         StartButtons.SetActive(false);
         _editing = true;

@@ -20,15 +20,6 @@ public class SelectedLevelName : MonoBehaviour {
 
     public void CreateOptions()
     {
-        //Debug.Log("creating options");
-        //if (_buttons.Count>0)
-        //{
-        //    while (_buttons.Count>0)
-        //    {
-        //        Destroy(_buttons[_buttons.Count-1]);
-        //        _buttons.RemoveAt(_buttons.Count - 1);
-        //    }
-        //}
         _selection = 0;
         string[] fileNames = Utility.AllFilesInPath("Assets\\Saves","*.txt");
         if (_buttons.Count < fileNames.Length)
