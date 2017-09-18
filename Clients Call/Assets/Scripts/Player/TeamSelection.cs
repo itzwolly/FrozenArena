@@ -10,12 +10,15 @@ public class TeamSelection : MonoBehaviour {
     [SerializeField] private Sprite _yellowImage;
     [SerializeField] private RectTransform _transform;
     [SerializeField] private PlayerNumber _playerNumber;
-
+    
+    [SerializeField] private KeyCode _upKey;
+    [SerializeField] private KeyCode _downKey;
     [SerializeField] private KeyCode _leftKey;
     [SerializeField] private KeyCode _rightKey;
     [SerializeField] private KeyCode _interactionKey;
 
     private GameObject _otherPlayer;
+    private KeyCode[] _keys;
 
     public enum PlayerNumber {
         Player_One,
@@ -36,7 +39,13 @@ public class TeamSelection : MonoBehaviour {
     public TeamState State {
         get { return _state; }
     }
-    
+    public KeyCode InteractionKey {
+        get { return _interactionKey; }
+    }
+    public KeyCode[] Keys {
+        get { return _keys; }
+    }
+
     private Vector3 _currentPos;
     private Vector3 _purplePos;
     private Vector3 _yellowPos;
@@ -52,6 +61,7 @@ public class TeamSelection : MonoBehaviour {
         _currentSprite = GetComponent<Image>().sprite;
 
         _otherPlayer = GameObject.FindGameObjectsWithTag("Player").First(o => o.GetComponent<TeamSelection>().GetPlayerNumber != _playerNumber);
+        _keys = new KeyCode[] { _upKey, _downKey, _leftKey, _rightKey, _interactionKey };
 
         _purplePos = new Vector3(-408.2f, (_playerNumber == PlayerNumber.Player_One) ? -134 : -403, 0);
         _yellowPos = new Vector3(419, (_playerNumber == PlayerNumber.Player_One) ? -134 : -403, 0);
@@ -60,8 +70,6 @@ public class TeamSelection : MonoBehaviour {
     private void Update() {
         MovePlayer(_leftKey, _rightKey, _otherPlayer);
         ConfirmReady(_interactionKey);
-
-        Debug.Log(_state);
     }
 
     private void ConfirmReady(KeyCode pInteractionKey) {

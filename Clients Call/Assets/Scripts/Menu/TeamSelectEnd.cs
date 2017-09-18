@@ -20,8 +20,6 @@ public class TeamSelectEnd : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if ((p1Selection.Ready && p2Selection.State == TeamSelection.TeamState.NoTeam) || (p1Selection.Ready && p2Selection.Ready)) {
-            
-
             // load next scene
             Timer.Register(_timeToWaitAfterReady, LoadNextScene);
         }
@@ -37,14 +35,25 @@ public class TeamSelectEnd : MonoBehaviour {
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Player").Length; i++) {
             GameObject player = GameObject.FindGameObjectsWithTag("Player")[i];
             TeamSelection selection = player.GetComponent<TeamSelection>();
-            if (selection.Ready) {
-                MenuDataHandler.Instance.PlayersReady++;
-                
-                if (selection.State == TeamSelection.TeamState.Purple) {
-                    MenuDataHandler.Instance.IsPlayer1Purple = true;
-                } else {
-                    MenuDataHandler.Instance.IsPlayer1Purple = false;
-                }
+
+            if (i == 0) {
+                MenuDataHandler.Instance.Player2Keys = selection.Keys;
+            } else {
+                MenuDataHandler.Instance.Player1Keys = selection.Keys;
+            }
+
+            SetDataForTeamSelection(selection);
+        }
+    }
+
+    private void SetDataForTeamSelection(TeamSelection pSelection) {
+        if (pSelection.Ready) {
+            MenuDataHandler.Instance.PlayersReady++;
+
+            if (pSelection.State == TeamSelection.TeamState.Purple) {
+                MenuDataHandler.Instance.IsPlayer1Purple = true;
+            } else {
+                MenuDataHandler.Instance.IsPlayer1Purple = false;
             }
         }
     }
