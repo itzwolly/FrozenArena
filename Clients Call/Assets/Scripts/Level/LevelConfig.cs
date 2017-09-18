@@ -11,9 +11,7 @@ public class LevelConfig : MonoBehaviour {
 
     [Space(10)]
     [SerializeField] private VersusProperties _versusProperties;
-    [SerializeField] private SurvivalProperties _survivalProperties;
     [SerializeField] private AToBProperties _aToBProperties;
-    [SerializeField] private WoodToHoleProperties _woodToHoleProperties;
 
     public enum LevelDifficulty {
         Easy,
@@ -22,9 +20,13 @@ public class LevelConfig : MonoBehaviour {
     }
     public enum LevelMode {
         Versus,
-        Survival,
+        //Survival,
         AToB,
-        WoodToHole
+        //WoodToHole
+    }
+
+    public LevelMode Mode {
+        get { return _mode; }
     }
 
     public LevelMode Mode {
@@ -37,21 +39,21 @@ public class LevelConfig : MonoBehaviour {
                 GetComponentInChildren<RaisingTile>().enabled = _versusProperties.EnableRaisingTiles;
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowTarget>().enabled = false;
                 break;
-            case LevelMode.Survival:
-                GetComponentInChildren<RaisingTile>().enabled = false;
-                GameObject survCam = GameObject.FindGameObjectWithTag("MainCamera");
-                if (survCam.GetComponent<FollowTarget>() != null) {
-                    survCam.GetComponent<FollowTarget>().enabled = false;
-                }
-                break;
+            //case LevelMode.Survival:
+            //    GetComponentInChildren<RaisingTile>().enabled = false;
+            //    GameObject survCam = GameObject.FindGameObjectWithTag("MainCamera");
+            //    if (survCam.GetComponent<FollowTarget>() != null) {
+            //        survCam.GetComponent<FollowTarget>().enabled = false;
+            //    }
+            //    break;
             case LevelMode.AToB:
                 GetComponentInChildren<RaisingTile>().enabled = false;
                 GameObject aToBCam = GameObject.FindGameObjectWithTag("MainCamera");
                 if (aToBCam.GetComponent<FollowTarget>() != null) {
-                    aToBCam.GetComponent<FollowTarget>().enabled = false;
+                    aToBCam.GetComponent<FollowTarget>().enabled = true;
                 }
                 break;
-            case LevelMode.WoodToHole:
+            //case LevelMode.WoodToHole:
             default:
                 break;
         }
@@ -59,12 +61,12 @@ public class LevelConfig : MonoBehaviour {
 
     private Properties GetGameModeProperties() {
         switch (_mode) {
-            case LevelMode.Survival:
-                return _survivalProperties;
+            //case LevelMode.Survival:
+            //    return _survivalProperties;
             case LevelMode.AToB:
                 return _aToBProperties;
-            case LevelMode.WoodToHole:
-                return _woodToHoleProperties;
+            //case LevelMode.WoodToHole:
+            //    return _woodToHoleProperties;
             case LevelMode.Versus: // returns null for now..
             default:
                 return null;

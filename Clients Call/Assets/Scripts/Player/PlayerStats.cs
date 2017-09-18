@@ -3,6 +3,7 @@
 public class PlayerStats {
     // score
     private int _score;
+    private int _itemsPickedUp;
     // boost
     private int _totalAmountOfTimesBoosted;
     private int _amountOfTimesBoostedByOneWay;
@@ -20,6 +21,10 @@ public class PlayerStats {
                 _score = value;
             }
         }
+    }
+    public int ItemsPickedUp {
+        get { return _itemsPickedUp; }
+        set { _itemsPickedUp = value; }
     }
     //boost
     public int TotalAmountBoosted {

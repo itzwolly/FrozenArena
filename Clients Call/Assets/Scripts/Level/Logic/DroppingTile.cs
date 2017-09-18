@@ -80,11 +80,12 @@ public class DroppingTile : MonoBehaviour {
         _chosenTile = Utility.RandomSelectFromList(Info.MovableCubes);
         _lerpPercentage = 0;
         _currentLerpTime = 0;
-        _timer.Resume();
 
-        //if (Info.MovableCubes.Count > 0) {
-        //    StartCoroutine(Coroutines.CallVoidAfterSeconds(DropTile, _timeToNextFall));
-        //}
+        if (_chosenTile != null) {
+            _timer.Resume();
+        } else {
+            _timer.Cancel();
+        }
     }
 
     private void DestroyTile(GameObject obj) {
