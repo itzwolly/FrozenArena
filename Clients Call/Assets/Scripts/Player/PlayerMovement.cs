@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float _speed;
     [SerializeField] private AudioClip HitBreakable;
     [SerializeField] private AudioClip HitOtherPlayer;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private ParticleSystem _psystem;
+    [SerializeField] private ParticleSystem _psystemBoost;
+
 
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
@@ -22,10 +26,16 @@ public class PlayerMovement : MonoBehaviour {
         if(collision.transform.tag=="Player")
         {
             GetComponent<AudioSource>().PlayOneShot(HitOtherPlayer);
+            _psystem.Play();
         }
         else if(collision.transform.tag == "BreakableTile")
         {
             GetComponent<AudioSource>().PlayOneShot(HitBreakable);
+            _psystem.Play();
+        }
+        else if (collision.transform.tag == "Booster")
+        {
+            _psystemBoost.Play();
         }
     }
 
@@ -40,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         _currentSpeed = _speed;
+      
     }
 
     private void Start() {
@@ -58,19 +69,19 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ForwardAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.forward * _currentSpeed) * Time.deltaTime);
     }
     private void BackAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.back * _currentSpeed) * Time.deltaTime);
     }
     private void LeftAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.left * _currentSpeed) * Time.deltaTime);
     }
     private void RightAction()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * _currentSpeed);
+        gameObject.GetComponent<Rigidbody>().AddForce((Vector3.right * _currentSpeed) * Time.deltaTime);
     }
 
     private void Ability1Action()
@@ -89,5 +100,6 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKey(k))
                 ButtonActions[k]();
         }
-	}
+        _audioSource.pitch = gameObject.GetComponent<Rigidbody>().velocity.magnitude-1;
+}
 }

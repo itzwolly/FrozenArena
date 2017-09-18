@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/VerticalSlice.unity
+=======
+- path: Assets/Scenes/Levels/mp_level_5.unity
+>>>>>>> 83e23921c702fe58ea6a67a54cece1c43d5aea12
   isLoaded: 1
   isActive: 1
