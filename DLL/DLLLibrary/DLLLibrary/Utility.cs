@@ -1,6 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,14 +23,27 @@ namespace DLLLibrary
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
-
-
         public static void WriteToFile(string path, string words)
         {
             //Debug.Log("Written to file");
             StreamWriter write = new StreamWriter(path, true);
             write.WriteLine(words);
             write.Close();
+        }
+        public static string VectorToString(Vector3 vec)
+        {
+            string words = vec.x + "," + vec.y + "," + vec.z;
+
+            return words;
+        }
+        public static Vector3 StringToVector(string str)
+        {
+            Vector3 vec = new Vector3();
+            string[] split = str.Split('(', ',');
+            vec.x = Convert.ToSingle(split[0]);
+            vec.y = Convert.ToSingle(split[1]);
+            vec.z = Convert.ToSingle(split[2]);
+            return vec;
         }
 
         public static void ReplaceLineFromFile(string path, string words, string stringToReplace)
@@ -108,20 +122,32 @@ namespace DLLLibrary
             read.Close();
             return file;
         }
-        public static float GetValueAfterString(string path, string pString)
+
+
+        public static void SaveStats(string path, string info)
+        {
+            if (ReadFromFile(path).Length > 1)
+            {
+                File.WriteAllText(path, String.Empty);
+            }
+
+            WriteToFile(path, info);
+        }
+
+        public static int GetValueAfterString(string path, string pString)
         {
             string text = ReadFromFile(path);
 
             StreamReader reader = new StreamReader(path);
             string[] file = reader.ReadToEnd().Split('\n', '\r', ' ');
-            float latestNumber = 0;
+            int latestNumber = 0;
             for (int i = 0; i < file.Length; i++)
             {
                 if (string.Compare(file[i], pString) == 0)
                 {
                     if (IsNumeric(file[i + 1]))
                     {
-                        latestNumber = Convert.ToSingle(file[i + 1]);
+                        latestNumber = Convert.ToInt32(file[i + 1]);
                         i++;
                     }
                 }
@@ -133,14 +159,29 @@ namespace DLLLibrary
 
         public static void SetValueAfterString(string path, string pString, int nextValue)
         {
-            float lastValue = GetValueAfterString(path, pString);
+            int lastValue = GetValueAfterString(path, pString);
             string before = pString + " " + lastValue;
             string after = pString + " " + nextValue;
             //Debug.Log(before + "|" + after);
             //Debug.Log("|" + before +"|"+ after + "|");
             ReplaceLineFromFile(path, after, before);
         }
+        
+        public static string[] AllFilesInPath(string path,string filetype)
+        {
+            //DirectoryInfo dinfo = new DirectoryInfo(path);
+            //FileInfo[] tfiles = dinfo.GetFiles("*.txt");
 
+            //string[] files = new string[tfiles.Length];
 
+            //for(int i=0;i<tfiles.Length;i++)
+            //{
+            //    files[i] = tfiles[i].Name;
+            //}
+
+            string[] files = Directory.GetFiles(path, filetype);//.Where(s => s.EndsWith(filetype.Substring(1)));
+
+            return files;
+        }
     }
 }
