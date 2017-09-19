@@ -27,7 +27,7 @@ public class BombTile : MonoBehaviour {
     {
         _mat = gameObject.GetComponent<Renderer>().material;
         _initialColor = _mat.color;
-        _camAnimator.SetTrigger("Awake");
+        //_camAnimator.SetTrigger("Awake");
     }
 
     private void OnCollisionEnter(Collision collision)

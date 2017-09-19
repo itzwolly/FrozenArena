@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         _currentSpeed = _speed;
-      
+        
     }
 
     private void Start() {

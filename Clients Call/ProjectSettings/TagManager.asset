@@ -8,6 +8,8 @@ TagManager:
   - Booster
   - Pickup
   - BreakableTile
+  - Level
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
