@@ -8,7 +8,7 @@ public class MainMenuEvents : MonoBehaviour {
 
     public void OnPlayClick() {
         // Load play scene
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("Team Select");
     }
 
     public void OnStatisticsClick() {

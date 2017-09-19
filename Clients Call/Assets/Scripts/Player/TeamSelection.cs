@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class TeamSelection : MonoBehaviour {
     [SerializeField] private Image _image;
     [SerializeField] private Sprite _purpleImage;
     [SerializeField] private Sprite _yellowImage;
     [SerializeField] private RectTransform _transform;
+    [SerializeField] private GameObject _return;
     [SerializeField] private PlayerNumber _playerNumber;
     
     [SerializeField] private KeyCode _upKey;
@@ -54,6 +56,7 @@ public class TeamSelection : MonoBehaviour {
     private TeamState _state;
     private TeamState _prevState;
     private bool _ready;
+    private int _selectedIndex = 0;
 
     private void Start() {
         _state = TeamState.NoTeam;
@@ -68,23 +71,72 @@ public class TeamSelection : MonoBehaviour {
     }
     
     private void Update() {
-        MovePlayer(_leftKey, _rightKey, _otherPlayer);
+        NavigateOptions(_upKey, _downKey);
+        if (_selectedIndex == 0) {
+            MovePlayer(_leftKey, _rightKey, _otherPlayer);
+        }
         ConfirmReady(_interactionKey);
+    }
+
+    private void HighlightButton(int pIndex) {
+        if (pIndex == 0) {
+            Image returnImage = _return.GetComponent<Image>();
+            Image playerImage = _image;
+
+            Color returnColor = returnImage.color;
+            Color playerColor = playerImage.color;
+
+            returnColor.a = 0.5f;
+            playerColor.a = 1f;
+
+            returnImage.color = returnColor;
+            playerImage.color = playerColor;
+        } else {
+            Image returnImage = _return.GetComponent<Image>();
+            Image playerImage = _image;
+
+            Color returnColor = returnImage.color;
+            Color playerColor = playerImage.color;
+
+            returnColor.a = 1f;
+            playerColor.a = 0.5f;
+
+            returnImage.color = returnColor;
+            playerImage.color = playerColor;
+        }
+    }
+
+    private void NavigateOptions(KeyCode pUpKey, KeyCode pDownKey) {
+        if (_playerNumber == PlayerNumber.Player_One) {
+            if (!_ready) {
+                if (Input.GetKeyUp(pUpKey)) {
+                    _selectedIndex = (_selectedIndex == 0) ? 1 : 0;
+                    HighlightButton(_selectedIndex);
+                } else if (Input.GetKeyUp(pDownKey)) {
+                    _selectedIndex = (_selectedIndex == 1) ? 0 : 1;
+                    HighlightButton(_selectedIndex);
+                }
+            }
+        }
     }
 
     private void ConfirmReady(KeyCode pInteractionKey) {
         if (Input.GetKeyUp(pInteractionKey)) {
-            if (!_ready) {
-                if (_state == TeamState.Purple) {
-                    _image.sprite = _purpleImage;
-                    _ready = true;
-                } else if (_state == TeamState.Yellow) {
-                    _image.sprite = _yellowImage;
-                    _ready = true;
+            if (_selectedIndex == 0) {
+                if (!_ready) {
+                    if (_state == TeamState.Purple) {
+                        _image.sprite = _purpleImage;
+                        _ready = true;
+                    } else if (_state == TeamState.Yellow) {
+                        _image.sprite = _yellowImage;
+                        _ready = true;
+                    }
+                } else {
+                    _ready = false;
+                    _image.sprite = _currentSprite;
                 }
             } else {
-                _ready = false;
-                _image.sprite = _currentSprite;
+                SceneManager.LoadScene("Main Menu");
             }
         }
     }

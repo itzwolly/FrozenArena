@@ -11,6 +11,7 @@ public class TeamSelectEnd : MonoBehaviour {
 
     private TeamSelection p1Selection;
     private TeamSelection p2Selection;
+    private Timer _timer = null;
 
     private void Start() {
         p1Selection = _player1.GetComponent<TeamSelection>();
@@ -21,9 +22,25 @@ public class TeamSelectEnd : MonoBehaviour {
     void Update () {
         if ((p1Selection.Ready && p2Selection.State == TeamSelection.TeamState.NoTeam) || (p1Selection.Ready && p2Selection.Ready)) {
             // load next scene
-            Timer.Register(_timeToWaitAfterReady, LoadNextScene);
+            CreateTimer();
+        } else {
+            CancelTimer();   
         }
 	}
+
+    private void CreateTimer() {
+        if (_timer == null) {
+            Debug.Log("Registering timer");
+            _timer = Timer.Register(_timeToWaitAfterReady, LoadNextScene);
+        }
+    }
+
+    private void CancelTimer() {
+        if (_timer != null) {
+            Timer.CancelAllRegisteredTimers();
+            _timer = null;
+        }
+    }
 
     private void LoadNextScene() {
         SavePlayersReadyData();
