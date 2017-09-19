@@ -11,13 +11,15 @@ public class GameEndDetect : MonoBehaviour {
     private PlayerStatsHandler _handler;
     private bool _hasScored;
 
+    
+
     private LevelConfig _levelConfig;
 
     private void Start() {
         //_handler = GameObject.FindGameObjectWithTag("Stats").GetComponent<PlayerStatsHandler>();
         _handler = PlayerStatsHandler.Instance;
         _hasScored = false;
-
+        _handler.PlayerData["Player_1"].ItemsPickedUp = 0;
         _levelConfig = GameObject.FindGameObjectWithTag("Level").GetComponent<LevelConfig>();
     }
 
@@ -44,6 +46,11 @@ public class GameEndDetect : MonoBehaviour {
                     }
                 }
             }
+            else if (_levelConfig.Mode == LevelConfig.LevelMode.AToB)
+            {
+                _handler.PlayerData["Player_1"].ItemsPickedUp = 0;
+            }
+
             GetComponent<AudioSource>().PlayOneShot(PlayerDeath);
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Utility.RestartLevel, _timeToEnd));
         }
@@ -51,6 +58,7 @@ public class GameEndDetect : MonoBehaviour {
         {
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Destroy, collision.gameObject, _timeToDestroy));
         }
+        
     }
     
 }

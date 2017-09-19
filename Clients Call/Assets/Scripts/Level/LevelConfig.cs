@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class LevelConfig : MonoBehaviour {
     [Space(10)]
     [SerializeField] private VersusProperties _versusProperties;
     [SerializeField] private AToBProperties _aToBProperties;
+
+    
 
     public enum LevelDifficulty {
         Easy,
@@ -29,6 +32,18 @@ public class LevelConfig : MonoBehaviour {
         get { return _mode; }
     }
 
+    public void Awake()
+    {
+        StartCoroutine(WaitUntilAnim());
+    }
+
+    private IEnumerator WaitUntilAnim()
+    {
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        Time.timeScale = 0;
+        yield return new WaitUntil(() => cam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CameraIntro") == false);
+        Time.timeScale = 1;
+    }
 
     private void OnValidate() {
         switch (_mode) {

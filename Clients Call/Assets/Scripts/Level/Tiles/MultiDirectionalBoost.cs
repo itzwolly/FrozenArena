@@ -8,6 +8,12 @@ public class MultiDirectionalBoost : MonoBehaviour {
     [SerializeField] private ParticleSystem _psystem;
 
 
+    public float SpeedBoost
+    {
+        get { return _speedBoost; }
+        set { _speedBoost = value; }
+    }
+
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
             Debug.Log("Applying boost to: " + collision.transform.name);
