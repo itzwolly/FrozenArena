@@ -388,6 +388,14 @@ public class CreateSceneButton : MonoBehaviour
         }
         tile.transform.Translate(direction);
     }
+    
+    public void ReturnToInputInfo()
+    {
+        _editing = false;
+        _popOut = false;
+        PopOutButtons.SetActive(false);
+        StartButtons.SetActive(true);
+    }
 
     public void OpenKeyboard()
     {
