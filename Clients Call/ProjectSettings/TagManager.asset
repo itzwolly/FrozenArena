@@ -8,6 +8,10 @@ TagManager:
   - BreakableTile
   - Level
   - Stats
+  - Pickup
+  - HeaderSP
+  - HeaderMP
+  - Fire
   layers:
   - Default
   - TransparentFX
