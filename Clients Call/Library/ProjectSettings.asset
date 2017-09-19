@@ -4,14 +4,19 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: 4715e142a5569014f9d5d58daf5adc03
+  productGUID: 681c6dec4eb30954c92b014e1b3e4efa
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
+<<<<<<< HEAD
   companyName: AUTOSAVE IS FOR CASUALS
   productName: Frozen Arena
+=======
+  companyName: DefaultCompany
+  productName: Clients Call
+>>>>>>> LevelEdit
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -523,14 +528,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: ClientsCall
+  metroPackageName: Clients Call
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: ClientsCall
+  metroApplicationDescription: Clients Call
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -601,14 +606,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    Collab: 0
-    UNet: 1
+  cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 420fdb58-6666-4eb4-8741-262a3e04f8a6
-  projectName: ClientsCall
-  organizationId: canapoca
+  cloudProjectId: 
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

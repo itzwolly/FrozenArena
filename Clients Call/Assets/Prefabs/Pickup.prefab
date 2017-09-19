@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135114747690481526}
   - component: {fileID: 23769388620599982}
   - component: {fileID: 54210956552635958}
+  - component: {fileID: 114579061345454208}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Pickup
@@ -36,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1126873925006022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 1, z: -2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.702, y: 0.7500001, z: -0.859}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6ba93f9d1ef9cfe4a8ca5ac9af42709e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,6 +98,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114579061345454208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1126873925006022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324753107c4a7ae4ba0b0d84f0d0326a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _psystem: {fileID: 0}
 --- !u!135 &135114747690481526
 SphereCollider:
   m_ObjectHideFlags: 1

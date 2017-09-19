@@ -615,6 +615,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -908,6 +912,10 @@ Prefab:
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_Name
       value: Slippery Cube (207)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
@@ -2783,6 +2791,10 @@ Prefab:
     - target: {fileID: 224143058704932012, guid: 09dbd64a87a795e4d954f66f9d5b9bce,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815145683484494, guid: 09dbd64a87a795e4d954f66f9d5b9bce, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5413,6 +5425,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -5774,6 +5790,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -5934,6 +5954,10 @@ Prefab:
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_Name
       value: Slippery Cube (147)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
@@ -7142,6 +7166,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -7527,6 +7555,10 @@ Prefab:
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_Name
       value: Slippery Cube (175)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
@@ -7980,6 +8012,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9079,6 +9115,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -9129,6 +9169,10 @@ Prefab:
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_Name
       value: Slippery Cube (216)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
@@ -10240,6 +10284,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12031,6 +12079,10 @@ Prefab:
       propertyPath: m_Name
       value: Slippery Cube (219)
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -13146,7 +13198,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4070339550561068, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.5416
+      value: -0.0061532
       objectReference: {fileID: 0}
     - target: {fileID: 4070339550561068, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13154,7 +13206,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4070339550561068, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.5416
+      value: -0.0061566
       objectReference: {fileID: 0}
     - target: {fileID: 4070339550561068, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
       propertyPath: m_LocalRotation.x
@@ -13193,7 +13245,7 @@ Prefab:
       objectReference: {fileID: 237176166}
     - target: {fileID: 1700833981977350, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b1f9906588342c4090831e8fe31fe55, type: 2}
@@ -14750,6 +14802,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -15338,6 +15394,10 @@ Prefab:
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_Name
       value: Slippery Cube (222)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
@@ -17862,6 +17922,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22086,6 +22150,10 @@ Prefab:
       propertyPath: m_Name
       value: Slippery Cube (218)
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -24398,6 +24466,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
   m_IsPrefabParent: 0
@@ -25855,7 +25927,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1406899637437758, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8586a8d645f237428fa5ec310e3ef94, type: 2}

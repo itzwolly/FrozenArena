@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    [SerializeField] private int _code;
+    public int Code
+    {
+        get { return _code; }
+    }
     [SerializeField] private KeyCode _forward;
     [SerializeField] private KeyCode _back;
     [SerializeField] private KeyCode _left;
@@ -50,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         _currentSpeed = _speed;
-      
+        
     }
 
     private void Start() {
