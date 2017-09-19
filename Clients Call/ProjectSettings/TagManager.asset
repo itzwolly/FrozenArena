@@ -5,8 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Booster
+  - Pickup
   - BreakableTile
+<<<<<<< HEAD
   - StartTile
+=======
+  - Level
+  - Checkpoint
+>>>>>>> 5c53f305334f37fda42d5f3c534e528ddc52bfc8
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,8 @@ public class BombTile : MonoBehaviour {
     private float _resetTime;
     [SerializeField]
     private AudioClip Exploding;
+    [SerializeField] private ParticleSystem _psystem;
+    [SerializeField] private Animator _camAnimator;
 
     Material _mat;
     Color _initialColor;
@@ -25,6 +27,7 @@ public class BombTile : MonoBehaviour {
     {
         _mat = gameObject.GetComponent<Renderer>().material;
         _initialColor = _mat.color;
+        //_camAnimator.SetTrigger("Awake");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,6 +38,8 @@ public class BombTile : MonoBehaviour {
         if (collision.transform.tag=="Player")
         {
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Explode,_explodeTimer));
+            _psystem.Play();
+            _camAnimator.SetTrigger("Explosion");
         }
     }
 
