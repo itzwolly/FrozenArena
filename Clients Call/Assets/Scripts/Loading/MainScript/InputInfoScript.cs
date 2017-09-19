@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InputInfoScript : TileEditScript
 {
+    [SerializeField] private CreateSceneButton _controller;
     [SerializeField] private List<InputField> _strings;
     [SerializeField] private List<InputField> _fields;
     [SerializeField] private List<Slider> _sliders;
@@ -30,6 +31,13 @@ public class InputInfoScript : TileEditScript
 
         _Started = false;
     }
+
+    private void OnEnable()
+    {
+        Debug.Log("enabled");
+        _strings[0].text = _controller.SetSceneName();
+    }
+
     void Update () {
 		if(Input.GetKeyUp(KeyCode.Space))
         {
@@ -97,7 +105,8 @@ public class InputInfoScript : TileEditScript
         float nr=0;
         if (Selection < _strings.Count)
         {
-            //openClose keyboard
+            PressedRight = false;
+            _controller.OpenKeyboard();
         }
         else if (Selection < _strings.Count + _fields.Count)
         {

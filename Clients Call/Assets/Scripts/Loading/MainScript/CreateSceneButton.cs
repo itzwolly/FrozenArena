@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +32,11 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject PopOutButtons;
     [SerializeField] GameObject LastBlockEditor;
     [SerializeField] GameObject SelectLevel;
+    [SerializeField] GameObject _keyboard;
+    public GameObject Keyboard
+    {
+        get { return _keyboard; }
+    }
 
     [SerializeField] GameObject StartPosition;
 
@@ -154,6 +158,11 @@ public class CreateSceneButton : MonoBehaviour
         //Color col = mat.color;
         //col.a /= 2;
         //_selectedTile.GetComponent<Renderer>().material.color = col;
+    }
+
+    public void SetInactiveEditing()
+    {
+        _editing = false;
     }
 	
 	// Update is called once per frame
@@ -323,8 +332,12 @@ public class CreateSceneButton : MonoBehaviour
                 EditButtons.SetActive(true);
                 PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
                 PopOutButtons.SetActive(false);
-                _popOut = false;
-                _editing = true;
+                if (_popOut == true)
+                {
+                    _popOut = false;
+                    _editing = true;
+                }
+                Debug.Log("ClosingPoput");
                 try
                 {
                     //Debug.Log("Doing the action");
@@ -374,6 +387,25 @@ public class CreateSceneButton : MonoBehaviour
             }
         }
         tile.transform.Translate(direction);
+    }
+
+    public void OpenKeyboard()
+    {
+        _editing = false;
+        Keyboard.SetActive(true);
+        StartButtons.SetActive(false);
+    }
+
+    public void CloseKeyboard()
+    {
+        _editing = false;
+        Keyboard.SetActive(false);
+        StartButtons.SetActive(true);
+    }
+
+    public string SetSceneName()
+    {
+        return _keyboard.GetComponent<KeyboardString>().String;
     }
 
     public void StartLoadLevel()

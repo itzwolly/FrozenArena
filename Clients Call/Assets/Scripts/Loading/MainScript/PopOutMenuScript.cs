@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLLLibrary;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -177,22 +178,15 @@ public class PopOutMenuScript : MonoBehaviour
     {
         Deselect();
         _selected = obj;
-        Color col = obj.GetComponent<Image>().color;
-        col.a = 1;
-        obj.GetComponent<Image>().color = col;
+        Shared.Select(obj.GetComponent<Image>());
     }
     public void Deselect()
     {
         if (_selected != null)
         {
             //Debug.Log("deselecting");
-            Color col = _selected.GetComponent<Image>().color;
-            col.a = 0.5f;
-            _selected.GetComponent<Image>().color = col;
-
-            col = _selectedOption.GetComponent<Image>().color;
-            col.a = 0.5f;
-            _selectedOption.GetComponent<Image>().color = col;
+            Shared.Deselect(_selected.GetComponent<Image>());
+            Shared.Deselect(_selectedOption.GetComponent<Image>());
             HideOptions(_selectedOption);
         }
         else

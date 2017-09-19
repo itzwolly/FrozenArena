@@ -33,7 +33,7 @@ public class SelectedLevelName : MonoBehaviour {
                 _buttons.Add(obj);
             }
         }
-        Select(_buttons[_selection].GetComponent<Image>());
+        Shared.Select(_buttons[_selection].GetComponent<Image>());
     }
 
     // Update is called once per frame
@@ -49,31 +49,19 @@ public class SelectedLevelName : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Deselect(_buttons[_selection].GetComponent<Image>());
+            Shared.Deselect(_buttons[_selection].GetComponent<Image>());
             _LevelControl.GetComponent<CreateSceneButton>().EndLoadLevel();
         }
     }
     private void ChangeSelection(int i)
     {
-        Deselect(_buttons[_selection].GetComponent<Image>());
+        Shared.Deselect(_buttons[_selection].GetComponent<Image>());
         _selection += i;
         if (_selection < 0)
             _selection = _buttons.Count - 1;
         if (_selection > _buttons.Count-1)
             _selection = 0;
         _LevelControl.GetComponent<CreateSceneButton>().ChangeSceneName(_buttons[_selection].GetComponent<TextFromButton>().TextField.text);
-        Select(_buttons[_selection].GetComponent<Image>());
-    }
-    public void Select(Image obj)
-    {
-        Color col = obj.color;
-        col.a = 1f;
-        obj.color = col;
-    }
-    public void Deselect(Image obj)
-    {
-        Color col = obj.color;
-        col.a = 0.5f;
-        obj.color = col;
+        Shared.Select(_buttons[_selection].GetComponent<Image>());
     }
 }
