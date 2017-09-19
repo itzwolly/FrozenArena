@@ -1,0 +1,63 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     912 MB
+    Driver:   21.21.13.7633
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\DLLLibrary.dll (this message is harmless)
+Loading D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\DLLLibrary.dll into Unity Child Domain
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\System.dll (this message is harmless)
+Platform assembly: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call\FrozenArena_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.597 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 66.089475 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 59564 -> priority: 1 
+  Thread -> id: 594e8 -> priority: 1 
+  Thread -> id: 59fcc -> priority: 1 
+  Thread -> id: 59560 -> priority: 1 
+Applying boost to: Player_2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Applying boost to: Player_1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Applying boost to: Player_1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Applying boost to: Player_1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Applying boost to: Player_2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player-1 (1 - 0) Player-2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 817.671184 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 3416.
+Total: 0.607667 ms (FindLiveObjects: 0.168059 ms CreateObjectMapping: 0.072270 ms MarkObjects: 0.358784 ms  DeleteObjects: 0.007697 ms)
+
