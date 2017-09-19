@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menus/Main Menu.unity
-=======
-- path: Assets/Scenes/Menus/Builder Menu.unity
->>>>>>> Tims_working_branch
+- path: Assets/Scenes/Menus/Arena Selection.unity
   isLoaded: 1
   isActive: 1
