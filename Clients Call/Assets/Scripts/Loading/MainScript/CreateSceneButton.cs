@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,13 +25,18 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] InputField BreakableMass;
     [SerializeField] Slider BouncePower;
     [SerializeField] Slider IcynessValue;
-    [SerializeField] Toggle HaveMouse;
+    [SerializeField] LeftRightSelect IsSinglePlayer;
 
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject EditButtons;
     [SerializeField] GameObject PopOutButtons;
     [SerializeField] GameObject LastBlockEditor;
     [SerializeField] GameObject SelectLevel;
+    [SerializeField] GameObject _keyboard;
+    public GameObject Keyboard
+    {
+        get { return _keyboard; }
+    }
 
     [SerializeField] GameObject StartPosition;
 
@@ -125,7 +129,11 @@ public class CreateSceneButton : MonoBehaviour
         get { return _icynessValue; }
     }
 
-    private bool _haveMouse;
+    private bool _isSinglePlayer;
+    public bool SinglePlayer
+    {
+        get { return _isSinglePlayer; }
+    }
     private bool _changedBlock;
     private Vector3 _lastPosition;
     // Use this for initialization
@@ -150,6 +158,11 @@ public class CreateSceneButton : MonoBehaviour
         //Color col = mat.color;
         //col.a /= 2;
         //_selectedTile.GetComponent<Renderer>().material.color = col;
+    }
+
+    public void SetInactiveEditing()
+    {
+        _editing = false;
     }
 	
 	// Update is called once per frame
@@ -319,8 +332,12 @@ public class CreateSceneButton : MonoBehaviour
                 EditButtons.SetActive(true);
                 PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
                 PopOutButtons.SetActive(false);
-                _popOut = false;
-                _editing = true;
+                if (_popOut == true)
+                {
+                    _popOut = false;
+                    _editing = true;
+                }
+                Debug.Log("ClosingPoput");
                 try
                 {
                     //Debug.Log("Doing the action");
@@ -337,6 +354,13 @@ public class CreateSceneButton : MonoBehaviour
 
     private void MoveTile(GameObject tile, Vector3 direction)
     {
+        if (_isSinglePlayer)
+        {
+            Vector3 where = new Vector3();
+            where.y = direction.z;
+            where.x = direction.x;
+            _camera.transform.Translate(where);
+        }
         RaycastHit raycasthit;
         Vector3 newPos = tile.transform.position + direction;
         if (Physics.Raycast(newPos, new Vector3(0, -1, 0), out raycasthit))
@@ -363,6 +387,33 @@ public class CreateSceneButton : MonoBehaviour
             }
         }
         tile.transform.Translate(direction);
+    }
+    
+    public void ReturnToInputInfo()
+    {
+        _editing = false;
+        _popOut = false;
+        PopOutButtons.SetActive(false);
+        StartButtons.SetActive(true);
+    }
+
+    public void OpenKeyboard()
+    {
+        _editing = false;
+        Keyboard.SetActive(true);
+        StartButtons.SetActive(false);
+    }
+
+    public void CloseKeyboard()
+    {
+        _editing = false;
+        Keyboard.SetActive(false);
+        StartButtons.SetActive(true);
+    }
+
+    public string SetSceneName()
+    {
+        return _keyboard.GetComponent<KeyboardString>().String;
     }
 
     public void StartLoadLevel()
@@ -458,6 +509,11 @@ public class CreateSceneButton : MonoBehaviour
     }
     public void SelectPlayer2()
     {
+        if(_isSinglePlayer)
+        {
+            SelectPlayer1();
+            return;
+        }
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         if (!_createdPlayer2)
@@ -548,7 +604,10 @@ public class CreateSceneButton : MonoBehaviour
         _bounceChanged.bounciness = _bouncePower;
         _iceChanged = Instantiate(_iceOriginal);
         _iceChanged.dynamicFriction = _icynessValue;
-        _haveMouse = HaveMouse.isOn;
+        if (IsSinglePlayer.On)
+            _isSinglePlayer = true;
+        else
+            _isSinglePlayer = false;
 
         StartButtons.SetActive(false);
         _editing = true;

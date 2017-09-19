@@ -34,3 +34,5 @@ D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEng
 D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLLibrary.csprojResolveAssemblyReference.cache
 D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLLibrary.dll
 D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLLibrary.pdb
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEngine.UI.dll
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEngine.UI.xml
