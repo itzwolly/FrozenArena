@@ -12,6 +12,9 @@ public class DebugLevelSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            SceneManager.LoadScene("Story");
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         SceneManager.LoadScene("sp_level_1");
 

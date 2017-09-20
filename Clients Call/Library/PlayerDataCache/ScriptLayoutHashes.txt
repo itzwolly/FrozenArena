@@ -209,6 +209,7 @@ fd7b213d7198d65b9fde76c25ceab270 Assembly-CSharp.dll:.SlowDown
 d2af69ce28cda6fcf0b7728ae3f251b4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.DynamicShadowSettings
 00566559aaf2ba51543e32371603951b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndGrain
 602017ac837ce39de79e6b98478ee720 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.SimpleActivatorMenu
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DebugLevelSelector
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -244,4 +245,3 @@ b3432dfe180f02232d7612fb366593d3 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 d720d104ba371072094e66111bc68ea5 Assembly-CSharp.dll:.LightScript
 9541343f9936f12f6a8a2f4d0bb837db Assembly-CSharp-firstpass.dll:FMODUnity.StudioBankLoader
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DebugLevelSelector

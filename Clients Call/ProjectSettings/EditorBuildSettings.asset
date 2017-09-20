@@ -53,3 +53,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/mp_level_8.unity
     guid: 1146731cd07dc88498f190544c969dc0
+  - enabled: 1
+    path: Assets/Scenes/Menus/Story.unity
+    guid: 73cba04d229e91f48b68b2f8afed34f2
