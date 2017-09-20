@@ -5,6 +5,8 @@ using UnityEngine;
 public class MultiDirectionalBoost : MonoBehaviour {
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingUpPlayer;
+    [SerializeField] private ParticleSystem _psystem;
+
 
     public float SpeedBoost
     {
@@ -15,6 +17,7 @@ public class MultiDirectionalBoost : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
             ActivateBoost(collision.gameObject, collision.rigidbody.velocity * _speedBoost);
+            _psystem.Play();
         }
     }
 

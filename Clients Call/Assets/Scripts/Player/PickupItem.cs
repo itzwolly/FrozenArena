@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour {
+    [SerializeField] private ParticleSystem _psystem;
+    [SerializeField] private AudioClip Pickup;
+    [SerializeField] private AudioSource _audioSource;
     private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.tag == "Pickup") {
-            if (collision.gameObject != null) {
+        //Debug.Log(collision.transform.tag);
+        if (collision.transform.tag == "Player") {
+            if (gameObject != null) {
 
-                PlayerStatsHandler.Instance.PlayerData["Player_1"].ItemsPickedUp++;
-                Destroy(collision.gameObject);
+                _psystem.Play();
+                _audioSource.PlayOneShot(Pickup);
+                PlayerStatsHandler.Instance.PlayerData[collision.transform.name].ItemsPickedUp++;
+                Debug.Log(PlayerStatsHandler.Instance.PlayerData[collision.transform.name].ItemsPickedUp);
+                Destroy(gameObject);
 
-                Debug.Log("Points: " + PlayerStatsHandler.Instance.PlayerData["Player_1"].ItemsPickedUp);
             }
         }
     }
