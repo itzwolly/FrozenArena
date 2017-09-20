@@ -20,6 +20,56 @@ public class BombTile : MonoBehaviour {
 
     Material _mat;
     Color _initialColor;
+    bool _exploding;
+    public List<GameObject> Players
+    {
+        get { return _players; }
+        set { _players = value; }
+    }
+    public float PowerMultiplier
+    {
+        get
+        {
+            return _powerMultiplier;
+        }
+        set
+        {
+            _powerMultiplier = value;
+        }
+    }
+    public float MaxDistance
+    {
+        get
+        {
+            return _maxDistance;
+        }
+        set
+        {
+            _maxDistance = value;
+        }
+    }
+    public float ExplodeTimer
+    {
+        get
+        {
+            return _explodeTimer;
+        }
+        set
+        {
+            _explodeTimer = value;
+        }
+    }
+    public float ResetTime
+    {
+        get
+        {
+            return _resetTime;
+        }
+        set
+        {
+            _resetTime = value;
+        }
+    }
 
     private void Start()
     {
@@ -32,8 +82,9 @@ public class BombTile : MonoBehaviour {
         Color col = _initialColor;
         col.a /= 2;
         gameObject.GetComponent<Renderer>().material.color = col;
-        if (collision.transform.tag=="Player")
+        if (collision.transform.tag=="Player" && !_exploding)
         {
+            _exploding = true;
             StartCoroutine(Coroutines.CallVoidAfterSeconds(Explode,_explodeTimer));
         }
     }
@@ -59,6 +110,7 @@ public class BombTile : MonoBehaviour {
     private void Reset()
     {
         gameObject.GetComponent<Renderer>().material.color = _initialColor;
+        _exploding = false;
 
     }
 }

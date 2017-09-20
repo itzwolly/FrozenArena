@@ -6,6 +6,12 @@ public class MultiDirectionalBoost : MonoBehaviour {
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingUpPlayer;
 
+    public float SpeedBoost
+    {
+        get { return _speedBoost; }
+        set { _speedBoost = value; }
+    }
+
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
             ActivateBoost(collision.gameObject, collision.rigidbody.velocity * _speedBoost);

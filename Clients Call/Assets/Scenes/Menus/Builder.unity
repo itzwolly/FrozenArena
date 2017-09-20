@@ -937,8 +937,6 @@ GameObject:
   - component: {fileID: 1446647552}
   - component: {fileID: 1446647551}
   - component: {fileID: 1446647550}
-  - component: {fileID: 1446647553}
-  - component: {fileID: 1446647554}
   m_Layer: 0
   m_Name: Menu Canvas
   m_TagString: Untagged
@@ -1028,31 +1026,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1446647553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446647548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23deab50a5d0e4b4f9d46b291941fc98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1446647554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446647548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdadbc416af714d4688f15cfd90b9201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player1: {fileID: 0}
-  _player2: {fileID: 0}
-  _timeToWaitAfterReady: 1
 --- !u!1 &1460353968
 GameObject:
   m_ObjectHideFlags: 0
