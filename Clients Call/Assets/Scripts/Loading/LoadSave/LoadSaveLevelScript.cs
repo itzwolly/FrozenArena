@@ -9,6 +9,16 @@ public class LoadSaveLevelScript : MonoBehaviour
 {
     [SerializeField] CreateSceneButton _LevelInfo;
     [SerializeField] GameObject LoadScroll;
+    [SerializeField] GameObject _normalTiles;
+    [SerializeField] GameObject _specialTiles;
+    public Transform SpecialTileSave
+    {
+        get { return _specialTiles.transform; }
+    }
+    public Transform NormalTileSave
+    {
+        get { return _normalTiles.transform; }
+    }
     public void SaveLevel()
     {
         string path = _LevelInfo.GetSceneName;
@@ -27,28 +37,34 @@ public class LoadSaveLevelScript : MonoBehaviour
         Utility.WriteToFile(path, "BreakableMass" + "|" + _LevelInfo.GetBreakableMass.ToString());
         Utility.WriteToFile(path, "BouncePower" + "|" + _LevelInfo.GetBouncepower.ToString());
         Utility.WriteToFile(path, "FrictionValue" + "|" + _LevelInfo.GetIcynessValue.ToString());
+        SaveInfo(path, _normalTiles.transform);
+        SaveInfo(path, _specialTiles.transform);
+    }
+
+    private void SaveInfo(string path, Transform trans)
+    {
         string info;
         bool changed;
-        foreach (Transform t in transform)
+        foreach (Transform t in trans)
         {
             Debug.Log(t.name);
             changed = false;
             info = "";
-            if(t.gameObject.GetComponent<State>()!=null && t.gameObject.GetComponent<State>().Changed)
+            if (t.gameObject.GetComponent<State>() != null && t.gameObject.GetComponent<State>().Changed)
             {
-                Debug.Log(t.name+" has stats changed");
+                Debug.Log(t.name + " has stats changed");
                 info += "?|";
                 changed = true;
             }
             if (t.gameObject.GetComponent<BombTile>() != null)
             {
-                info += "Bomb" + "|"+ Utility.VectorToString(t.position);
-                if(changed)
+                info += "Bomb" + "|" + Utility.VectorToString(t.position);
+                if (changed)
                 {
-                    info += "|"+ t.gameObject.GetComponent<BombTile>().PowerMultiplier.ToString();
-                    info += "|"+ t.gameObject.GetComponent<BombTile>().MaxDistance.ToString();
-                    info += "|"+ t.gameObject.GetComponent<BombTile>().ExplodeTimer.ToString();
-                    info += "|"+ t.gameObject.GetComponent<BombTile>().ResetTime.ToString();
+                    info += "|" + t.gameObject.GetComponent<BombTile>().PowerMultiplier.ToString();
+                    info += "|" + t.gameObject.GetComponent<BombTile>().MaxDistance.ToString();
+                    info += "|" + t.gameObject.GetComponent<BombTile>().ExplodeTimer.ToString();
+                    info += "|" + t.gameObject.GetComponent<BombTile>().ResetTime.ToString();
                 }
             }
             else if (t.tag == "Player")
@@ -57,20 +73,20 @@ public class LoadSaveLevelScript : MonoBehaviour
                 info += "Player" + "|" + t.gameObject.GetComponent<PlayerMovement>().Code.ToString()
                     + "|" + Utility.VectorToString(t.position);
             }
-            else if (t.tag=="BreakableTile")
+            else if (t.tag == "BreakableTile")
             {
                 info += "Breakable" + "|" + Utility.VectorToString(t.position);
-                if(changed)
+                if (changed)
                 {
-                    info += "|"+t.gameObject.GetComponent<Rigidbody>().mass.ToString();
+                    info += "|" + t.gameObject.GetComponent<Rigidbody>().mass.ToString();
                 }
             }
             else if (t.gameObject.GetComponent<MultiDirectionalBoost>() != null)
             {
                 info += "MultiDirectionalBoost" + "|" + Utility.VectorToString(t.position);
-                if(changed)
+                if (changed)
                 {
-                    info += "|"+t.gameObject.GetComponent<MultiDirectionalBoost>().SpeedBoost.ToString();
+                    info += "|" + t.gameObject.GetComponent<MultiDirectionalBoost>().SpeedBoost.ToString();
                 }
             }
             else if (t.gameObject.GetComponent<OneWayBoost>() != null)
@@ -78,16 +94,16 @@ public class LoadSaveLevelScript : MonoBehaviour
                 info += "OneWayBoost" + "|" + Utility.VectorToString(t.position);
                 if (changed)
                 {
-                    info += "|"+t.gameObject.GetComponent<OneWayBoost>().SpeedBoost.ToString()+"|";
+                    info += "|" + t.gameObject.GetComponent<OneWayBoost>().SpeedBoost.ToString() + "|";
                     info += ((int)(t.gameObject.GetComponent<OneWayBoost>().GetDirection)).ToString();
                 }
             }
             else if (t.gameObject.GetComponent<SlowDown>() != null)
             {
                 info += "SlowBlock" + "|" + Utility.VectorToString(t.position);
-                if(changed)
+                if (changed)
                 {
-                    info += "|"+t.gameObject.GetComponent<SlowDown>().SlowDownMultiplier.ToString()+ "|";
+                    info += "|" + t.gameObject.GetComponent<SlowDown>().SlowDownMultiplier.ToString() + "|";
                     info += t.gameObject.GetComponent<SlowDown>().SlowedDownSpeed.ToString();
                 }
             }
@@ -99,15 +115,24 @@ public class LoadSaveLevelScript : MonoBehaviour
             Utility.WriteToFile(path, info);
         }
     }
-    public void LoadLevel(string path, out float playerMass,out float breakableMass,
-                            out float bouncePower,out float icynessValue)
+
+    public void LoadLevel(string path, out float playerMass, out float breakableMass,
+                            out float bouncePower, out float icynessValue)
     {
         //Debug.Log(sceneName);
-        foreach(Transform t in transform)
+        foreach (Transform t in _normalTiles.transform)
         {
-            if(t.tag!="StartTile")
-            Destroy(t.gameObject);
+            if (t.tag != "StartTile")
+                Destroy(t.gameObject);
         }
+        foreach (Transform t in _specialTiles.transform)
+        {
+            if (t.tag != "StartTile")
+                Destroy(t.gameObject);
+        }
+
+        List<GameObject> players = new List<GameObject>();
+        List<BombTile> bombs = new List<BombTile>();
         //string path = "Assets\\Saves\\"+sceneName+".txt";
         string[] all = Utility.ReadFromFile(path).Split('\n');
         bool changed;
@@ -125,7 +150,7 @@ public class LoadSaveLevelScript : MonoBehaviour
             {
                 continue;
             }
-            if (split[0]=="?")
+            if (split[0] == "?")
             {
                 changed = true;
                 where++;
@@ -151,19 +176,21 @@ public class LoadSaveLevelScript : MonoBehaviour
             {
                 where++;
                 icynessValue = Convert.ToSingle(split[where]);
-            }else if (split[where] == "Bomb")
+            }
+            else if (split[where] == "Bomb")
             {
                 currentTile = Instantiate(_LevelInfo.GetBombTileBrush);
                 where++;
                 currentTile.transform.position = Utility.StringToVector(split[where++]);
-                if(changed)
+                if (changed)
                 {
                     currentTile.GetComponent<BombTile>().PowerMultiplier = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<BombTile>().MaxDistance = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<BombTile>().ExplodeTimer = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<BombTile>().ResetTime = Convert.ToSingle(split[where++]);
                 }
-                currentTile.transform.SetParent(transform);
+                bombs.Add(currentTile.GetComponent<BombTile>());
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "Player")
             {
@@ -171,17 +198,19 @@ public class LoadSaveLevelScript : MonoBehaviour
                 where++;
                 int code = Convert.ToInt32(split[where++]);
                 Vector3 pos = Utility.StringToVector(split[where++]);
-                if (code==1)
+                if (code == 1)
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer1);
                     currentTile.transform.position = pos;
-                    currentTile.transform.SetParent(transform);
+                    players.Add(currentTile);
+                    currentTile.transform.SetParent(_specialTiles.transform);
                 }
-                else if(code==2)
+                else if (code == 2)
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer2);
                     currentTile.transform.position = pos;
-                    currentTile.transform.SetParent(transform);
+                    players.Add(currentTile);
+                    currentTile.transform.SetParent(_specialTiles.transform);
                 }
             }
             else if (split[where] == "Breakable")
@@ -191,9 +220,9 @@ public class LoadSaveLevelScript : MonoBehaviour
                 currentTile.transform.position = Utility.StringToVector(split[where++]);
                 if (changed)
                 {
-                    currentTile.GetComponent<Rigidbody>().mass=Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<Rigidbody>().mass = Convert.ToSingle(split[where++]);
                 }
-                currentTile.transform.SetParent(transform);
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "MultiDirectionalBoost")
             {
@@ -205,7 +234,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
                     currentTile.GetComponent<MultiDirectionalBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
                 }
-                currentTile.transform.SetParent(transform);
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "OneWayBoost")
             {
@@ -218,7 +247,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                     currentTile.GetComponent<OneWayBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<OneWayBoost>().GetDirection = (OneWayBoost.Direction)(Convert.ToInt32(split[where++]));
                 }
-                currentTile.transform.SetParent(transform);
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "SlowBlock")
             {
@@ -228,10 +257,10 @@ public class LoadSaveLevelScript : MonoBehaviour
                 where++;
                 if (changed)
                 {
-                    currentTile.GetComponent<SlowDown>().SlowDownMultiplier=Convert.ToSingle(split[where++]);
+                    currentTile.GetComponent<SlowDown>().SlowDownMultiplier = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<SlowDown>().SlowedDownSpeed = Convert.ToSingle(split[where++]);
                 }
-                currentTile.transform.SetParent(transform);
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "NormalBlock")
             {
@@ -243,14 +272,18 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
 
                 }
-                currentTile.transform.SetParent(transform);
+                currentTile.transform.SetParent(_normalTiles.transform);
             }
             else
             {
-                Debug.Log(split[where]+"----dont know this block type");
+                Debug.Log(split[where] + "----dont know this block type");
             }
 
         }
-        Debug.Log("finished loading level of: "+all.Length);
+        foreach (BombTile b in bombs)
+        {
+            b.Players = players;
+        }
+        Debug.Log("finished loading level of: " + all.Length);
     }
 }
