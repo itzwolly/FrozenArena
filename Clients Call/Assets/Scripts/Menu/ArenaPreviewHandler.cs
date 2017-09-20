@@ -9,15 +9,9 @@ public class ArenaPreviewHandler : MonoBehaviour {
     [SerializeField] Text _mapName;
     [SerializeField] Text _containing;
     [SerializeField] Text _difficulty;
-
     [SerializeField] EventSystem _eventSystem;
-    [SerializeField] KeyCode _interactionKey;
 
     private GameObject _selected = null;
-
-    private void Start() {
-
-    }
 
     // Update is called once per frame
     private void Update () {

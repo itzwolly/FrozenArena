@@ -21,9 +21,11 @@ public class ScrollRectSnap : MonoBehaviour {
     }
 
     public void Update() {
-        if (_eventSystem.currentSelectedGameObject.transform.IsChildOf(_viewportTransform.gameObject.transform)) {
-            CenterOnItem(_eventSystem.currentSelectedGameObject.GetComponent<RectTransform>());
-        } 
+        if (_eventSystem.currentSelectedGameObject != null) {
+            if (_eventSystem.currentSelectedGameObject.transform.IsChildOf(_viewportTransform.gameObject.transform)) {
+                CenterOnItem(_eventSystem.currentSelectedGameObject.GetComponent<RectTransform>());
+            }
+        }
     }
 
     public void CenterOnItem(RectTransform target) {
