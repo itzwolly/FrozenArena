@@ -537,7 +537,7 @@ public class CreateSceneButton : MonoBehaviour
         if (!_createdPlayer1)
         {
             _changedBlock = true;
-            _selectedTile = (Player1);
+            _selectedTile = (_player1);
             _createdPlayer1 = true;
         }
         else
@@ -557,7 +557,7 @@ public class CreateSceneButton : MonoBehaviour
         if (!_createdPlayer2)
         {
             _changedBlock = true;
-            _selectedTile = (Player2);
+            _selectedTile = (_player2);
             _createdPlayer2 = true;
         }
         else
