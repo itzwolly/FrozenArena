@@ -67,7 +67,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758580952844698}
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: -0.3826834}
+  m_LocalRotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
   m_LocalPosition: {x: -2.8345666, y: -0.00000014645, z: -2.8284235}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
@@ -220,7 +220,6 @@ MonoBehaviour:
   _direction: 1
   _speedBoost: 100
   SpeedingPlayer: {fileID: 8300000, guid: 3163ef5b2b644b4478bd2d9f130fce72, type: 3}
-  _psystem: {fileID: 198987491137850550}
 --- !u!198 &198987491137850550
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Levels/mp_level_1.unity
+- path: Assets/Scenes/Level Edit/LevelLoadSeparate.unity
   isLoaded: 1
   isActive: 1
