@@ -6,36 +6,28 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private Direction _direction;
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingPlayer;
+    [SerializeField] private ParticleSystem _psystem;
 
-    public enum Direction {
+    private enum Direction {
         Right,
         Down,
         Left,
         Up
     }
 
-    public Direction GetDirection {
-        get { return _direction; }
-        set { _direction = value; }
-    }
-    public float SpeedBoost {
-        get { return _speedBoost; }
-        set { _speedBoost = value; }
-    }
-
     private void OnValidate() {
         switch (_direction) {
             case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, -45, 0);
-                break;
-            case Direction.Down:
-                transform.rotation = Quaternion.Euler(0, 45, 0);
-                break;
-            case Direction.Left:
                 transform.rotation = Quaternion.Euler(0, 135, 0);
                 break;
-            case Direction.Up:
+            case Direction.Down:
                 transform.rotation = Quaternion.Euler(0, 225, 0);
+                break;
+            case Direction.Left:
+                transform.rotation = Quaternion.Euler(0, -45, 0);
+                break;
+            case Direction.Up:
+                transform.rotation = Quaternion.Euler(0, 45, 0);
                 break;
             default:
                 break;
@@ -43,12 +35,16 @@ public class OneWayBoost : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Boosting player: " + collision.transform.name);
+        _psystem.Play();
         if (collision.transform.tag == "Player") {
+            Debug.Log("Tag equals player");
             switch (_direction) {
                 case Direction.Right:
                     ActivateBoost(collision.gameObject, Vector3.right * _speedBoost);
                     break;
                 case Direction.Down:
+                    Debug.Log("Going down.");
                     ActivateBoost(collision.gameObject, Vector3.back * _speedBoost);
                     break;
                 case Direction.Left:
@@ -66,8 +62,5 @@ public class OneWayBoost : MonoBehaviour {
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
         GetComponent<AudioSource>().PlayOneShot(SpeedingPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
-
-        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].TotalAmountBoosted++;
-        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].AmountBoostedOneWay++;
     }
 }

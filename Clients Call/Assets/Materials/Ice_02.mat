@@ -97,7 +97,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Displacement: 0.178
     - _DstBlend: 0
-    - _FreshSnow: 0.8
+    - _FreshSnow: 0.03
     - _GlossMapScale: 0.905
     - _Glossiness: 0.5
     - _GlossyReflections: 1

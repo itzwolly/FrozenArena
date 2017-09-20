@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AOTex:
-        m_Texture: {fileID: 2800000, guid: c98892a982049d3439fb96608baf8d3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6ef8b563b720ed345a90653ba2b0ff65, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ad7ebc1eb24ae8f41b01876fc21ab67d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 69d34ac0834a1bb4c92e9f2dadfa4ff0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic:
@@ -71,7 +71,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 31bba0ac8bcc6dc45947c7171383a79c, type: 3}
+        m_Texture: {fileID: 2800000, guid: eab661cb747cc784898030074fde99a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -99,10 +99,10 @@ Material:
     - _DstBlend: 0
     - _FreshSnow: 0
     - _GlossMapScale: 0.905
-    - _Glossiness: 0.5
+    - _Glossiness: 0.552
     - _GlossyReflections: 1
     - _MeltedSnow: 0
-    - _Metallic: 0.187
+    - _Metallic: 0.225
     - _Mode: 0
     - _OcclusionStrength: 0.397
     - _Parallax: 0.02
@@ -113,8 +113,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.90253544, g: 0.77205884, b: 1, a: 1}
     - _EmCol: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.05947233, g: 0.48360887, b: 0.7352941, a: 1}
+    - _RimColor: {r: 0.3810013, g: 0.54336077, b: 0.6397059, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Clients Call/Assets/Scenes/Loling About.meta
 guid: 308db7712e3ebca449ee8b0797f333cd
 folderAsset: yes
 timeCreated: 1505920103
+=======
+guid: 81189b2e21a815647a28e3437c86beb2
+folderAsset: yes
+timeCreated: 1457064777
+>>>>>>> Working_Version_(Do_Not_Duck_It_Up):Clients Call/Assets/Plugins/UWP/x64.meta
 licenseType: Free
 DefaultImporter:
   userData: 

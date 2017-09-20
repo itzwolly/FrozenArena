@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Clients Call/Assets/Scenes/Menus/SinglePlayer.meta
 guid: 54cc4ada22b0b2e46bdb0e3358cfca15
 folderAsset: yes
 timeCreated: 1505862706
+=======
+guid: 63a19919a2e71de47ad7cd3fe69a6f94
+folderAsset: yes
+timeCreated: 1505208436
+>>>>>>> Working_Version_(Do_Not_Duck_It_Up):Clients Call/Assets/Plugins.meta
 licenseType: Free
 DefaultImporter:
   userData: 
