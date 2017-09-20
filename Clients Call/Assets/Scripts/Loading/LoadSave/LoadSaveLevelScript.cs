@@ -130,6 +130,9 @@ public class LoadSaveLevelScript : MonoBehaviour
             if (t.tag != "StartTile")
                 Destroy(t.gameObject);
         }
+
+        List<GameObject> players = new List<GameObject>();
+        List<BombTile> bombs = new List<BombTile>();
         //string path = "Assets\\Saves\\"+sceneName+".txt";
         string[] all = Utility.ReadFromFile(path).Split('\n');
         bool changed;
@@ -185,6 +188,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                     currentTile.GetComponent<BombTile>().ExplodeTimer = Convert.ToSingle(split[where++]);
                     currentTile.GetComponent<BombTile>().ResetTime = Convert.ToSingle(split[where++]);
                 }
+                bombs.Add(currentTile.GetComponent<BombTile>());
                 currentTile.transform.SetParent(_specialTiles.transform);
             }
             else if (split[where] == "Player")
@@ -197,12 +201,14 @@ public class LoadSaveLevelScript : MonoBehaviour
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer1);
                     currentTile.transform.position = pos;
+                    players.Add(currentTile);
                     currentTile.transform.SetParent(_specialTiles.transform);
                 }
                 else if(code==2)
                 {
                     currentTile = Instantiate(_LevelInfo.GetPlayer2);
                     currentTile.transform.position = pos;
+                    players.Add(currentTile);
                     currentTile.transform.SetParent(_specialTiles.transform);
                 }
             }
@@ -272,6 +278,10 @@ public class LoadSaveLevelScript : MonoBehaviour
                 Debug.Log(split[where]+"----dont know this block type");
             }
 
+        }
+        foreach(BombTile b in bombs)
+        {
+            b.Players = players;
         }
         Debug.Log("finished loading level of: "+all.Length);
     }
