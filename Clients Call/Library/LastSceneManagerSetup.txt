@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Loling About/LevelLoadSeparate.unity
-  isLoaded: 1
-  isActive: 1
