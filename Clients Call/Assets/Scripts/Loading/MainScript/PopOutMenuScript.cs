@@ -153,6 +153,10 @@ public class PopOutMenuScript : MonoBehaviour
             {
                 continue;
             }
+            if (t.name == "LevelEnd" && !_controllerScript.SinglePlayer)
+            {
+                continue;
+            }
             t.gameObject.SetActive(true);
             _shownOptions.Add(t.gameObject);
         }

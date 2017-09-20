@@ -75,6 +75,11 @@ public class CreateSceneButton : MonoBehaviour
     {
         get { return _normalBlockBrush; }
     }
+    [SerializeField] GameObject _levelEndBrush;
+    public GameObject GetLevelEndBrush
+    {
+        get { return _levelEndBrush; }
+    }
     [SerializeField] GameObject _deleteBlockBrush;
     [SerializeField] GameObject _selectBlockBrush;
     [SerializeField] PhysicMaterial _bouncyOriginal;
@@ -145,7 +150,14 @@ public class CreateSceneButton : MonoBehaviour
         _createdPlayer2 = false;
         _selectedTile = (_normalBlockBrush);
         _movingBlock = Instantiate(_selectedTile);
-        _movingBlock.transform.position = StartPosition.transform.position;
+        try
+        {
+            _movingBlock.transform.position = StartPosition.transform.position;
+        }
+        catch
+        {
+            Debug.Log("Start position has not gameobject");
+        }
         _movingBlock.name += _level.Count.ToString();
         _normalBlockBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
         _bombTileBrush.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -416,12 +428,24 @@ public class CreateSceneButton : MonoBehaviour
         return _keyboard.GetComponent<KeyboardString>().String;
     }
 
+    public void SetNewScene(string s)
+    {
+        _sceneName = s;
+    }
+
     public void StartLoadLevel()
     {
         Debug.Log("starting to load level");
         _editing = false;
-        SelectLevel.SetActive(true);
-        SelectLevel.GetComponent<SelectedLevelName>().CreateOptions();
+        try
+        {
+            SelectLevel.SetActive(true);
+            SelectLevel.GetComponent<SelectedLevelName>().CreateOptions();
+        }
+        catch
+        {
+            Debug.Log("there is no menu option to activate");
+        }
         //gameObject.SetActive(false);
     }
 
@@ -430,7 +454,14 @@ public class CreateSceneButton : MonoBehaviour
         LevelSave.GetComponent<LoadSaveLevelScript>().LoadLevel(
             _sceneName, out _playerMass, out _breakableMass,
             out _bouncePower, out _icynessValue);
-        SelectLevel.SetActive(false);
+        try
+        {
+            SelectLevel.SetActive(false);
+        }
+        catch
+        {
+            Debug.Log("there is no menu option to activate");
+        }
         _editing = true;
     }
 
@@ -460,6 +491,13 @@ public class CreateSceneButton : MonoBehaviour
         Destroy(_movingBlock);
         _changedBlock = true;
         _selectedTile = (_normalBlockLongBrush);
+    }
+    public void SelectLevelEnd()
+    {
+        _lastPosition = _movingBlock.transform.position;
+        Destroy(_movingBlock);
+        _changedBlock = true;
+        _selectedTile = (_levelEndBrush);
     }
     public void SelectBomb()
     {
