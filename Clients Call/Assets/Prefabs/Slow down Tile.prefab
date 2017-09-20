@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182177826895686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -5.6568, y: -0.5, z: 0.0000038221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: aaaf70a44dad46a489af3cf6e73b88e8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182177826895686}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 872fe85d6ac6d934cb7418bf1414f3ce, type: 3}
 --- !u!65 &65255863334685774
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -94,7 +94,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!82 &82172633518424326
 AudioSource:
   m_ObjectHideFlags: 1
@@ -187,5 +187,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slowDownMultiplier: 0.001
-  _slowedDownSpeed: 70
+  _slowedDownSpeed: 5000
   SlowingPlayer: {fileID: 8300000, guid: 9d37ef24dcc0a8840805593eed390940, type: 3}

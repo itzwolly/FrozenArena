@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fire
   - Pickup
-  - Ground
+  - Booster
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
