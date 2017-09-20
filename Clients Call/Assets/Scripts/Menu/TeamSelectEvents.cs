@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 public class TeamSelectEvents : MonoBehaviour {
     [SerializeField] private KeyCode _interactionKey;
 
-    private void Update() {
-        OnInteractionKeyClick(_interactionKey);
-    }
-
-    public void OnInteractionKeyClick(KeyCode pKeyCode) {
+    public void OnBothSelectedSkin(KeyCode pKeyCode) {
         if (Input.GetKeyUp(pKeyCode)) {
             SceneManager.LoadScene("Arena Selection");
         }

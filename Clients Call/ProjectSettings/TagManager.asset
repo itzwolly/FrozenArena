@@ -4,12 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Ground
   - Booster
   - Pickup
   - BreakableTile
   - Level
   - Checkpoint
+=======
+  - Fire
+  - Pickup
+  - Ground
+>>>>>>> WorkingArena
   layers:
   - Default
   - TransparentFX

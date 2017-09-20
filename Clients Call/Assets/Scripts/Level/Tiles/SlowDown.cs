@@ -7,6 +7,17 @@ public class SlowDown : MonoBehaviour {
     [SerializeField] private float _slowedDownSpeed;
     [SerializeField] private AudioClip SlowingPlayer;
 
+    public float SlowDownMultiplier
+    {
+        get { return _slowDownMultiplier; }
+        set { _slowDownMultiplier = value; }
+    }
+    public float SlowedDownSpeed
+    {
+        get { return _slowedDownSpeed; }
+        set { _slowedDownSpeed = value; }
+    }
+
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
             SlowDownObject(collision.gameObject, _slowDownMultiplier);
