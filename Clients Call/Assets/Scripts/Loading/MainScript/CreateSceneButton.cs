@@ -21,8 +21,12 @@ public class CreateSceneButton : MonoBehaviour
     [SerializeField] GameObject LevelSave;
 
     [SerializeField] InputField SceneName;
-    [SerializeField] InputField PlayerMass;
-    [SerializeField] InputField BreakableMass;
+    [SerializeField] Slider PlayerMass;
+    [SerializeField] float _minPlayerMass;
+    [SerializeField] float _playerMassIncrease;
+    [SerializeField] Slider BreakableMass;
+    [SerializeField] float _minBreakableMass;
+    [SerializeField] float _breakableMassIncrease;
     [SerializeField] Slider BouncePower;
     [SerializeField] Slider IcynessValue;
     [SerializeField] LeftRightSelect IsSinglePlayer;
@@ -570,7 +574,7 @@ public class CreateSceneButton : MonoBehaviour
         }
         try
         {
-            _playerMass = Convert.ToSingle(PlayerMass.text);
+            _playerMass = (PlayerMass.value)*10*_playerMassIncrease+_playerMass;
         }
         catch
         {
@@ -578,7 +582,7 @@ public class CreateSceneButton : MonoBehaviour
         }
         try
         {
-            _breakableMass = Convert.ToSingle(BreakableMass.text);
+            _breakableMass = (BreakableMass.value)*10*_breakableMassIncrease+_breakableMass;
         }
         catch
         {
