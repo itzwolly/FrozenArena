@@ -8,7 +8,6 @@ using UnityEngine;
 public class LoadSaveLevelScript : MonoBehaviour
 {
     [SerializeField] CreateSceneButton _LevelInfo;
-    [SerializeField] GameObject LoadScroll;
     [SerializeField] GameObject _normalTiles;
     [SerializeField] GameObject _specialTiles;
     public Transform SpecialTileSave
@@ -106,6 +105,10 @@ public class LoadSaveLevelScript : MonoBehaviour
                     info += "|" + t.gameObject.GetComponent<SlowDown>().SlowDownMultiplier.ToString() + "|";
                     info += t.gameObject.GetComponent<SlowDown>().SlowedDownSpeed.ToString();
                 }
+            }
+            else if(t.tag=="Finish")
+            {
+                info += "Finsh" + "|" + Utility.VectorToString(t.position);
             }
             else
             {
@@ -273,6 +276,18 @@ public class LoadSaveLevelScript : MonoBehaviour
 
                 }
                 currentTile.transform.SetParent(_normalTiles.transform);
+            }
+            else if (split[where] == "Finish")
+            {
+                currentTile = Instantiate(_LevelInfo.GetLevelEndBrush);
+                where++;
+                currentTile.transform.position = Utility.StringToVector(split[where]);
+                where++;
+                if (changed)
+                {
+
+                }
+                currentTile.transform.SetParent(_specialTiles.transform);
             }
             else
             {
