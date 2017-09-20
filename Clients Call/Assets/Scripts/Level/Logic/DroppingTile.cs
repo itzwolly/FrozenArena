@@ -7,6 +7,9 @@ public class DroppingTile : MonoBehaviour {
     [SerializeField] [Range(0.01f, 0.5f)] private float _tickSpeed;
     [SerializeField] private float _speedOfFall;
     [SerializeField] private float _waitAfterDown;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip IceCracking;
+    [SerializeField] private AudioClip IceCracked;
 
     private GameObject _chosenTile;
     private Timer _timer;
@@ -40,9 +43,17 @@ public class DroppingTile : MonoBehaviour {
         _lerpPercentage = _currentLerpTime / _difficultyValue;
         child.GetComponent<Renderer>().material.SetFloat("_FreshSnow", Mathf.Lerp(0, 0.8f, _lerpPercentage));
 
+       
+
         if (_lerpPercentage > 0.9f) {
             if (Info.MovableCubes.Count > 0) {
                 DropTile();
+
+                //play crackle
+                GetComponent<AudioSource>().PlayOneShot(IceCracking);
+                //play the cracked
+                //GetComponent<AudioSource>().PlayOneShot(IceCracked);
+
             }
         }
     }

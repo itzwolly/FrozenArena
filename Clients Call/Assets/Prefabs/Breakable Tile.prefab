@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65270307787355760}
   m_Layer: 0
   m_Name: Breakable Tile
-  m_TagString: Untagged
+  m_TagString: BreakableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,8 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645329247561342}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.1213, y: 2, z: 9.1923}
+=======
+  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -11.314, y: 1, z: -0.000016779}
+>>>>>>> Working_Version_(Do_Not_Duck_It_Up)
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +86,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645329247561342}
-  m_Mesh: {fileID: 4300000, guid: 57f240ea71407e44d8e9d5af8771c081, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 10f04484fc6e04045973a85bdf4ab955, type: 3}
 --- !u!54 &54353901637544652
 Rigidbody:
   m_ObjectHideFlags: 1
