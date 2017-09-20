@@ -25,7 +25,7 @@ public class ArenaPreviewHandler : MonoBehaviour {
                     _mapName.text = data.Name;
                     _containing.text = "Special Tiles: ";
                     for (int i = 0; i < data.Tiles.Length; i++) {
-                        _containing.text += data.Tiles[i] + ", ";
+                        _containing.text += data.Tiles[i] + ((i == data.Tiles.Length - 1) ? "." : ", ");
                     }
                     _difficulty.text = "Difficulty: " + data.Difficulty.ToString();
                 }

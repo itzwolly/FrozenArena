@@ -8,15 +8,16 @@ using System.Linq;
 public class QueueMaps : MonoBehaviour {
     [SerializeField] KeyCode _interactionKey;
     [SerializeField] EventSystem _eventSystem;
+    [SerializeField] GameObject _start;
 
-    private List<GameObject> _queuedMaps = new List<GameObject>();
+    private List<MapData> _queuedMaps = new List<MapData>();
 
-    public List<GameObject> QueuedMaps {
+    public List<MapData> QueuedMaps {
         get { return _queuedMaps; }
     }
 
     private void Start() {
-        ArenaDataHandler.Instance.QueuedMaps = new List<GameObject>();
+        MenuDataHandler.Instance.QueuedMaps = new List<MapData>();
     }
 
     // Update is called once per frame
@@ -25,15 +26,16 @@ public class QueueMaps : MonoBehaviour {
             if (_eventSystem.currentSelectedGameObject != null) {
                 GameObject obj = _eventSystem.currentSelectedGameObject;
 
-                if (!_queuedMaps.Any(o => o == obj)) {
-                    print("Added");
-                    _queuedMaps.Add(obj);
-                    obj.transform.GetChild(0).gameObject.SetActive(true);
-                    ArenaDataHandler.Instance.QueuedMaps = _queuedMaps;
-                } else {
-                    _queuedMaps.Remove(obj);
-                    obj.transform.GetChild(0).gameObject.SetActive(false);
-                    ArenaDataHandler.Instance.QueuedMaps = _queuedMaps;
+                if (obj != _start) {
+                    if (!_queuedMaps.Any(o => o == obj)) {
+                        _queuedMaps.Add(obj.GetComponent<MapData>());
+                        obj.transform.GetChild(0).gameObject.SetActive(true);
+                        MenuDataHandler.Instance.QueuedMaps = _queuedMaps;
+                    } else {
+                        _queuedMaps.Remove(obj.GetComponent<MapData>());
+                        obj.transform.GetChild(0).gameObject.SetActive(false);
+                        MenuDataHandler.Instance.QueuedMaps = _queuedMaps;
+                    }
                 }
             }
         }

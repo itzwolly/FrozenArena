@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menus/Arena Selection.unity
-=======
-- path: Assets/Scenes/Menus/GamePreview.unity
->>>>>>> 15796e1e49f5f5b3faa23c3b7309cf1376525168
+- path: Assets/Scenes/Menus/GamePreviewMP.unity
   isLoaded: 1
   isActive: 1

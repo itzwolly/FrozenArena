@@ -80,6 +80,7 @@ public class SkinSelectionHandler : MonoBehaviour {
                 headerObject.transform.GetChild(1).gameObject.SetActive(true);
             }
 
+            MenuDataHandler.Instance.Player1PreviewSkin = _player1PreviewSkin.GetComponent<Image>().sprite;
             _player1Indicator.GetComponent<Image>().sprite = _player1Sprite;
         } else {
             _singlePlayerLayout.SetActive(false);
@@ -116,6 +117,9 @@ public class SkinSelectionHandler : MonoBehaviour {
                 headerObject.transform.GetChild(2).gameObject.SetActive(true);
                 headerObject.transform.GetChild(3).gameObject.SetActive(false);
             }
+
+            MenuDataHandler.Instance.Player1PreviewSkin = _player1PreviewSkin.GetComponent<Image>().sprite;
+            MenuDataHandler.Instance.Player2PreviewSkin = _player2PreviewSkin.GetComponent<Image>().sprite;
 
             _player1Indicator.GetComponent<Image>().sprite = _player1Sprite;
             _player2Indicator.GetComponent<Image>().sprite = _player2Sprite;
@@ -274,6 +278,7 @@ public class SkinSelectionHandler : MonoBehaviour {
                 _player1PreviewSkin.GetComponent<Image>().sprite = _player1BallSprites[3];
             }
         }
+        MenuDataHandler.Instance.Player1PreviewSkin = _player1PreviewSkin.GetComponent<Image>().sprite;
     }
     
     private void SetPlayer2Skin() {
@@ -292,5 +297,6 @@ public class SkinSelectionHandler : MonoBehaviour {
                 _player2PreviewSkin.GetComponent<Image>().sprite = _player2BallSprites[3];
             }
         }
+        MenuDataHandler.Instance.Player2PreviewSkin = _player2PreviewSkin.GetComponent<Image>().sprite;
     }
 }
