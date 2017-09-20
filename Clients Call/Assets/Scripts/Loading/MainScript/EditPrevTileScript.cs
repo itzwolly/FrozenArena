@@ -39,7 +39,7 @@ public class EditPrevTileScript : MonoBehaviour {
             TileEditors[1].SetActive(true);
             _activeObject.GetComponent<BombEdit>().EditTile(obj);
         }
-        else if (obj.GetComponent<Rigidbody>() != null)
+        else if (obj.tag=="BreakableTile")
         {
             _activeObject = TileEditors[2];
             TileEditors[2].SetActive(true);
