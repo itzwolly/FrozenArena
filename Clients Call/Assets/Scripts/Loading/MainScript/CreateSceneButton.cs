@@ -230,7 +230,7 @@ public class CreateSceneButton : MonoBehaviour
                 else if (_selectedTile==_bombTileBrush)
                 {
                     _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.transform);
+                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                     _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                     _bombs.Add(_movingBlock);
@@ -247,7 +247,7 @@ public class CreateSceneButton : MonoBehaviour
                     else
                     {
                         _level.Add(_movingBlock);
-                        _movingBlock.transform.SetParent(LevelSave.transform);
+                        _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                         _player1 = _movingBlock;
@@ -273,7 +273,7 @@ public class CreateSceneButton : MonoBehaviour
                     else
                     {
                         _level.Add(_movingBlock);
-                        _movingBlock.transform.SetParent(LevelSave.transform);
+                        _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                         _player2 = _movingBlock;
@@ -307,7 +307,7 @@ public class CreateSceneButton : MonoBehaviour
                 else if(_selectedTile==_normalBlockBrush)
                 {
                     _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.transform);
+                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().NormalTileSave);
                     _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                     _movingBlock.GetComponent<Collider>().material = _iceChanged;
@@ -319,7 +319,7 @@ public class CreateSceneButton : MonoBehaviour
                 {
 
                     _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.transform);
+                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                     _previousTile = _movingBlock;
                     Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
                     _movingBlock = Instantiate(_selectedTile);
