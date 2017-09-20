@@ -134,20 +134,20 @@ namespace DLLLibrary
             WriteToFile(path, info);
         }
 
-        public static int GetValueAfterString(string path, string pString)
+        public static float GetValueAfterString(string path, string pString)
         {
             string text = ReadFromFile(path);
 
             StreamReader reader = new StreamReader(path);
-            string[] file = reader.ReadToEnd().Split('\n', '\r', ' ');
-            int latestNumber = 0;
+            string[] file = reader.ReadToEnd().Split('\n', '\r', '|');
+            float latestNumber = -1;
             for (int i = 0; i < file.Length; i++)
             {
                 if (string.Compare(file[i], pString) == 0)
                 {
                     if (IsNumeric(file[i + 1]))
                     {
-                        latestNumber = Convert.ToInt32(file[i + 1]);
+                        latestNumber = Convert.ToSingle(file[i + 1]);
                         i++;
                     }
                 }
@@ -157,9 +157,9 @@ namespace DLLLibrary
             return latestNumber;
         }
 
-        public static void SetValueAfterString(string path, string pString, int nextValue)
+        public static void SetValueAfterString(string path, string pString, float nextValue)
         {
-            int lastValue = GetValueAfterString(path, pString);
+            float lastValue = GetValueAfterString(path, pString);
             string before = pString + " " + lastValue;
             string after = pString + " " + nextValue;
             //Debug.Log(before + "|" + after);

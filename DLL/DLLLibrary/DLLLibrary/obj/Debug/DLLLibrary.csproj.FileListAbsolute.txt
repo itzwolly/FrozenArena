@@ -44,3 +44,7 @@ D:\Saxion\1-800-sixtynine-10\Repository\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLL
 D:\Saxion\1-800-sixtynine-10\Repository\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLLibrary.dll
 D:\Saxion\1-800-sixtynine-10\Repository\DLL\DLLLibrary\DLLLibrary\obj\Debug\DLLLibrary.pdb
 >>>>>>> 6d3063bad487af3cd934f661f899f92483353cec
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEditor.dll
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEditor.UI.dll
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEngine.dll
+D:\GitRepository\1-800-sixtynine-10\DLL\DLLLibrary\DLLLibrary\bin\Debug\UnityEditor.UI.xml
