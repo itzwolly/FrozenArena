@@ -95,7 +95,6 @@ namespace DLLLibrary
             StreamReader reader = new StreamReader(path);
             string[] file = reader.ReadToEnd().Split('\n', '\r', ' ');
             int latestNumber = 0;
-            int tempNr;
             for (int i = 0; i < file.Length; i++)
             {
                 //Debug.Log(file[i]);
@@ -139,7 +138,7 @@ namespace DLLLibrary
             string text = ReadFromFile(path);
 
             StreamReader reader = new StreamReader(path);
-            string[] file = reader.ReadToEnd().Split('\n', '\r', '|');
+            string[] file = reader.ReadToEnd().Split('\n', '\r');
             float latestNumber = -1;
             for (int i = 0; i < file.Length; i++)
             {
