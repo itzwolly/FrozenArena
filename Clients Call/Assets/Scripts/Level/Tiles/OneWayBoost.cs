@@ -7,11 +7,20 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingPlayer;
 
-    private enum Direction {
+    public enum Direction {
         Right,
         Down,
         Left,
         Up
+    }
+
+    public Direction GetDirection {
+        get { return _direction; }
+        set { _direction = value; }
+    }
+    public float SpeedBoost {
+        get { return _speedBoost; }
+        set { _speedBoost = value; }
     }
 
     private void OnValidate() {

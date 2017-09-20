@@ -86,7 +86,7 @@ public class UniBoostEdit : TileEditScript {
             _tile = tile;
         }
         tile.GetComponent<OneWayBoost>().SpeedBoost = Convert.ToSingle(_fields[0].text);
-        tile.GetComponent<OneWayBoost>().Direction = (OneWayBoost.DirectionValue)_dropFields[0].value;
+        tile.GetComponent<OneWayBoost>().GetDirection = (OneWayBoost.Direction) _dropFields[0].value;
     }
     public override void UpdateSelected(int i)
     {

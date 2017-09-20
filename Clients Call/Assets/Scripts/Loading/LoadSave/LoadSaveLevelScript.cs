@@ -79,7 +79,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 if (changed)
                 {
                     info += "|"+t.gameObject.GetComponent<OneWayBoost>().SpeedBoost.ToString()+"|";
-                    info += ((int)(t.gameObject.GetComponent<OneWayBoost>().Direction)).ToString();
+                    info += ((int)(t.gameObject.GetComponent<OneWayBoost>().GetDirection)).ToString();
                 }
             }
             else if (t.gameObject.GetComponent<SlowDown>() != null)
@@ -216,7 +216,7 @@ public class LoadSaveLevelScript : MonoBehaviour
                 if (changed)
                 {
                     currentTile.GetComponent<OneWayBoost>().SpeedBoost = Convert.ToSingle(split[where++]);
-                    currentTile.GetComponent<OneWayBoost>().Direction = (OneWayBoost.DirectionValue)(Convert.ToInt32(split[where++]));
+                    currentTile.GetComponent<OneWayBoost>().GetDirection = (OneWayBoost.Direction)(Convert.ToInt32(split[where++]));
                 }
                 currentTile.transform.SetParent(transform);
             }
