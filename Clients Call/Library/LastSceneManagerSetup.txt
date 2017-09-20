@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Level Edit/LevelEditor.unity
+- path: Assets/Scenes/Loling About/loling.unity
   isLoaded: 1
   isActive: 1
