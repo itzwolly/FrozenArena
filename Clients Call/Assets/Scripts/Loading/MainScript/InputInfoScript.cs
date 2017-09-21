@@ -23,7 +23,14 @@ public class InputInfoScript : TileEditScript
             throw new Exception("Did not complete corectly the sliders and sliders background");
         Selection = 0;
         Counter = 0;
-        Select(_strings[Selection].GetComponent<Image>());
+        try
+        {
+            Select(_strings[Selection].GetComponent<Image>());
+        }
+        catch
+        {
+            Debug.Log("No strings");
+        }
         foreach (InputField field in _fields)
         {
             field.text = field.placeholder.GetComponent<Text>().text;
@@ -35,7 +42,14 @@ public class InputInfoScript : TileEditScript
     private void OnEnable()
     {
         Debug.Log("enabled");
-        _strings[0].text = _controller.SetSceneName();
+        try
+        {
+            _strings[0].text = _controller.SetSceneName();
+        }
+        catch
+        {
+            Debug.Log("No Controller selected or no strings available");
+        }
     }
 
     void Update () {
@@ -106,7 +120,14 @@ public class InputInfoScript : TileEditScript
         if (Selection < _strings.Count)
         {
             PressedRight = false;
-            _controller.OpenKeyboard();
+            try
+            {
+                _controller.OpenKeyboard();
+            }
+            catch
+            {
+                Debug.Log("No controller selected");
+            }
         }
         else if (Selection < _strings.Count + _fields.Count)
         {
@@ -130,8 +151,10 @@ public class InputInfoScript : TileEditScript
         }
         else if (Selection < (_strings.Count + _fields.Count))
             _fields[Selection - _strings.Count].text = nr.ToString();
-        else if(Selection < (_strings.Count + _fields.Count+_sliders.Count))
+        else if (Selection < (_strings.Count + _fields.Count + _sliders.Count))
+        {
             _sliders[Selection - _strings.Count - _fields.Count].value = nr;
+        }
     }
     public override void ChangeSelection(int i)
     {

@@ -20,6 +20,7 @@ public class LeftRightSelect : MonoBehaviour
     {
         _leftSelected = true;
         _selected = false;
+        _on = false;
 
         Color col = Left.color;
         col.a = 0.6f;
