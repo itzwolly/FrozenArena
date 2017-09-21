@@ -11,13 +11,21 @@ public class MenuDataHandler : Singleton<MenuDataHandler> {
 
     private Sprite _player1PreviewSkin;
     private Sprite _player2PreviewSkin;
-
-
+    private Sprite _player1HeaderImage;
+    private Sprite _player2HeaderImage;
+    
     private List<MapData> _queuedMaps;
+    private List<MapData> _copyQueuedMaps;
+
+    private int _winnerIndex;
 
     public List<MapData> QueuedMaps {
         get { return _queuedMaps; }
         set { _queuedMaps = value; }
+    }
+    public List<MapData> CopyQueuedMaps {
+        get { return _copyQueuedMaps; }
+        set { _copyQueuedMaps = value; }
     }
     public Sprite Player1PreviewSkin {
         get { return _player1PreviewSkin; }
@@ -26,6 +34,16 @@ public class MenuDataHandler : Singleton<MenuDataHandler> {
     public Sprite Player2PreviewSkin {
         get { return _player2PreviewSkin; }
         set { _player2PreviewSkin = value; }
+    }
+
+    public Sprite Player1HeaderImage {
+        get { return _player1HeaderImage; }
+        set { _player1HeaderImage = value; }
+    }
+
+    public Sprite Player2HeaderImage {
+        get { return _player2HeaderImage; }
+        set { _player2HeaderImage = value; }
     }
 
     public int PlayersReady {
@@ -44,5 +62,8 @@ public class MenuDataHandler : Singleton<MenuDataHandler> {
         get { return _player2Keys; }
         set { _player2Keys = value; }
     }
-    
+    public int WinnerIndex {
+        get { return _winnerIndex; }
+        set { _winnerIndex = value; }
+    }
 }

@@ -27,11 +27,14 @@ public class GamePreviewHandler : MonoBehaviour {
     
 	// Use this for initialization
 	private void Awake () {
-        _isPlayer1Purple = MenuDataHandler.Instance.IsPlayer1Purple;
-        _amountPlayersReady = MenuDataHandler.Instance.PlayersReady;
+        //_isPlayer1Purple = MenuDataHandler.Instance.IsPlayer1Purple;
+        //_amountPlayersReady = MenuDataHandler.Instance.PlayersReady;
     }
 
     private void Start() {
+        _isPlayer1Purple = MenuDataHandler.Instance.IsPlayer1Purple;
+        _amountPlayersReady = MenuDataHandler.Instance.PlayersReady;
+
         if (_amountPlayersReady == 1) {
             _player1Skin.sprite = MenuDataHandler.Instance.Player1PreviewSkin;
 

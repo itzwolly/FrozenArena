@@ -72,13 +72,17 @@ public class SkinSelectionHandler : MonoBehaviour {
 
                 headerObject.transform.GetChild(0).gameObject.SetActive(true);
                 headerObject.transform.GetChild(1).gameObject.SetActive(false);
+
+                MenuDataHandler.Instance.Player1HeaderImage = headerObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
             } else {
                 _player1Sprite = _player1IndicatorSprites[1];
                 _player1PreviewSkin.GetComponent<Image>().sprite = _player1BallSprites[2];
 
                 headerObject.transform.GetChild(0).gameObject.SetActive(false);
                 headerObject.transform.GetChild(1).gameObject.SetActive(true);
+                MenuDataHandler.Instance.Player1HeaderImage = headerObject.transform.GetChild(1).gameObject.GetComponent<Image>().sprite;
             }
+
 
             MenuDataHandler.Instance.Player1PreviewSkin = _player1PreviewSkin.GetComponent<Image>().sprite;
             _player1Indicator.GetComponent<Image>().sprite = _player1Sprite;
@@ -104,6 +108,9 @@ public class SkinSelectionHandler : MonoBehaviour {
 
                 headerObject.transform.GetChild(2).gameObject.SetActive(false);
                 headerObject.transform.GetChild(3).gameObject.SetActive(true);
+
+                MenuDataHandler.Instance.Player1HeaderImage = headerObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
+                MenuDataHandler.Instance.Player2HeaderImage = headerObject.transform.GetChild(3).gameObject.GetComponent<Image>().sprite;
             } else {
                 _player1Sprite = _player1IndicatorSprites[1];
                 _player2Sprite = _player2IndicatorSprites[0];
@@ -116,6 +123,9 @@ public class SkinSelectionHandler : MonoBehaviour {
 
                 headerObject.transform.GetChild(2).gameObject.SetActive(true);
                 headerObject.transform.GetChild(3).gameObject.SetActive(false);
+
+                MenuDataHandler.Instance.Player1HeaderImage = headerObject.transform.GetChild(1).gameObject.GetComponent<Image>().sprite;
+                MenuDataHandler.Instance.Player2HeaderImage = headerObject.transform.GetChild(2).gameObject.GetComponent<Image>().sprite;
             }
 
             MenuDataHandler.Instance.Player1PreviewSkin = _player1PreviewSkin.GetComponent<Image>().sprite;

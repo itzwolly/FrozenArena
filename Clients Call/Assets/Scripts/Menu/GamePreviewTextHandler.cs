@@ -22,13 +22,14 @@ public class GamePreviewTextHandler : MonoBehaviour {
 	private void Start () {
         _firstMap = MenuDataHandler.Instance.QueuedMaps.First();
 
-        _mapImage = _firstMap.Image;
+        _mapImage = _firstMap.PreviewImage;
         _mapName = _firstMap.Name;
         _containgTiles = _firstMap.Tiles;
         _difficulty = _firstMap.Difficulty;
 
         _mapImageContainer.sprite = _mapImage;
         _mapNameContainer.text = _mapName;
+        _containgTilesContainer.text = "";
         for (int i = 0; i < _containgTiles.Length; i++) {
             _containgTilesContainer.text += _containgTiles[i] + ((i == _containgTiles.Length - 1) ? "." : ", ");
         }

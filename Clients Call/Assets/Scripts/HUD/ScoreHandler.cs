@@ -20,7 +20,8 @@ public class ScoreHandler : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start () {
-        DontDestroyOnLoad(transform.root.transform);
+        //DontDestroyOnLoad(transform.root.transform);
+        hideFlags = HideFlags.DontSave;
 
         _handler = PlayerStatsHandler.Instance;
 
@@ -33,6 +34,7 @@ public class ScoreHandler : MonoBehaviour {
 
         if (_p1Stats.Score <= 0) {
             _p1Image.color = Color.clear;
+            _p1Image.sprite = _p1ScoreImages[0];
         } else {
             _p1Image.color = Color.white;
             _p1Image.sprite = _p1ScoreImages[(_p1Stats.Score - 1)];
@@ -40,6 +42,7 @@ public class ScoreHandler : MonoBehaviour {
 
         if (_p2Stats.Score <= 0) {
             _p2Image.color = Color.clear;
+            _p2Image.sprite = _p2ScoreImages[0];
         } else {
             _p2Image.color = Color.white;
             _p2Image.sprite = _p2ScoreImages[(_p2Stats.Score - 1)];

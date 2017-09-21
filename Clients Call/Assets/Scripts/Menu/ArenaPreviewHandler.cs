@@ -21,7 +21,7 @@ public class ArenaPreviewHandler : MonoBehaviour {
                 _selected = _eventSystem.currentSelectedGameObject;
                 if (_selected.GetComponent<MapData>() != null) {
                     MapData data = _selected.GetComponent<MapData>();
-                    _previewImage.sprite = data.Image;
+                    _previewImage.sprite = data.PreviewImage;
                     _mapName.text = data.Name;
                     _containing.text = "Special Tiles: ";
                     for (int i = 0; i < data.Tiles.Length; i++) {

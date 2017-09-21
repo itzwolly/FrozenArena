@@ -46,9 +46,11 @@ public class SkinSelectionEnd : MonoBehaviour {
     }
     private void LoadNextScene() {
         //SavePlayersReadyData();
-        Debug.Log("Loading next scene...");
-        StartCoroutine(LoadLevel("Arena Selection"));
-        //SceneManager.LoadScene("Arena Selection");
+        if (MenuDataHandler.Instance.PlayersReady == 1) {
+            StartCoroutine(LoadLevel("Arena Selection SP"));
+        } else {
+            StartCoroutine(LoadLevel("Arena Selection MP"));
+        }
     }
 
     private AsyncOperation asyncLoadLevel;
@@ -57,7 +59,6 @@ public class SkinSelectionEnd : MonoBehaviour {
         asyncLoadLevel = SceneManager.LoadSceneAsync(pName, LoadSceneMode.Single);
 
         while (!asyncLoadLevel.isDone) {
-            print("Loading the Scene");
             yield return null;
         }
     }

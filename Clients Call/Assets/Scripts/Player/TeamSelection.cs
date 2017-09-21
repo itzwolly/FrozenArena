@@ -63,6 +63,8 @@ public class TeamSelection : MonoBehaviour {
         _currentPos = _transform.anchoredPosition;
         _currentSprite = GetComponent<Image>().sprite;
 
+        MenuDataHandler.Instance.PlayersReady = 0;
+
         _otherPlayer = GameObject.FindGameObjectsWithTag("Player").First(o => o.GetComponent<TeamSelection>().GetPlayerNumber != _playerNumber);
         _keys = new KeyCode[] { _upKey, _downKey, _leftKey, _rightKey, _interactionKey };
 

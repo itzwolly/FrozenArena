@@ -291,7 +291,7 @@ namespace FMODUnity
             return FMODPlatform.XboxOne;
             #elif UNITY_PSP2
             return FMODPlatform.PSVita;
-            #elif (!UNITY_4_6 && !UNITY_4_7 && !UNITY_5_0 && !UNITY_5_1) && UNITY_WIIU
+            #elif (!UNITY_5_0 && !UNITY_5_1) && UNITY_WIIU
             return FMODPlatform.WiiU;
             #elif UNITY_WSA_10_0
             return FMODPlatform.UWP;
@@ -401,13 +401,8 @@ namespace FMODUnity
             {
                 case BuildTarget.Android:
                     return FMODPlatform.Android;
-                #if UNITY_4_6 || UNITY_4_7
-                case BuildTarget.iPhone:
-                    return FMODPlatform.iOS;
-                #else
                 case BuildTarget.iOS:
                     return FMODPlatform.iOS;
-                #endif
                 case BuildTarget.PS4:
                     return FMODPlatform.PS4;
                 case BuildTarget.PSP2:
@@ -425,20 +420,11 @@ namespace FMODUnity
                     return FMODPlatform.Windows;
                 case BuildTarget.XboxOne:
                     return FMODPlatform.XboxOne;
-                #if !UNITY_4_6 && !UNITY_4_7 && !UNITY_5_0 && !UNITY_5_1
+                #if !UNITY_5_0 && !UNITY_5_1
                 case BuildTarget.WiiU:
                     return FMODPlatform.WiiU;
                 #endif
-                #if UNITY_4_6 || UNITY_4_7
-                case BuildTarget.MetroPlayer:
-                    if (EditorUserBuildSettings.metroSDK == MetroSDK.PhoneSDK81)
-                    { 
-                        return FMODPlatform.WindowsPhone;
-                    }
-                    return FMODPlatform.None;
-                #else
                 case BuildTarget.WSAPlayer:
-                #endif
                 #if UNITY_2017
                     return FMODPlatform.UWP;
                 #elif !UNITY_5_0 && !UNITY_5_1
@@ -454,7 +440,7 @@ namespace FMODUnity
                     }
                     return FMODPlatform.None;
                 #endif
-                #if !UNITY_4_6 && !UNITY_4_7 && !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2
+                #if !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2
                 case BuildTarget.tvOS:
                     return FMODPlatform.AppleTV;
                 #endif
