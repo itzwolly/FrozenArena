@@ -16,6 +16,13 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private ParticleSystem _psystem;
     [SerializeField] private ParticleSystem _psystemBoost;
     
+    [SerializeField] private Material[] _stoneSkins;
+    [SerializeField] private Material[] _classicSkins;
+
+    [SerializeField] private Mesh _classicMesh;
+    [SerializeField] private Mesh _stoneMesh;
+
+
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
     private float _distToGround;
@@ -45,6 +52,61 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
         _distToGround = GetComponent<Collider>().bounds.extents.y;
         FillButtons();
+
+        if (MenuDataHandler.Instance.IsPlayer1Purple) {
+            if (MenuDataHandler.Instance.Player1PreviewSkin.name.Contains("classic")) {
+                if (name == "Player_1") {
+                    GetComponent<Renderer>().material = _classicSkins[0];
+                    GetComponent<MeshFilter>().mesh = _classicMesh;
+                }
+            } else if (MenuDataHandler.Instance.Player1PreviewSkin.name.Contains("stone")) {
+                if (name == "Player_1") {
+                    GetComponent<Renderer>().material = _stoneSkins[0];
+                    GetComponent<MeshFilter>().mesh = _stoneMesh;
+                }
+            }
+
+            if (MenuDataHandler.Instance.PlayersReady == 2) {
+                if (MenuDataHandler.Instance.Player2PreviewSkin.name.Contains("classic")) {
+                    if (name == "Player_2") {
+                        GetComponent<Renderer>().material = _classicSkins[1];
+                        GetComponent<MeshFilter>().mesh = _classicMesh;
+                    }
+                } else if (MenuDataHandler.Instance.Player2PreviewSkin.name.Contains("stone")) {
+                    if (name == "Player_2") {
+                        GetComponent<Renderer>().material = _stoneSkins[1];
+                        GetComponent<MeshFilter>().mesh = _stoneMesh;
+                    }
+                }
+            }
+            
+        } else {
+            if (MenuDataHandler.Instance.Player1PreviewSkin.name.Contains("classic")) {
+                if (name == "Player_1") {
+                    GetComponent<Renderer>().material = _classicSkins[1];
+                    GetComponent<MeshFilter>().mesh = _classicMesh;
+                }
+            } else if (MenuDataHandler.Instance.Player1PreviewSkin.name.Contains("stone")) {
+                if (name == "Player_1") {
+                    GetComponent<Renderer>().material = _stoneSkins[1];
+                    GetComponent<MeshFilter>().mesh = _stoneMesh;
+                }
+            }
+
+            if (MenuDataHandler.Instance.PlayersReady == 2) {
+                if (MenuDataHandler.Instance.Player2PreviewSkin.name.Contains("classic")) {
+                    if (name == "Player_2") {
+                        GetComponent<Renderer>().material = _classicSkins[0];
+                        GetComponent<MeshFilter>().mesh = _classicMesh;
+                    }
+                } else if (MenuDataHandler.Instance.Player2PreviewSkin.name.Contains("stone")) {
+                    if (name == "Player_2") {
+                        GetComponent<Renderer>().material = _stoneSkins[0];
+                        GetComponent<MeshFilter>().mesh = _stoneMesh;
+                    }
+                }
+            }
+        } 
     }
 
 
