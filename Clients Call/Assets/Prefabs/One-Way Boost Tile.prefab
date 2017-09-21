@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 23703424446131446}
   - component: {fileID: 114403594669609038}
   - component: {fileID: 82665588228906236}
+  - component: {fileID: 114691415130702002}
   m_Layer: 0
   m_Name: One-Way Boost Tile
   m_TagString: Booster
@@ -67,7 +68,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758580952844698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: -0.3826834}
   m_LocalPosition: {x: -2.8345666, y: -0.00000014645, z: -2.8284235}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758580952844698}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f2476002c8c076499ec9a95a1dcce53, type: 3}
   m_Name: 
@@ -221,6 +222,20 @@ MonoBehaviour:
   _speedBoost: 100
   SpeedingPlayer: {fileID: 8300000, guid: 3163ef5b2b644b4478bd2d9f130fce72, type: 3}
   _psystem: {fileID: 0}
+--- !u!114 &114691415130702002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758580952844698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c361044603124cbf55cabd2a515b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0
+  Changed: 0
 --- !u!198 &198987491137850550
 ParticleSystem:
   m_ObjectHideFlags: 1

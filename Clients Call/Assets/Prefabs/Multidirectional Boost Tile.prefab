@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23703424446131446}
   - component: {fileID: 114403594669609038}
   - component: {fileID: 82983189392737936}
+  - component: {fileID: 114208030769202280}
   m_Layer: 0
   m_Name: Multidirectional Boost Tile
   m_TagString: Booster
@@ -206,6 +207,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114208030769202280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758580952844698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c361044603124cbf55cabd2a515b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0
+  Changed: 0
 --- !u!114 &114403594669609038
 MonoBehaviour:
   m_ObjectHideFlags: 1

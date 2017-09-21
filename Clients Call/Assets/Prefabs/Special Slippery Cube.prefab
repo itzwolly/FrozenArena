@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 23158436448246254}
   - component: {fileID: 54723707579271362}
   - component: {fileID: 114213648068714552}
+  - component: {fileID: 114212674067335738}
   m_Layer: 0
   m_Name: Special Slippery Cube
   m_TagString: Ground
@@ -173,6 +174,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114212674067335738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742606292916118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c361044603124cbf55cabd2a515b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0
+  Changed: 0
 --- !u!114 &114213648068714552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,3 +212,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Up: 0
   Down: 0
+  Changed: 0
