@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 0797f09718be0c24bb0c869fb9a04f1b
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1505916885
+=======
+timeCreated: 1505925825
+>>>>>>> Tims_working_branch
 licenseType: Free
 DefaultImporter:
   userData: 

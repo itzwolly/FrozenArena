@@ -6,12 +6,15 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private Direction _direction;
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingPlayer;
+    [SerializeField] private ParticleSystem _psystem;
 
     public Direction GetDirection {
         get { return _direction; }
         set { _direction = value; }
     }
-    public float SpeedBoost {
+
+    public float SpeedBoost
+    {
         get { return _speedBoost; }
         set { _speedBoost = value; }
     }
@@ -26,16 +29,16 @@ public class OneWayBoost : MonoBehaviour {
     private void OnValidate() {
         switch (_direction) {
             case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, -45, 0);
-                break;
-            case Direction.Down:
-                transform.rotation = Quaternion.Euler(0, 45, 0);
-                break;
-            case Direction.Left:
                 transform.rotation = Quaternion.Euler(0, 135, 0);
                 break;
-            case Direction.Up:
+            case Direction.Down:
                 transform.rotation = Quaternion.Euler(0, 225, 0);
+                break;
+            case Direction.Left:
+                transform.rotation = Quaternion.Euler(0, -45, 0);
+                break;
+            case Direction.Up:
+                transform.rotation = Quaternion.Euler(0, 45, 0);
                 break;
             default:
                 break;

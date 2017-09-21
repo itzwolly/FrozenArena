@@ -14,14 +14,19 @@ MonoBehaviour:
   m_Children:
   - {fileID: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 18}
 =======
   - {fileID: 13}
 >>>>>>> origin/Wollys_working_copy
+=======
+  - {fileID: 13}
+>>>>>>> Tims_working_branch
   m_Position:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 1858
     height: 987
@@ -37,6 +42,14 @@ MonoBehaviour:
   vertical: 0
   controlID: 11537
 >>>>>>> origin/Wollys_working_copy
+=======
+    width: 1920
+    height: 947
+  m_MinSize: {x: 683, y: 492}
+  m_MaxSize: {x: 14004, y: 14042}
+  vertical: 0
+  controlID: 93
+>>>>>>> Tims_working_branch
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -60,6 +73,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1039
     y: 751
     width: 496
@@ -78,10 +92,21 @@ MonoBehaviour:
   m_Stats: 1
   m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
 >>>>>>> origin/Wollys_working_copy
+=======
+    x: 407
+    y: 92
+    width: 956
+    height: 598
+  m_MaximizeOnPlay: 1
+  m_Gizmos: 0
+  m_Stats: 0
+  m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
+>>>>>>> Tims_working_branch
   m_TargetDisplay: 0
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_HBaseRangeMin: -960
     m_HBaseRangeMax: 960
@@ -93,6 +118,12 @@ MonoBehaviour:
     m_VBaseRangeMin: -239.34375
     m_VBaseRangeMax: 239.34375
 >>>>>>> origin/Wollys_working_copy
+=======
+    m_HBaseRangeMin: -478
+    m_HBaseRangeMax: 478
+    m_VBaseRangeMin: -268.875
+    m_VBaseRangeMax: 268.875
+>>>>>>> Tims_working_branch
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -110,6 +141,7 @@ MonoBehaviour:
       x: 0
       y: 17
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 496
       height: 290
     m_Scale: {x: 0.25833333, y: 0.25833333}
@@ -120,6 +152,12 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 425.5, y: 298}
 >>>>>>> origin/Wollys_working_copy
+=======
+      width: 956
+      height: 581
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 478, y: 290.5}
+>>>>>>> Tims_working_branch
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -127,13 +165,21 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       x: -960
       y: -561.29034
       width: 1920
       height: 1122.5807
+=======
+      x: -478
+      y: -290.5
+      width: 956
+      height: 581
+>>>>>>> Tims_working_branch
     m_MinimalGUI: 1
   m_defaultScale: 0.25833333
   m_TargetTexture: {fileID: 0}
+<<<<<<< HEAD
   m_CurrentColorSpace: 1
   m_LastWindowPixelSize: {x: 496, y: 307}
 =======
@@ -147,6 +193,10 @@ MonoBehaviour:
   m_CurrentColorSpace: 1
   m_LastWindowPixelSize: {x: 851, y: 613}
 >>>>>>> origin/Wollys_working_copy
+=======
+  m_CurrentColorSpace: 0
+  m_LastWindowPixelSize: {x: 956, y: 598}
+>>>>>>> Tims_working_branch
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -173,6 +223,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1475
     height: 987
   m_MinSize: {x: 406, y: 442}
@@ -187,6 +238,14 @@ MonoBehaviour:
   vertical: 1
   controlID: 11504
 >>>>>>> origin/Wollys_working_copy
+=======
+    width: 1365
+    height: 947
+  m_MinSize: {x: 406, y: 492}
+  m_MaxSize: {x: 10002, y: 14042}
+  vertical: 1
+  controlID: 94
+>>>>>>> Tims_working_branch
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,6 +265,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1475
     height: 659
   m_MinSize: {x: 406, y: 221}
@@ -220,6 +280,14 @@ MonoBehaviour:
   vertical: 0
   controlID: 11484
 >>>>>>> origin/Wollys_working_copy
+=======
+    width: 1365
+    height: 619
+  m_MinSize: {x: 406, y: 221}
+  m_MaxSize: {x: 8006, y: 4021}
+  vertical: 0
+  controlID: 95
+>>>>>>> Tims_working_branch
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,6 +305,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 332
     height: 659
   m_MinSize: {x: 200, y: 200}
@@ -247,6 +316,12 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
 >>>>>>> origin/Wollys_working_copy
+=======
+    width: 405
+    height: 619
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+>>>>>>> Tims_working_branch
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -277,6 +352,7 @@ MonoBehaviour:
     x: 62
     y: 92
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 330
     height: 638
   m_TreeViewState:
@@ -293,6 +369,15 @@ MonoBehaviour:
     m_LastClickedID: 215422
     m_ExpandedIDs: 402df2ffa846f2ff96e4f3ff4aeff3ffe406f4ff101bf4ff0642f4ff1a78f4ff8882f4ff0aabf4ff36bbf4ff2cc3f4ff08dff4ff3616f5ffe219f5fff228f5ffa690f5ffeab1f5ff06d6f5ffb4f9f5ff6e1df6ffa242f6ffb86af6ff8e8df6ff1eb7f6ff32d7f6ff84e6f6ff4017f7ffd625f7ff422cf7ff5c3ef7ff2266f7ff0493f7ff66a4f7ff20b4f8ffdcdef8ff8ef1f8ff68fcf8ff7e05f9ff9e26f9ff3a3af9ffea48f9ff229df9ffe69ef9ff6eccf9ff1e45fbff7e46fbffbc52fbff6c42fcff1c63fcff2ad2ffff1afcfffff4ffffff000000006008010002460100469a0100689f010020d3010052d6010064d601009cd70100f0da010014db01002adb010030f001008af30100b6f80100eef90100d4fe01002c08020052240200f02502004a2702004c710200ea720200447402004aa30200c0b7020058b8020022c6020020d20200a2490300e24a0300
 >>>>>>> origin/Wollys_working_copy
+=======
+    width: 403
+    height: 598
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 2c2a0000
+    m_LastClickedID: 0
+    m_ExpandedIDs: f42cffffbc5fffffb4a9ffff1afcffff00000000
+>>>>>>> Tims_working_branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -308,14 +393,18 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 0}
     m_SearchString: 
   m_ExpandedScenes:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - sp_level_2
 =======
   - mp_level_5
 >>>>>>> origin/Wollys_working_copy
+=======
+  - mp_level_1
+>>>>>>> Tims_working_branch
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -333,6 +422,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
     x: 332
     y: 0
@@ -352,6 +442,12 @@ MonoBehaviour:
     y: 0
     width: 855
     height: 634
+=======
+    x: 405
+    y: 0
+    width: 960
+    height: 619
+>>>>>>> Tims_working_branch
   m_MinSize: {x: 204, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 2}
@@ -361,7 +457,10 @@ MonoBehaviour:
   - {fileID: 9}
   m_Selected: 1
   m_LastSelected: 0
+<<<<<<< HEAD
 >>>>>>> origin/Wollys_working_copy
+=======
+>>>>>>> Tims_working_branch
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -384,6 +483,7 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
     x: 396
 =======
@@ -411,6 +511,21 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 415.07007, y: 219.52914, z: 0}
 >>>>>>> origin/Wollys_working_copy
+=======
+    x: 407
+    y: 92
+    width: 956
+    height: 598
+  m_SceneLighting: 1
+  lastFramingTime: 0
+  m_2DMode: 0
+  m_isRotationLocked: 0
+  m_AudioPlay: 0
+  m_Position:
+    m_Target: {x: 0, y: 0, z: 0}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0}
+>>>>>>> Tims_working_branch
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -433,10 +548,11 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.08717021, y: 0.90995175, z: -0.24627066, w: -0.32208735}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.087170206, y: 0.9099516, z: -0.24627063, w: -0.32208732}
   m_Size:
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: 132.64555
     speed: 2
@@ -446,11 +562,16 @@ MonoBehaviour:
     speed: 2
     m_Value: 704.46124
 >>>>>>> origin/Wollys_working_copy
-  m_Ortho:
-    m_Target: 1
+=======
+    m_Target: 16.753805
     speed: 2
-    m_Value: 1
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Value: 16.753805
+>>>>>>> Tims_working_branch
+  m_Ortho:
+    m_Target: 0
+    speed: 2
+    m_Value: 0
+  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -479,6 +600,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 395
     y: 92
     width: 1140
@@ -489,6 +611,12 @@ MonoBehaviour:
     width: 1017
     height: 580
 >>>>>>> origin/Wollys_working_copy
+=======
+    x: 407
+    y: 92
+    width: 956
+    height: 404
+>>>>>>> Tims_working_branch
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -496,6 +624,7 @@ MonoBehaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
@@ -569,6 +698,8 @@ MonoBehaviour:
   m_Enabled: 1
 =======
 >>>>>>> origin/Wollys_working_copy
+=======
+>>>>>>> Tims_working_branch
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -577,6 +708,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
     y: 0
     width: 975
@@ -606,6 +738,20 @@ MonoBehaviour:
   m_LastSelected: 0
 --- !u!114 &11
 >>>>>>> origin/Wollys_working_copy
+=======
+    y: 619
+    width: 1365
+    height: 328
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
+  m_ActualView: {fileID: 11}
+  m_Panes:
+  - {fileID: 11}
+  - {fileID: 12}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &11
+>>>>>>> Tims_working_branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -628,6 +774,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 62
     y: 751
     width: 973
@@ -638,6 +785,12 @@ MonoBehaviour:
     width: 1360
     height: 292
 >>>>>>> origin/Wollys_working_copy
+=======
+    x: 0
+    y: 711
+    width: 1363
+    height: 307
+>>>>>>> Tims_working_branch
   m_SearchFilter:
     m_NameFilter: 
     m_ClassNames: []
@@ -650,6 +803,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
 <<<<<<< HEAD
     - Assets/Scenes/Menus
   m_ViewMode: 1
@@ -670,15 +824,29 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Materials/Becky_Mat
+=======
+    - Assets/Scenes/Levels
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scenes/Levels
+>>>>>>> Tims_working_branch
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Saxion\1-800-sixtynine-10\Repository\Clients Call
   m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 303}
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: 00000000b8290000242c00002c2c0000202d0000b22d0000da2e00002a2f0000fa2f0000b43100002a320000d03200003a330000a8340000b0340000de34000000ca9a3bffffff7f
 >>>>>>> origin/Wollys_working_copy
+=======
+    scrollPos: {x: 0, y: 413}
+    m_SelectedIDs: 5e2e0000
+    m_LastClickedID: 11870
+    m_ExpandedIDs: 00000000be2900001a2c00000a2d00000e2e00005e2e0000ae2e0000062f0000d82f000002300000b83000009831000002320000fe32000068340000963400000a3e00000c3e000000ca9a3bffffff7f
+>>>>>>> Tims_working_branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -695,10 +863,14 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 12}
 =======
       m_ClientGUIView: {fileID: 10}
 >>>>>>> origin/Wollys_working_copy
+=======
+      m_ClientGUIView: {fileID: 0}
+>>>>>>> Tims_working_branch
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -711,10 +883,14 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000942900004c2a0000d22b0000142d0000862e0000e22f0000383000005232000000ca9a3bffffff7f
 =======
     m_ExpandedIDs: 00000000b8290000242c00002c2c0000202d0000b22d0000da2e00002a2f0000fa2f0000b43100002a320000d03200003a330000a8340000b0340000de34000000ca9a3bffffff7f
 >>>>>>> origin/Wollys_working_copy
+=======
+    m_ExpandedIDs: 00000000be2900001a2c00000a2d00000e2e0000ae2e0000062f0000d82f000002300000b83000009831000002320000fe32000068340000963400000a3e00000c3e0000
+>>>>>>> Tims_working_branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -740,6 +916,7 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 90430000
     m_LastClickedInstanceID: 17296
     m_HadKeyboardFocusLastEvent: 1
@@ -750,6 +927,12 @@ MonoBehaviour:
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d632000000000000702d0000f2520000
 >>>>>>> origin/Wollys_working_copy
+=======
+    m_SelectedInstanceIDs: 2c2a0000
+    m_LastClickedInstanceID: 10796
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000
+>>>>>>> Tims_working_branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -766,10 +949,14 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 12}
 =======
       m_ClientGUIView: {fileID: 10}
 >>>>>>> origin/Wollys_working_copy
+=======
+      m_ClientGUIView: {fileID: 0}
+>>>>>>> Tims_working_branch
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -780,12 +967,17 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_DirectoriesAreaWidth: 244
 --- !u!114 &14
 =======
   m_DirectoriesAreaWidth: 231
 --- !u!114 &12
 >>>>>>> origin/Wollys_working_copy
+=======
+  m_DirectoriesAreaWidth: 259
+--- !u!114 &12
+>>>>>>> Tims_working_branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -807,6 +999,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
     x: 62
     y: 751
@@ -951,6 +1144,13 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &18
+=======
+    x: 0
+    y: 517
+    width: 1363
+    height: 501
+--- !u!114 &13
+>>>>>>> Tims_working_branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -964,6 +1164,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1475
     y: 0
     width: 383
@@ -984,6 +1185,11 @@ MonoBehaviour:
     x: 1362
     y: 0
     width: 558
+=======
+    x: 1365
+    y: 0
+    width: 555
+>>>>>>> Tims_working_branch
     height: 947
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
@@ -993,7 +1199,10 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &14
+<<<<<<< HEAD
 >>>>>>> origin/Wollys_working_copy
+=======
+>>>>>>> Tims_working_branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -1016,6 +1225,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1539
     y: 92
     width: 381
@@ -1026,6 +1236,12 @@ MonoBehaviour:
     width: 556
     height: 926
 >>>>>>> origin/Wollys_working_copy
+=======
+    x: 1367
+    y: 92
+    width: 553
+    height: 926
+>>>>>>> Tims_working_branch
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:

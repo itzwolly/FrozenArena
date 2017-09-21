@@ -7,6 +7,10 @@ TagManager:
   - Ground
   - Booster
   - BreakableTile
+<<<<<<< HEAD
+=======
+  - Checkpoint
+>>>>>>> Tims_working_branch
   layers:
   - Default
   - TransparentFX

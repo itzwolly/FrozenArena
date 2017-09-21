@@ -1,17 +1,27 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 1dd28d5887d28e445b3a1e69c311980f
 folderAsset: yes
 =======
+=======
+>>>>>>> Tims_working_branch
 <<<<<<< HEAD:Clients Call/Assets/Saves.meta
 guid: 1dd28d5887d28e445b3a1e69c311980f
 folderAsset: yes
 timeCreated: 1505312246
 =======
+<<<<<<< HEAD
 guid: 81189b2e21a815647a28e3437c86beb2
 folderAsset: yes
 timeCreated: 1457064777
 >>>>>>> Working_Version_(Do_Not_Duck_It_Up):Clients Call/Assets/Plugins/UWP/x64.meta
+=======
+guid: 0797f09718be0c24bb0c869fb9a04f1b
+folderAsset: yes
+timeCreated: 1505208436
+>>>>>>> Working_Version_(Do_Not_Duck_It_Up):Clients Call/Assets/Plugins/UWP.meta
+>>>>>>> Tims_working_branch
 licenseType: Free
 >>>>>>> origin/Wollys_working_copy
 DefaultImporter:
