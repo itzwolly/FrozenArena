@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-
 namespace FMODUnity
 {
     [AddComponentMenu("")]
@@ -40,9 +39,8 @@ namespace FMODUnity
                         if (existing.cachedPointers[0] != 0)
                         {
                             instance = existing;
-                            instance.studioSystem = new FMOD.Studio.System((IntPtr)instance.cachedPointers[0]);
-                            instance.lowlevelSystem = new FMOD.System((IntPtr)instance.cachedPointers[1]);
-                            instance.mixerHead = new FMOD.DSP((IntPtr)instance.cachedPointers[2]);
+                            instance.studioSystem.handle = ((IntPtr)instance.cachedPointers[0]);
+                            instance.lowlevelSystem.handle = ((IntPtr)instance.cachedPointers[1]);
                             return instance;
                         }
                     }
@@ -117,8 +115,8 @@ namespace FMODUnity
         FMOD.DSP mixerHead;
 
         [SerializeField]
-        private long[] cachedPointers = new long[3];
-        
+        private long[] cachedPointers = new long[2];
+
         struct LoadedBank
         {
             public FMOD.Studio.Bank Bank;
@@ -147,10 +145,10 @@ namespace FMODUnity
         {
             if (result != FMOD.RESULT.OK)
             {
-                if (studioSystem != null)
+                if (studioSystem.isValid())
                 {
                     studioSystem.release();
-                    studioSystem = null;
+					studioSystem.clearHandle();
                 }
                 throw new SystemNotInitializedException(result, cause);
             }
@@ -275,14 +273,14 @@ retry:
         bool listenerWarningIssued = false;
         void Update()
         {
-            if (studioSystem != null)
+            if (studioSystem.isValid())
             {
                 studioSystem.update();
 
                 bool foundListener = false;
                 bool hasAllListeners = false;
                 int numListeners = 0;
-                for (int i = FMOD.CONSTANTS.MAX_LISTENERS - 1; i >=0 ; i--)
+                for (int i = FMOD.CONSTANTS.MAX_LISTENERS - 1; i >= 0; i--)
                 {
                     if (!foundListener && HasListener[i])
                     {
@@ -351,11 +349,7 @@ retry:
                             FMOD.Studio.EventDescription desc;
                             eventPositionWarnings[i].getDescription(out desc);
                             desc.getPath(out path);
-                        #if UNITY_5
                             Debug.LogWarningFormat("FMOD Studio: Instance of Event {0} has not had EventInstance.set3DAttributes() called on it yet!", path);
-                        #else
-                            Debug.LogWarning(string.Format("FMOD Studio: Instance of Event {0} has not had EventInstance.set3DAttributes() called on it yet!", path));
-                        #endif
                         }
                     }
                     eventPositionWarnings.RemoveAt(i);
@@ -372,7 +366,7 @@ retry:
             attachedInstance.rigidBody = rigidBody;
             Instance.attachedInstances.Add(attachedInstance);
         }
-        
+
         public static void AttachInstanceToGameObject(FMOD.Studio.EventInstance instance, Transform transform, Rigidbody2D rigidBody2D)
         {
             var attachedInstance = new AttachedInstance();
@@ -388,7 +382,7 @@ retry:
             var manager = Instance;
             for (int i = 0; i < manager.attachedInstances.Count; i++)
             {
-                if (manager.attachedInstances[i].instance == instance)
+                if (manager.attachedInstances[i].instance.handle == instance.handle)
                 {
                     manager.attachedInstances.RemoveAt(i);
                     return;
@@ -399,7 +393,7 @@ retry:
         Rect windowRect = new Rect(10, 10, 300, 100);
         void OnGUI()
         {
-            if (studioSystem != null && Settings.Instance.IsOverlayEnabled(fmodPlatform))
+            if (studioSystem.isValid() && Settings.Instance.IsOverlayEnabled(fmodPlatform))
             {
                 windowRect = GUI.Window(0, windowRect, DrawDebugOverlay, "FMOD Studio Debug");
             }
@@ -417,7 +411,7 @@ retry:
                 }
                 else
                 {
-                    if (mixerHead == null)
+                    if (!mixerHead.hasHandle())
                     {
                         FMOD.ChannelGroup master;
                         lowlevelSystem.getMasterChannelGroup(out master);
@@ -439,14 +433,14 @@ retry:
                     lowlevelSystem.getChannelsPlaying(out channels, out realchannels);
                     debug.AppendFormat("CHANNELS: real = {0}, total = {1}\n", realchannels, channels);
 
-                    FMOD.DSP_METERING_INFO metering = new FMOD.DSP_METERING_INFO();
-                    mixerHead.getMeteringInfo(null, metering);
+                    FMOD.DSP_METERING_INFO outputMetering;
+                    mixerHead.getMeteringInfo(IntPtr.Zero, out outputMetering);
                     float rms = 0;
-                    for (int i = 0; i < metering.numchannels; i++)
+                    for (int i = 0; i < outputMetering.numchannels; i++)
                     {
-                        rms += metering.rmslevel[i] * metering.rmslevel[i];
+                        rms += outputMetering.rmslevel[i] * outputMetering.rmslevel[i];
                     }
-                    rms = Mathf.Sqrt(rms / (float)metering.numchannels);
+                    rms = Mathf.Sqrt(rms / (float)outputMetering.numchannels);
 
                     float db = rms > 0 ? 20.0f * Mathf.Log10(rms * Mathf.Sqrt(2.0f)) : -80.0f;
                     if (db > 10.0f) db = 10.0f;
@@ -464,26 +458,25 @@ retry:
         void OnDisable()
         {
             // If we're being torn down for a script reload - cache the native pointers in something unity can serialize
-            cachedPointers[0] = (long)studioSystem.getRaw();
-            cachedPointers[1] = (long)lowlevelSystem.getRaw();
-            cachedPointers[2] = (long)mixerHead.getRaw();
+            cachedPointers[0] = (long)studioSystem.handle;
+            cachedPointers[1] = (long)lowlevelSystem.handle;
         }
 
         void OnDestroy()
         {
-            if (studioSystem != null)
+            if (studioSystem.isValid())
             {
                 studioSystem.release();
-                studioSystem = null;
+                studioSystem.clearHandle();
             }
             initException = null;
             instance = null;
             isQuitting = true;
         }
-        
+
         void OnApplicationPause(bool pauseStatus)
         {
-            if (studioSystem != null && studioSystem.isValid())
+            if (studioSystem.isValid())
             {
                 PauseAllEvents(pauseStatus);
 
@@ -659,7 +652,7 @@ retry:
             }
             return loading;
         }
-        
+
         public static void WaitForAllLoads()
         {
             Instance.studioSystem.flushSampleLoading();
@@ -682,7 +675,7 @@ retry:
             }
             return guid;
         }
-        
+
         public static FMOD.Studio.EventInstance CreateInstance(string path)
         {
             try
@@ -715,7 +708,7 @@ retry:
 
             return newInstance;
         }
-        
+
         public static void PlayOneShot(string path, Vector3 position = new Vector3())
         {
             try
@@ -772,7 +765,7 @@ retry:
 
         public static FMOD.Studio.EventDescription GetEventDescription(Guid guid)
         {
-            FMOD.Studio.EventDescription eventDesc = null;
+            FMOD.Studio.EventDescription eventDesc;
             if (Instance.cachedDescriptions.ContainsKey(guid) && Instance.cachedDescriptions[guid].isValid())
             {
                 eventDesc = Instance.cachedDescriptions[guid];
@@ -786,7 +779,7 @@ retry:
                     throw new EventNotFoundException(guid);
                 }
 
-                if (eventDesc != null && eventDesc.isValid())
+                if (eventDesc.isValid())
                 {
                     Instance.cachedDescriptions[guid] = eventDesc;
                 }
@@ -826,24 +819,20 @@ retry:
             Instance.studioSystem.setListenerAttributes(listenerIndex, transform.To3DAttributes());
         }
 
-        public static FMOD.Studio.Bus GetBus(String path)
+        public static FMOD.Studio.Bus GetBus(string path)
         {
-            FMOD.RESULT result;
             FMOD.Studio.Bus bus;
-            result = StudioSystem.getBus(path, out bus);
-            if (result != FMOD.RESULT.OK)
+            if (StudioSystem.getBus(path, out bus) != FMOD.RESULT.OK)
             {
                 throw new BusNotFoundException(path);
             }
             return bus;
         }
 
-        public static FMOD.Studio.VCA GetVCA(String path)
+        public static FMOD.Studio.VCA GetVCA(string path)
         {
-            FMOD.RESULT result;
             FMOD.Studio.VCA vca;
-            result = StudioSystem.getVCA(path, out vca);
-            if (result != FMOD.RESULT.OK)
+            if (StudioSystem.getVCA(path, out vca) != FMOD.RESULT.OK)
             {
                 throw new VCANotFoundException(path);
             }
@@ -864,14 +853,14 @@ retry:
         {
             get
             {
-                return instance != null && instance.studioSystem != null;
+                return instance != null && instance.studioSystem.isValid();
             }
         }
 
         private void LoadPlugins(Settings fmodSettings)
         {
             #if (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
-            FmodUnityNativePluginInit(lowlevelSystem.getRaw());
+            FmodUnityNativePluginInit(lowlevelSystem.handle);
             #else
 
             FMOD.RESULT result;

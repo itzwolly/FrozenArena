@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceProjectPathUnformatted: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceBankPathUnformatted: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\Build
+  sourceProjectPath: C:\Users\Joovel\Desktop\Frozen arena\FMOD Studio\FMOD Studio\FrozenArena\FrozenArena.fspro
+  SourceProjectPathUnformatted: C:\Users\Joovel\Desktop\Frozen arena\FMOD Studio\FMOD
+    Studio\FrozenArena\FrozenArena.fspro
+  SourceBankPathUnformatted: C:\Users\Joovel\Desktop\Frozen arena\FMOD Studio\FMOD
+    Studio\FrozenArena\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0

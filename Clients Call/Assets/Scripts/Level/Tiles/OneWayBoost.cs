@@ -8,7 +8,18 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private AudioClip SpeedingPlayer;
     [SerializeField] private ParticleSystem _psystem;
 
-    private enum Direction {
+    public Direction GetDirection {
+        get { return _direction; }
+        set { _direction = value; }
+    }
+
+    public float SpeedBoost
+    {
+        get { return _speedBoost; }
+        set { _speedBoost = value; }
+    }
+
+    public enum Direction {
         Right,
         Down,
         Left,

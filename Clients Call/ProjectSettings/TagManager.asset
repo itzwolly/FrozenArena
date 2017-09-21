@@ -4,18 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Fire
-  - Pickup
-  - Ground
-=======
   - Ground
   - Booster
   - Pickup
   - BreakableTile
-  - Level
   - Checkpoint
->>>>>>> Working_Version_(Do_Not_Duck_It_Up)
   layers:
   - Default
   - TransparentFX

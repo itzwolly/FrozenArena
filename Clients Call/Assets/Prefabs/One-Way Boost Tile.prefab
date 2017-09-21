@@ -220,7 +220,7 @@ MonoBehaviour:
   _direction: 1
   _speedBoost: 100
   SpeedingPlayer: {fileID: 8300000, guid: 3163ef5b2b644b4478bd2d9f130fce72, type: 3}
-  _psystem: {fileID: 198987491137850550}
+  _psystem: {fileID: 0}
 --- !u!198 &198987491137850550
 ParticleSystem:
   m_ObjectHideFlags: 1
