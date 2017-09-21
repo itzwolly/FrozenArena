@@ -136,9 +136,9 @@ namespace FMODUnity
             }
             
 
-            FMOD.Studio.Bank stringBank = null;
+            FMOD.Studio.Bank stringBank;
             EditorUtils.CheckResult(EditorUtils.System.loadBankFile(stringBankPath, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out stringBank));
-            if (stringBank == null)
+            if (!stringBank.isValid())
             {
                 countdownTimer = CountdownTimerReset;
                 return;
@@ -215,7 +215,7 @@ namespace FMODUnity
 
             // Reload the strings bank
             EditorUtils.CheckResult(EditorUtils.System.loadBankFile(stringBankPath, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out stringBank));
-            if (stringBank == null)
+            if (!stringBank.isValid())
             {
                 ClearCache();
                 return;

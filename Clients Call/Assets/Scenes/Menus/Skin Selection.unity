@@ -140,7 +140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 31.99997, y: 229.99998}
+  m_AnchoredPosition: {x: 32, y: 229.99998}
   m_SizeDelta: {x: 250, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288429083
@@ -648,7 +648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &753750428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1204,7 +1204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1262439644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1512,6 +1512,7 @@ GameObject:
   - component: {fileID: 1446647550}
   - component: {fileID: 1446647553}
   - component: {fileID: 1446647554}
+  - component: {fileID: 1446647555}
   m_Layer: 0
   m_Name: Menu Canvas
   m_TagString: Untagged
@@ -1640,9 +1641,25 @@ MonoBehaviour:
   _player1BallSprites:
   - {fileID: 21300000, guid: afe2bbb2dd6cd9c4485f4698d6a7afc1, type: 3}
   - {fileID: 21300000, guid: 4ff7d7723ebadab438a92e6cb697a5b9, type: 3}
+  - {fileID: 21300000, guid: 8a51a3afc224d50438700a73b723306d, type: 3}
+  - {fileID: 21300000, guid: e2b1043f89f63b5429c53b03e1241238, type: 3}
   _player2BallSprites:
   - {fileID: 21300000, guid: 4ed3a02a4fcbbcc47a5431089251bd51, type: 3}
   - {fileID: 21300000, guid: 15fed7191b311764798944aa28c9457f, type: 3}
+  - {fileID: 21300000, guid: 910da6d4c4776904f94a6243f65986cd, type: 3}
+  - {fileID: 21300000, guid: 79880b6ecfef9f040904a158d1bc7c2b, type: 3}
+--- !u!114 &1446647555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446647548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda095d4cee1014489645cd4b3f59098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToWaitAfterReady: 3
 --- !u!1 &1447786581
 GameObject:
   m_ObjectHideFlags: 0

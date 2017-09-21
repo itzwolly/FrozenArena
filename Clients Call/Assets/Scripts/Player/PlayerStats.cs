@@ -18,12 +18,15 @@ public class PlayerStats {
     // high speed
     private float _highestVelocity;
 
+    private bool _hasWon;
+
     // score
     public int Score {
         get { return _score; }
         set {
-            if (_score < 9) {
-                _score = value;
+            _score = value;
+            if (_score > 3) {
+                _score = 3;
             }
         }
     }
@@ -68,5 +71,10 @@ public class PlayerStats {
             return (float) Math.Round(_totalAmountOfMetersTravelled, 2);
         }
         set { _totalAmountOfMetersTravelled = value; }
+    }
+
+    public bool HasWon {
+        get { return _hasWon; }
+        set { _hasWon = value; }
     }
 }

@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     [SerializeField] private int _code;
-    public int Code
-    {
-        get { return _code; }
-    }
     [SerializeField] private KeyCode _forward;
     [SerializeField] private KeyCode _back;
     [SerializeField] private KeyCode _left;
@@ -16,11 +12,19 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float _speed;
     [SerializeField] private AudioClip HitBreakable;
     [SerializeField] private AudioClip HitOtherPlayer;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private ParticleSystem _psystem;
+    [SerializeField] private ParticleSystem _psystemBoost;
     
     private Dictionary<KeyCode, Action> ButtonActions = new Dictionary<KeyCode, Action>();
     private float _currentSpeed;
     private float _distToGround;
     private Vector3 _lastPosition;
+
+    public int Code
+    {
+        get { return _code; }
+    }
 
     public float Speed
     {
@@ -32,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
         get { return _currentSpeed; }
         set { _currentSpeed = value; }
     }
-    
+
     private void Awake() {
         _currentSpeed = _speed;
         _lastPosition = transform.position;
@@ -43,12 +47,23 @@ public class PlayerMovement : MonoBehaviour {
         FillButtons();
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.tag == "Player") {
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag=="Player")
+        {
             PlayerStatsHandler.Instance.PlayerData[name].AmountOfTimeHitOpponent++;
             GetComponent<AudioSource>().PlayOneShot(HitOtherPlayer);
-        } else if (collision.transform.tag == "BreakableTile") {
+            _psystem.Play();
+        }
+        else if(collision.transform.tag == "BreakableTile")
+        {
             GetComponent<AudioSource>().PlayOneShot(HitBreakable);
+            _psystem.Play();
+        }
+        else if (collision.transform.tag == "Booster")
+        {
+            _psystemBoost.Play();
         }
     }
 
@@ -78,7 +93,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update () {
+    void Update () {
         foreach (KeyCode k in ButtonActions.Keys)
         {
             if (Input.GetKey(k))
@@ -97,9 +112,11 @@ public class PlayerMovement : MonoBehaviour {
                 PlayerStatsHandler.Instance.PlayerData[name].HighestVelocity = GetComponent<Rigidbody>().velocity.magnitude;
             }
         }
-    }
 
-     private bool IsGrounded() {
-       return Physics.Raycast(transform.position, -Vector3.up, _distToGround + 0.1f);
-     }
+        _audioSource.pitch = gameObject.GetComponent<Rigidbody>().velocity.magnitude - 1;
+    }
+    
+    private bool IsGrounded() {
+        return Physics.Raycast(transform.position, -Vector3.up, _distToGround + 0.1f);
+    }
 }

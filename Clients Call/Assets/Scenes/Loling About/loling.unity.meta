@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Clients Call/Assets/Scenes/Loling About/loling.unity.meta
 guid: b8c1b06954c784645991dd0cf741a974
 timeCreated: 1505920103
+=======
+guid: ce69cbe1a6cc79e4084bd376276f52f8
+timeCreated: 1505896881
+>>>>>>> origin/Wollys_working_copy:Clients Call/Assets/Models/Skybox_ClientCall.unitypackage.meta
 licenseType: Free
 DefaultImporter:
   userData: 

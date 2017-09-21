@@ -4,8 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Pickup
   - Booster
+=======
+  - Booster
+  - Fire
+  - Pickup
+  - BreakableTile
+  - Ground
+>>>>>>> origin/Wollys_working_copy
   - Checkpoint
   layers:
   - Default

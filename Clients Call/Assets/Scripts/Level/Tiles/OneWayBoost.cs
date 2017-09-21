@@ -7,13 +7,6 @@ public class OneWayBoost : MonoBehaviour {
     [SerializeField] private float _speedBoost;
     [SerializeField] private AudioClip SpeedingPlayer;
 
-    public enum Direction {
-        Right,
-        Down,
-        Left,
-        Up
-    }
-
     public Direction GetDirection {
         get { return _direction; }
         set { _direction = value; }
@@ -21,6 +14,13 @@ public class OneWayBoost : MonoBehaviour {
     public float SpeedBoost {
         get { return _speedBoost; }
         set { _speedBoost = value; }
+    }
+
+    public enum Direction {
+        Right,
+        Down,
+        Left,
+        Up
     }
 
     private void OnValidate() {
@@ -43,12 +43,16 @@ public class OneWayBoost : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Boosting player: " + collision.transform.name);
+        _psystem.Play();
         if (collision.transform.tag == "Player") {
+            Debug.Log("Tag equals player");
             switch (_direction) {
                 case Direction.Right:
                     ActivateBoost(collision.gameObject, Vector3.right * _speedBoost);
                     break;
                 case Direction.Down:
+                    Debug.Log("Going down.");
                     ActivateBoost(collision.gameObject, Vector3.back * _speedBoost);
                     break;
                 case Direction.Left:
@@ -66,8 +70,5 @@ public class OneWayBoost : MonoBehaviour {
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
         GetComponent<AudioSource>().PlayOneShot(SpeedingPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
-
-        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].TotalAmountBoosted++;
-        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].AmountBoostedOneWay++;
     }
 }

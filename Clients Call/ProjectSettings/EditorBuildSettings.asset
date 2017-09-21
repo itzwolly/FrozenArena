@@ -5,30 +5,46 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Levels/sp_level_x.unity
-    guid: 6b2b101de67eebf448573293936a6b99
   - enabled: 1
-    path: Assets/Scenes/Levels/sp_level_1.unity
-    guid: 181b86e92589632439b565054f6e9b0c
+    path: Assets/Scenes/Menus/Main Menu.unity
+    guid: 70e807890a07d174399a54082e964484
   - enabled: 1
-    path: Assets/Scenes/Levels/sp_level_2.unity
-    guid: ca722024fa6a25443bac7a2a03f614fd
-  - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Levels/sp_level_3.unity
     guid: 776fcc0c85cc61a4292ae33ad4ee0626
+=======
+    path: Assets/Scenes/Menus/Team Select.unity
+    guid: ab280024fbcab7a4fb67f12ce95b3d00
+>>>>>>> origin/Wollys_working_copy
   - enabled: 1
-    path: Assets/Scenes/Levels/sp_level_4.unity
-    guid: 49309a0dc64ab5e48aa6688ac5869a58
+    path: Assets/Scenes/Menus/Skin Selection.unity
+    guid: 58488a986065c2243862889e9e8cd4d1
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Levels/sp_level_5.unity
     guid: 06fdec4f0a33251489d3d06ca9628591
+=======
+    path: Assets/Scenes/Menus/Arena Selection MP.unity
+    guid: 9524d3cd1af2c274782326ea8b7c14d5
   - enabled: 1
-    path: Assets/Scenes/Levels/sp_level_6.unity
-    guid: 41e54d35bd41d674f8dbc192a80c71c7
+    path: Assets/Scenes/Menus/SinglePlayer/Arena Selection SP.unity
+    guid: 4d8b015abdd446d49b1e8870efea013c
   - enabled: 1
-    path: Assets/Scenes/Levels/sp_level_7.unity
-    guid: abcacbd562f3e9640b69cd4d85f35d13
+    path: Assets/Scenes/Menus/GamePreviewMP.unity
+    guid: 647bd2bacba5c694b9562e1bdc781fee
+  - enabled: 1
+    path: Assets/Scenes/Menus/SinglePlayer/GamePreviewSP.unity
+    guid: 9021751736cbdd149baf8d183eb861cd
+  - enabled: 1
+    path: Assets/Scenes/Menus/Builder Menu.unity
+    guid: 443f263306cd7c148b106db4bccb376a
+>>>>>>> origin/Wollys_working_copy
+  - enabled: 1
+    path: Assets/Scenes/Menus/Builder.unity
+    guid: 272fef1eb49321e46b1376ad05c0b383
+  - enabled: 1
+    path: Assets/Scenes/Menus/Story.unity
+    guid: 73cba04d229e91f48b68b2f8afed34f2
   - enabled: 1
     path: Assets/Scenes/Levels/mp_level_1.unity
     guid: eec2e4a0432add64e809adc2de7d080a
@@ -54,5 +70,37 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/mp_level_8.unity
     guid: 1146731cd07dc88498f190544c969dc0
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Menus/Story.unity
     guid: 73cba04d229e91f48b68b2f8afed34f2
+=======
+    path: Assets/Scenes/Levels/sp_level_1.unity
+    guid: 181b86e92589632439b565054f6e9b0c
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_2.unity
+    guid: ca722024fa6a25443bac7a2a03f614fd
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_3.unity
+    guid: 776fcc0c85cc61a4292ae33ad4ee0626
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_4.unity
+    guid: 49309a0dc64ab5e48aa6688ac5869a58
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_5.unity
+    guid: 06fdec4f0a33251489d3d06ca9628591
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_6.unity
+    guid: 41e54d35bd41d674f8dbc192a80c71c7
+  - enabled: 1
+    path: Assets/Scenes/Levels/sp_level_7.unity
+    guid: abcacbd562f3e9640b69cd4d85f35d13
+  - enabled: 1
+    path: Assets/Scenes/Menus/Resolution_nextmap.unity
+    guid: 2909117d5f0f6b84ba4af6c6dfa67220
+  - enabled: 1
+    path: Assets/Scenes/Menus/Resolution_nonextmap.unity
+    guid: 447f22ec4cc0dfa4b9b96cd6b8008224
+  - enabled: 1
+    path: Assets/Scenes/Menus/SinglePlayer/ResolutionSP.unity
+    guid: 60182c0ffd46af14e985bf5a20b54e8c
+>>>>>>> origin/Wollys_working_copy
