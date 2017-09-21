@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour {
         _distToGround = GetComponent<Collider>().bounds.extents.y;
         FillButtons();
 
+
         if (MenuDataHandler.Instance.IsPlayer1Purple) {
             if (MenuDataHandler.Instance.Player1PreviewSkin.name.Contains("classic")) {
                 if (name == "Player_1") {

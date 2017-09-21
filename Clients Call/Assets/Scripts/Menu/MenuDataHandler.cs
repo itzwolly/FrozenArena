@@ -17,7 +17,14 @@ public class MenuDataHandler : Singleton<MenuDataHandler> {
     private List<MapData> _queuedMaps;
     private List<MapData> _copyQueuedMaps;
 
+    private bool _hasCreatedEmitter;
+
     private int _winnerIndex;
+
+    public bool HasCreatedEmitter {
+        get { return _hasCreatedEmitter; }
+        set { _hasCreatedEmitter = value; }
+    }
 
     public List<MapData> QueuedMaps {
         get { return _queuedMaps; }

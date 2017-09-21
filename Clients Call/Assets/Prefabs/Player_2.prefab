@@ -502,6 +502,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7b18bf829a0ecbd4d82af8fbe6c77c81, type: 2}
   _classicMesh: {fileID: 4300004, guid: ef29baa0d8610804e8ba33f5f2615d6b, type: 3}
   _stoneMesh: {fileID: 4300000, guid: e5abe3c089d7f284fa49040455f1918b, type: 3}
+  _purpleTrail: {fileID: 0}
+  _yellowTrail: {fileID: 96573073053009472}
 --- !u!135 &135048783746660004
 SphereCollider:
   m_ObjectHideFlags: 1
