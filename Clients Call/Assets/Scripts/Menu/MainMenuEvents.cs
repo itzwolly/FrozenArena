@@ -17,7 +17,7 @@ public class MainMenuEvents : MonoBehaviour {
     }
 
     public void OnMapBuilderClick() {
-        // Load map builder scene
+        SceneManager.LoadScene("loling");
 
     }
 

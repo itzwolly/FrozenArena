@@ -68,6 +68,13 @@ public class MenuDataHandler : Singleton<MenuDataHandler> {
         set { _player2HeaderImage = value; }
     }
 
+    private string _newLevelName;
+    public string NewLevelName
+    {
+        get { return _newLevelName; }
+        set { _newLevelName = value; }
+    }
+
     public int PlayersReady {
         get { return _playersReady; }
         set { _playersReady = value; }

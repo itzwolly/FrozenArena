@@ -11,12 +11,13 @@ public class QueueMaps : MonoBehaviour {
     [SerializeField] GameObject _start;
 
     private List<MapData> _queuedMaps = new List<MapData>();
-
+    private MenuDataHandler _handler;
     public List<MapData> QueuedMaps {
         get { return _queuedMaps; }
     }
 
     private void Start() {
+        _handler = MenuDataHandler.Instance;
         MenuDataHandler.Instance.QueuedMaps = new List<MapData>();
         MenuDataHandler.Instance.CopyQueuedMaps = new List<MapData>();
     }
@@ -26,7 +27,7 @@ public class QueueMaps : MonoBehaviour {
 		if (Input.GetKeyUp(_interactionKey)) {
             if (_eventSystem.currentSelectedGameObject != null) {
                 GameObject obj = _eventSystem.currentSelectedGameObject;
-
+                _handler.NewLevelName = obj.GetComponent<MapData>().Name;
                 if (obj != _start) {
                     if (!_queuedMaps.Contains(obj.GetComponent<MapData>())) {
                         //if (_queuedMaps.Any(o => o.Name == obj.GetComponent<MapData>().Name)) {

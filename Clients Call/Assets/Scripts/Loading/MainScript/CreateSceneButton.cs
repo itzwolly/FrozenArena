@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CreateSceneButton : MonoBehaviour
@@ -404,6 +405,11 @@ public class CreateSceneButton : MonoBehaviour
         }
         tile.transform.Translate(direction);
     }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     
     public void ReturnToInputInfo()
     {
@@ -432,7 +438,7 @@ public class CreateSceneButton : MonoBehaviour
         return _keyboard.GetComponent<KeyboardString>().String;
     }
 
-    public void SetNewScene(string s)
+    public void SetNewLevel(string s)
     {
         _sceneName = s;
     }

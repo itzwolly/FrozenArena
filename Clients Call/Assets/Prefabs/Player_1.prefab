@@ -488,6 +488,8 @@ MonoBehaviour:
   _back: 115
   _left: 97
   _right: 100
+  _ability1: 113
+  _ability2: 101
   _speed: 24000
   HitBreakable: {fileID: 8300000, guid: ebc2fdc0fb5bb204bb23ad6c583d9a46, type: 3}
   HitOtherPlayer: {fileID: 8300000, guid: 1f61f079bf1a2b64f951c7903074d24d, type: 3}

@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Loling About/loling.unity
+    guid: b8c1b06954c784645991dd0cf741a974
+  - enabled: 1
+    path: Assets/Scenes/Menus/Main Menu.unity
+    guid: 70e807890a07d174399a54082e964484
+  - enabled: 1
+    path: Assets/Scenes/Level Edit/LevelLoadSeparate.unity
+    guid: dbf631944d3849448b100a22684005f5
+  - enabled: 1
+    path: Assets/Scenes/Menus/GamePreviewMP.unity
+    guid: 647bd2bacba5c694b9562e1bdc781fee
