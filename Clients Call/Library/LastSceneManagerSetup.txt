@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Level Edit/LevelEditor.unity
-=======
-- path: Assets/Scenes/Menus/Main Menu.unity
->>>>>>> origin/Wollys_working_copy
+- path: Assets/Scenes/Level Edit/LevelLoadSeparate.unity
   isLoaded: 1
   isActive: 1

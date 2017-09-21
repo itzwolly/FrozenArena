@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceProjectPathUnformatted: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceBankPathUnformatted: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\Build
+  sourceProjectPath: 
+  SourceProjectPathUnformatted: 
+  SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -41,9 +41,7 @@ MonoBehaviour:
     Value: 1
   - Platform: 2
     Value: 0
-  BankDirectorySettings:
-  - Platform: 2
-    Value: Desktop
+  BankDirectorySettings: []
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
@@ -54,13 +52,6 @@ MonoBehaviour:
     Value: 256
   - Platform: 2
     Value: 32
-<<<<<<< HEAD
   Plugins: []
   MasterBank: 
-=======
-  Plugins:
-  - 
-  - 
-  MasterBank: Master Bank
->>>>>>> origin/Wollys_working_copy
   Banks: []
