@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CreateSceneButton : MonoBehaviour
 {
+    [SerializeField] bool _toNotEdit;
     [SerializeField] Camera _camera;
     [SerializeField] GameObject Player1;
     private bool _createdPlayer1;
@@ -185,187 +186,190 @@ public class CreateSceneButton : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(_changedBlock)
+        if (!_toNotEdit)
         {
-            _movingBlock = Instantiate(_selectedTile);
-            _movingBlock.transform.position = _lastPosition;
-            _changedBlock = false;
-        }
-        if (_editing)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (_changedBlock)
             {
-                MoveTile(_movingBlock, new Vector3(-1, 0, 0));
+                _movingBlock = Instantiate(_selectedTile);
+                _movingBlock.transform.position = _lastPosition;
+                _changedBlock = false;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (_editing)
             {
-                MoveTile(_movingBlock, new Vector3(1, 0, 0));
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                MoveTile(_movingBlock, new Vector3(0, 0, 1));
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                MoveTile(_movingBlock, new Vector3(0, 0, -1));
-            }
-            if(Input.GetKey(KeyCode.Space))
-            {
-                _popOutCounter++;
-                if(_popOutCounter>60)
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    StartButtons.SetActive(false);
-                    EditButtons.SetActive(false);
-                    PopOutButtons.SetActive(true);
-                    _popOut = true;
-                    _editing = false;
+                    MoveTile(_movingBlock, new Vector3(-1, 0, 0));
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    MoveTile(_movingBlock, new Vector3(1, 0, 0));
+                }
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    MoveTile(_movingBlock, new Vector3(0, 0, 1));
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    MoveTile(_movingBlock, new Vector3(0, 0, -1));
+                }
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    _popOutCounter++;
+                    if (_popOutCounter > 60)
+                    {
+                        StartButtons.SetActive(false);
+                        EditButtons.SetActive(false);
+                        PopOutButtons.SetActive(true);
+                        _popOut = true;
+                        _editing = false;
+                    }
                 }
             }
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            //Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
-            if (!_popOut&&_editing)
+            if (Input.GetKeyUp(KeyCode.Space))
             {
-                if (_selectedTile == _deleteBlockBrush)
+                //Debug.Log("Popout = "+_popOut+"| Editing = "+_editing);
+                if (!_popOut && _editing)
                 {
-                    RaycastHit raycasthit;
-                    if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
+                    if (_selectedTile == _deleteBlockBrush)
                     {
-                        if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
+                        RaycastHit raycasthit;
+                        if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
                         {
-                            _level.Remove(raycasthit.transform.gameObject);
-                            if (_level.Count > 1)
-                                _previousTile = _level[_level.Count - 1];
-                            else
-                                _previousTile = null;
-                            Destroy(raycasthit.transform.gameObject);
+                            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
+                            {
+                                _level.Remove(raycasthit.transform.gameObject);
+                                if (_level.Count > 1)
+                                    _previousTile = _level[_level.Count - 1];
+                                else
+                                    _previousTile = null;
+                                Destroy(raycasthit.transform.gameObject);
+                            }
                         }
-                    }
 
-                }
-                else if (_selectedTile==_bombTileBrush)
-                {
-                    _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
-                    _previousTile = _movingBlock;
-                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                    _bombs.Add(_movingBlock);
-                    _movingBlock = Instantiate(_selectedTile);
-                    _movingBlock.name += _level.Count.ToString();
-                    _movingBlock.transform.position = pos;
-                }
-                else if (_selectedTile == Player1)
-                {
-                    if (_player1 != null)
-                    {
-                        _player1.transform.position = _movingBlock.transform.position;
                     }
-                    else
+                    else if (_selectedTile == _bombTileBrush)
                     {
                         _level.Add(_movingBlock);
                         _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                        _player1 = _movingBlock;
-                        _player1.GetComponent<Rigidbody>().mass = _playerMass;
-                        _player1.GetComponent<Collider>().material = _bounceChanged;
-                        _player1.GetComponent<PlayerMovement>().enabled = false;
-                        _player1.GetComponent<Rigidbody>().useGravity = false;
-                        _selectedTile = _normalBlockBrush;
+                        _bombs.Add(_movingBlock);
                         _movingBlock = Instantiate(_selectedTile);
+                        _movingBlock.name += _level.Count.ToString();
                         _movingBlock.transform.position = pos;
-                        foreach(GameObject obj in _bombs)
+                    }
+                    else if (_selectedTile == Player1)
+                    {
+                        if (_player1 != null)
                         {
-                            obj.GetComponent<BombTile>().Players[0] = _player1;
+                            _player1.transform.position = _movingBlock.transform.position;
+                        }
+                        else
+                        {
+                            _level.Add(_movingBlock);
+                            _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
+                            _previousTile = _movingBlock;
+                            Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                            _player1 = _movingBlock;
+                            _player1.GetComponent<Rigidbody>().mass = _playerMass;
+                            _player1.GetComponent<Collider>().material = _bounceChanged;
+                            _player1.GetComponent<PlayerMovement>().enabled = false;
+                            _player1.GetComponent<Rigidbody>().useGravity = false;
+                            _selectedTile = _normalBlockBrush;
+                            _movingBlock = Instantiate(_selectedTile);
+                            _movingBlock.transform.position = pos;
+                            foreach (GameObject obj in _bombs)
+                            {
+                                obj.GetComponent<BombTile>().Players[0] = _player1;
+                            }
                         }
                     }
-                }
-                else if (_selectedTile == Player2)
-                {
-                    if (_player2 != null)
+                    else if (_selectedTile == Player2)
                     {
-                        _player2.transform.position = _movingBlock.transform.position;
+                        if (_player2 != null)
+                        {
+                            _player2.transform.position = _movingBlock.transform.position;
+                        }
+                        else
+                        {
+                            _level.Add(_movingBlock);
+                            _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
+                            _previousTile = _movingBlock;
+                            Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                            _player2 = _movingBlock;
+                            _player2.GetComponent<Rigidbody>().mass = _playerMass;
+                            _player2.GetComponent<Collider>().material = _bounceChanged;
+                            _player2.GetComponent<PlayerMovement>().enabled = false;
+                            _player2.GetComponent<Rigidbody>().useGravity = false;
+                            _selectedTile = _normalBlockBrush;
+                            _movingBlock = Instantiate(_selectedTile);
+                            _movingBlock.transform.position = pos;
+                            foreach (GameObject obj in _bombs)
+                            {
+                                obj.GetComponent<BombTile>().Players[1] = _player2;
+                            }
+                        }
+                    }
+                    else if (_selectedTile == _selectBlockBrush)
+                    {
+                        RaycastHit raycasthit;
+                        if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
+                        {
+                            if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
+                            {
+                                _previousTile = raycasthit.transform.gameObject;
+                                Destroy(_movingBlock);
+                                _changedBlock = true;
+                                _selectedTile = Instantiate(raycasthit.transform.gameObject);
+                            }
+                        }
+                    }
+                    else if (_selectedTile == _normalBlockBrush)
+                    {
+                        _level.Add(_movingBlock);
+                        _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().NormalTileSave);
+                        _previousTile = _movingBlock;
+                        Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
+                        _movingBlock.GetComponent<Collider>().material = _iceChanged;
+                        _movingBlock = Instantiate(_selectedTile);
+                        _movingBlock.name += _level.Count.ToString();
+                        _movingBlock.transform.position = pos;
                     }
                     else
                     {
+
                         _level.Add(_movingBlock);
                         _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
                         _previousTile = _movingBlock;
                         Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                        _player2 = _movingBlock;
-                        _player2.GetComponent<Rigidbody>().mass = _playerMass;
-                        _player2.GetComponent<Collider>().material = _bounceChanged;
-                        _player2.GetComponent<PlayerMovement>().enabled = false;
-                        _player2.GetComponent<Rigidbody>().useGravity = false;
-                        _selectedTile = _normalBlockBrush;
                         _movingBlock = Instantiate(_selectedTile);
+                        _movingBlock.name += _level.Count.ToString();
                         _movingBlock.transform.position = pos;
-                        foreach (GameObject obj in _bombs)
-                        {
-                            obj.GetComponent<BombTile>().Players[1] = _player2;
-                        }
                     }
-                }
-                else if(_selectedTile==_selectBlockBrush)
-                {
-                    RaycastHit raycasthit;
-                    if (Physics.Raycast(_movingBlock.transform.position, new Vector3(0, -1, 0), out raycasthit))
-                    {
-                        if (raycasthit.transform.tag == "Ground" || raycasthit.transform.tag == "BreakableTile")
-                        {
-                            _previousTile = raycasthit.transform.gameObject;
-                            Destroy(_movingBlock);
-                            _changedBlock = true;
-                            _selectedTile = Instantiate(raycasthit.transform.gameObject);
-                        }
-                    }
-                }
-                else if(_selectedTile==_normalBlockBrush)
-                {
-                    _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().NormalTileSave);
-                    _previousTile = _movingBlock;
-                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                    _movingBlock.GetComponent<Collider>().material = _iceChanged;
-                    _movingBlock = Instantiate(_selectedTile);
-                    _movingBlock.name += _level.Count.ToString();
-                    _movingBlock.transform.position = pos;
                 }
                 else
                 {
-
-                    _level.Add(_movingBlock);
-                    _movingBlock.transform.SetParent(LevelSave.GetComponent<LoadSaveLevelScript>().SpecialTileSave);
-                    _previousTile = _movingBlock;
-                    Vector3 pos = _movingBlock.transform.position + new Vector3(0, 1, 0);
-                    _movingBlock = Instantiate(_selectedTile);
-                    _movingBlock.name += _level.Count.ToString();
-                    _movingBlock.transform.position = pos;
+                    EditButtons.SetActive(true);
+                    PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
+                    PopOutButtons.SetActive(false);
+                    if (_popOut == true)
+                    {
+                        _popOut = false;
+                        _editing = true;
+                    }
+                    Debug.Log("ClosingPoput");
+                    try
+                    {
+                        //Debug.Log("Doing the action");
+                        PopOutButtons.GetComponent<PopOutMenuScript>().ToDo();
+                    }
+                    catch
+                    {
+                        //Debug.Log("Nothing to do");
+                    }
                 }
+                _popOutCounter = 0;
             }
-            else
-            {
-                EditButtons.SetActive(true);
-                PopOutButtons.GetComponent<PopOutMenuScript>().Deselect();
-                PopOutButtons.SetActive(false);
-                if (_popOut == true)
-                {
-                    _popOut = false;
-                    _editing = true;
-                }
-                Debug.Log("ClosingPoput");
-                try
-                {
-                    //Debug.Log("Doing the action");
-                    PopOutButtons.GetComponent<PopOutMenuScript>().ToDo();
-                }
-                catch
-                {
-                    //Debug.Log("Nothing to do");
-                }
-            }
-            _popOutCounter = 0;
         }
     }
 
