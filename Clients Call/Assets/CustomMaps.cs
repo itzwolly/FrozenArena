@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DLLLibrary;
 using UnityEngine.UI;
+#if UNITY_EDITOR 
 using UnityEditor;
+#endif
 
 public class CustomMaps : MonoBehaviour {
     private MenuDataHandler _handler;
@@ -45,9 +47,11 @@ public class CustomMaps : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Selection.activeGameObject.GetComponent<MapData>().Name!=_handler.NewLevelName)
+#if UNITY_EDITOR
+        if (Selection.activeGameObject.GetComponent<MapData>().Name!=_handler.NewLevelName)
         {
             _handler.NewLevelName = Selection.activeGameObject.GetComponent<MapData>().Name;
         }
-	}
+#endif
+    }
 }
