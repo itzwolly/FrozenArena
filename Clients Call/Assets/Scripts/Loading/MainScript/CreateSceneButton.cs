@@ -551,32 +551,29 @@ public class CreateSceneButton : MonoBehaviour
         if (!_createdPlayer1)
         {
             _changedBlock = true;
-            _selectedTile = (_player1);
+            _selectedTile = (Player1);
             _createdPlayer1 = true;
         }
         else
         {
-            _selectedTile = (_normalBlockBrush);
+            _selectedTile = (Player1);
+            _changedBlock = true;
         }
     }
     public void SelectPlayer2()
     {
-        if(_isSinglePlayer)
-        {
-            SelectPlayer1();
-            return;
-        }
         _lastPosition = _movingBlock.transform.position;
         Destroy(_movingBlock);
         if (!_createdPlayer2)
         {
             _changedBlock = true;
-            _selectedTile = (_player2);
+            _selectedTile = (Player2);
             _createdPlayer2 = true;
         }
         else
         {
-            _selectedTile = (_normalBlockBrush);
+            _selectedTile = (Player2);
+            _changedBlock = true;
         }
     }
     public void SelectSlowDown()

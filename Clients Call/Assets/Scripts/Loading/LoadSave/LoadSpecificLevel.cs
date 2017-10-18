@@ -10,7 +10,7 @@ public class LoadSpecificLevel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _handler = MenuDataHandler.Instance;
-        _sceneToLoad = _handler.NewLevelName;
+        //_sceneToLoad = _handler.NewLevelName;
         LoadALevel();
 	}
 

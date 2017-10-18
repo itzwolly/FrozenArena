@@ -30,6 +30,7 @@ public class SelectedLevelName : MonoBehaviour {
                 Button obj = Instantiate(_buttonBrush);
                 obj.GetComponent<TextFromButton>().TextField.text = fileNames[i];
                 obj.transform.SetParent(_options.transform);
+                obj.transform.localScale /= 5;//this can be be remoced, it was only because my machine made the buttons bigger
                 _buttons.Add(obj);
             }
         }

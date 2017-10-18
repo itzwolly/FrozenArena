@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Menus/Arena Selection MP.unity
+- path: Assets/Scenes/LevelCreator/LevelCreator.unity
   isLoaded: 1
   isActive: 1

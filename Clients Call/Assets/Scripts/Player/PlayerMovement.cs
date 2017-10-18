@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(collision.transform.tag=="Player")
         {
-            PlayerStatsHandler.Instance.PlayerData[name].AmountOfTimeHitOpponent++;
+            //PlayerStatsHandler.Instance.PlayerData[name].AmountOfTimeHitOpponent++;
             GetComponent<AudioSource>().PlayOneShot(HitOtherPlayer);
             _psystem.Play();
         }
@@ -114,18 +114,18 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!IsGrounded() && transform.position.y > 1.1f)
         {
-            PlayerStatsHandler.Instance.PlayerData[name].AirTimeInSeconds += Time.deltaTime;
+            //PlayerStatsHandler.Instance.PlayerData[name].AirTimeInSeconds += Time.deltaTime;
         }
 
         if (_lastPosition != transform.position && transform.position.y > 0.99f)
         {
-            PlayerStatsHandler.Instance.PlayerData[name].TotalAmountOfMetersTravelled += Vector3.Distance(transform.position, _lastPosition);
+            //PlayerStatsHandler.Instance.PlayerData[name].TotalAmountOfMetersTravelled += Vector3.Distance(transform.position, _lastPosition);
             _lastPosition = transform.position;
 
-            if (GetComponent<Rigidbody>().velocity.magnitude > PlayerStatsHandler.Instance.PlayerData[name].HighestVelocity)
-            {
-                PlayerStatsHandler.Instance.PlayerData[name].HighestVelocity = GetComponent<Rigidbody>().velocity.magnitude;
-            }
+            //if (GetComponent<Rigidbody>().velocity.magnitude > PlayerStatsHandler.Instance.PlayerData[name].HighestVelocity)
+            //{
+            //    PlayerStatsHandler.Instance.PlayerData[name].HighestVelocity = GetComponent<Rigidbody>().velocity.magnitude;
+            //}
         }
 
         _audioSource.pitch = gameObject.GetComponent<Rigidbody>().velocity.magnitude - 1;

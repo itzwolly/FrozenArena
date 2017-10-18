@@ -814,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 1440310273}
-  _sceneToLoad: Assets\\Saves\\fffuuuuuuuuu.txt
+  _sceneToLoad: Assets\\Saves\\HasAll.txt
 --- !u!1001 &1690981262
 Prefab:
   m_ObjectHideFlags: 0

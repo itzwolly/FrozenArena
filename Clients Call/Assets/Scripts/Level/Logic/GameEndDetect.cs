@@ -14,42 +14,45 @@ public class GameEndDetect : MonoBehaviour {
     private bool _hasScored;
     private LevelConfig _levelConfig;
 
+    // Commented out because not necessary for level editor
+
+
     private void Start() {
         _handler = PlayerStatsHandler.Instance;
         _hasScored = false;
-        _levelConfig = GameObject.FindGameObjectWithTag("Level").GetComponent<LevelConfig>();
+        //_levelConfig = GameObject.FindGameObjectWithTag("Level").GetComponent<LevelConfig>();
 
-        PlayerStatsHandler.Instance.PlayerData["Player_1"].ItemsPickedUp = 0;
+        //PlayerStatsHandler.Instance.PlayerData["Player_1"].ItemsPickedUp = 0;
 
-        print("Player_1 score: " + PlayerStatsHandler.Instance.PlayerData["Player_1"].Score);
+        //print("Player_1 score: " + PlayerStatsHandler.Instance.PlayerData["Player_1"].Score);
 
-        if (MenuDataHandler.Instance.PlayersReady == 2) {
-            if (PlayerStatsHandler.Instance.PlayerData["Player_1"].Score == 3) {
-                PlayerStatsHandler.Instance.PlayerData["Player_1"].HasWon = true;
-                MenuDataHandler.Instance.WinnerIndex = 1;
-            } else if (PlayerStatsHandler.Instance.PlayerData["Player_2"].Score == 3) {
-                PlayerStatsHandler.Instance.PlayerData["Player_2"].HasWon = true;
-                MenuDataHandler.Instance.WinnerIndex = 2;
-            }
-        }
+        //if (MenuDataHandler.Instance.PlayersReady == 2) {
+        //    if (PlayerStatsHandler.Instance.PlayerData["Player_1"].Score == 3) {
+        //        PlayerStatsHandler.Instance.PlayerData["Player_1"].HasWon = true;
+        //        MenuDataHandler.Instance.WinnerIndex = 1;
+        //    } else if (PlayerStatsHandler.Instance.PlayerData["Player_2"].Score == 3) {
+        //        PlayerStatsHandler.Instance.PlayerData["Player_2"].HasWon = true;
+        //        MenuDataHandler.Instance.WinnerIndex = 2;
+        //    }
+        //}
         
     }
 
     private void Update() {
-        if (MenuDataHandler.Instance.PlayersReady == 2) {
-            if (PlayerStatsHandler.Instance.PlayerData["Player_1"].HasWon || PlayerStatsHandler.Instance.PlayerData["Player_2"].HasWon) {
-                StartCoroutine(ScaleTime(1.0f, 0.0f, 3.0f));
+        //if (MenuDataHandler.Instance.PlayersReady == 2) {
+        //    if (PlayerStatsHandler.Instance.PlayerData["Player_1"].HasWon || PlayerStatsHandler.Instance.PlayerData["Player_2"].HasWon) {
+        //        StartCoroutine(ScaleTime(1.0f, 0.0f, 3.0f));
 
-                // resolution screen
-                if (MenuDataHandler.Instance.QueuedMaps.Count == 0) {
-                    // load the continue to main map
-                    SceneManager.LoadScene("Resolution_nonextmap");
-                } else {
-                    // load the next map
-                    SceneManager.LoadScene("Resolution_nextmap");
-                }
-            }
-        }
+        //        // resolution screen
+        //        if (MenuDataHandler.Instance.QueuedMaps.Count == 0) {
+        //            // load the continue to main map
+        //            SceneManager.LoadScene("Resolution_nonextmap");
+        //        } else {
+        //            // load the next map
+        //            SceneManager.LoadScene("Resolution_nextmap");
+        //        }
+        //    }
+        //}
     }
 
     IEnumerator ScaleTime(float pStart, float pEnd, float pTime) {
