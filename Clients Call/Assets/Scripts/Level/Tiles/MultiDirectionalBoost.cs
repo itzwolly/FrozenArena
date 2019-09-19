@@ -16,7 +16,6 @@ public class MultiDirectionalBoost : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Player") {
-            Debug.Log("Applying boost to: " + collision.transform.name);
             ActivateBoost(collision.gameObject, collision.rigidbody.velocity * _speedBoost);
             _psystem.Play();
         }
@@ -25,5 +24,8 @@ public class MultiDirectionalBoost : MonoBehaviour {
     private void ActivateBoost(GameObject pGameObject, Vector3 pMultiplier) {
         GetComponent<AudioSource>().PlayOneShot(SpeedingUpPlayer);
         pGameObject.GetComponent<Rigidbody>().AddForce(pMultiplier, ForceMode.Impulse);
+
+        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].TotalAmountBoosted++;
+        PlayerStatsHandler.Instance.PlayerData[pGameObject.name].AmountBoostedMulti++;
     }
 }

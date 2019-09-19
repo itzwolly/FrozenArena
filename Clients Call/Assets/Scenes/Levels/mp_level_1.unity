@@ -3588,7 +3588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &293565347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4817,9 +4817,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114195012183103090, guid: 80b00805b0a613543bcefb2c9db5591f,
+        type: 2}
+      propertyPath: _yellowTrail
+      value: 
+      objectReference: {fileID: 554309428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80b00805b0a613543bcefb2c9db5591f, type: 2}
   m_IsPrefabParent: 0
+--- !u!96 &443307456 stripped
+TrailRenderer:
+  m_PrefabParentObject: {fileID: 96867851558530786, guid: 80b00805b0a613543bcefb2c9db5591f,
+    type: 2}
+  m_PrefabInternal: {fileID: 443307455}
 --- !u!1001 &444060202
 Prefab:
   m_ObjectHideFlags: 0
@@ -6533,9 +6543,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114775635203175040, guid: d6e5159725f2a01418fe98ddb4ecde2b,
+        type: 2}
+      propertyPath: _purpleTrail
+      value: 
+      objectReference: {fileID: 443307456}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6e5159725f2a01418fe98ddb4ecde2b, type: 2}
   m_IsPrefabParent: 0
+--- !u!96 &554309428 stripped
+TrailRenderer:
+  m_PrefabParentObject: {fileID: 96573073053009472, guid: d6e5159725f2a01418fe98ddb4ecde2b,
+    type: 2}
+  m_PrefabInternal: {fileID: 554309427}
 --- !u!4 &554928910 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4833814088586970, guid: ebc324e65dd2018489a0a45498cc97de,
@@ -16977,7 +16997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1346293271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17021,7 +17041,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1346293270}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 93112a776463ff648a7d3498094dc092, type: 3}

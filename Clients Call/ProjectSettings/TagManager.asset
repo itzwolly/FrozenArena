@@ -4,20 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - Booster
+  - Fire
   - Pickup
   - BreakableTile
-<<<<<<< HEAD
-  - StartTile
-<<<<<<< HEAD
-=======
-  - Level
+  - Ground
   - Checkpoint
->>>>>>> 5c53f305334f37fda42d5f3c534e528ddc52bfc8
-=======
-  - Field
->>>>>>> LevelEdit
+  - Level
+  - FMODEventEmitter
   layers:
   - Default
   - TransparentFX

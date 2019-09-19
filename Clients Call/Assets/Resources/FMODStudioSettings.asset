@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceProjectPathUnformatted: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\FrozenArena.fspro
-  SourceBankPathUnformatted: C:\Users\ruzam\Documents\FMOD Studio\FrozenArena\Build
+  sourceProjectPath: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\FrozenArena.fspro
+  SourceProjectPathUnformatted: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\FrozenArena.fspro
+  SourceBankPathUnformatted: D:\Saxion\1-800-sixtynine-10\FMOD Studio\FrozenArena\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -54,6 +54,8 @@ MonoBehaviour:
     Value: 256
   - Platform: 2
     Value: 32
-  Plugins: []
-  MasterBank: 
+  Plugins:
+  - 
+  - 
+  MasterBank: Master Bank
   Banks: []

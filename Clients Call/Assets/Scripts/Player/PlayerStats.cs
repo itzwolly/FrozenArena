@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerStats {
     // score
     private int _score;
-    private int _itemsPickedUp;
+    private int _itemsPickedUp; // Single-player stat
     // boost
     private int _totalAmountOfTimesBoosted;
     private int _amountOfTimesBoostedByOneWay;
@@ -12,13 +13,20 @@ public class PlayerStats {
     private  float _airTimeInSeconds;
     // hitting opponent
     private  int _amountOfTimeHitYourOpponent;
+    // Amount of meters traveled
+    private float _totalAmountOfMetersTravelled;
+    // high speed
+    private float _highestVelocity;
+
+    private bool _hasWon;
 
     // score
     public int Score {
         get { return _score; }
         set {
-            if (_score < 9) {
-                _score = value;
+            _score = value;
+            if (_score > 3) {
+                _score = 3;
             }
         }
     }
@@ -39,14 +47,34 @@ public class PlayerStats {
         get { return _amountOfTimesBoostedByMulti; }
         set { _amountOfTimesBoostedByMulti = value; }
     }
-    // air time
-    public float AirTimeInSeconds {
-        get { return _airTimeInSeconds; }
-        set { _airTimeInSeconds = value; }
-    }
-    // hiting opponent
-    public int AmountOfTimeHit {
+    // hitting opponent
+    public int AmountOfTimeHitOpponent {
         get { return _amountOfTimeHitYourOpponent; }
         set { _amountOfTimeHitYourOpponent = value; }
+    }
+    // air time
+    public float AirTimeInSeconds {
+        get {
+            return (float) Math.Round(_airTimeInSeconds, 2);
+        }
+        set { _airTimeInSeconds = value; }
+    }
+    // max speed
+    public float HighestVelocity {
+        get { return (float) Math.Round(_highestVelocity, 2); }
+        set { _highestVelocity = value; }
+    }
+    
+    // Amount of meters traveled
+    public float TotalAmountOfMetersTravelled {
+        get {
+            return (float) Math.Round(_totalAmountOfMetersTravelled, 2);
+        }
+        set { _totalAmountOfMetersTravelled = value; }
+    }
+
+    public bool HasWon {
+        get { return _hasWon; }
+        set { _hasWon = value; }
     }
 }

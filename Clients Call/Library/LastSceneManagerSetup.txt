@@ -1,22 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Scenes/Loling About/loling.unity
-  isLoaded: 0
-  isActive: 0
-=======
-- path: Assets/Scenes/Levels/mp_level_3.unity
->>>>>>> 96303b677eff3e74b39394aa29829985ce4185c2
-=======
-<<<<<<< HEAD
-- path: Assets/Scenes/Loling About/loling.unity
-=======
-- path: Assets/Scenes/Levels/sp_level_5.unity
->>>>>>> 5c53f305334f37fda42d5f3c534e528ddc52bfc8
-<<<<<<< HEAD
-=======
->>>>>>> 7fc429a9b242d3f2665f6d13adee554922b784e4
->>>>>>> 96303b677eff3e74b39394aa29829985ce4185c2
+- path: Assets/Scenes/Menus/Main Menu.unity
   isLoaded: 1
   isActive: 1
->>>>>>> 7fc429a9b242d3f2665f6d13adee554922b784e4

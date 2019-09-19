@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Clients Call/Assets/Scripts/Loading.meta
 guid: f7ee7d57beae6ca4d8f7ca425ade54a0
 folderAsset: yes
 timeCreated: 1504708103
+=======
+guid: 0cddbb9418c24f44d87fc49581769340
+folderAsset: yes
+timeCreated: 1457408139
+>>>>>>> Working_Version_(Do_Not_Duck_It_Up):Clients Call/Assets/Plugins/UWP/arm.meta
 licenseType: Free
 DefaultImporter:
   userData: 
