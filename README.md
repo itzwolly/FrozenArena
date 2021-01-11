@@ -1,5 +1,5 @@
 # FrozenArena #
-A local 2-player arena game made in Unity (C#).
+A singleplayer and local 2-player arena game made in Unity (C#).
 
 # Trailer #
 [![Frozen Arena Trailer](https://img.youtube.com/vi/W2tr2apDG1A/0.jpg)](https://www.youtube.com/watch?v=W2tr2apDG1A&feature=youtu.be "Frozen Arena Trailer")
